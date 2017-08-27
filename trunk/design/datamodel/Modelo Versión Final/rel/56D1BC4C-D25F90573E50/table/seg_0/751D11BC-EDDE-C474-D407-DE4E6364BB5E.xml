@@ -1,0 +1,144 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="751D11BC-EDDE-C474-D407-DE4E6364BB5E" name="Subproducto">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>DC4B36AB-EF78-94EE-C38D-CA70CCB32865</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>SUBP</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Subproducto" id="FEB93B3A-0553-A62C-B424-4DF6CD798EC4">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del subproducto</comment>
+<commentInRDBMS>Código del subproducto</commentInRDBMS>
+<generatorID>1CDC2E08-672B-DE5E-AE17-8D3078B98D4E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Categoria" id="6F8A54CD-E712-3D23-4971-BC1F3065F2D6">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Categoría del subproducto</comment>
+<commentInRDBMS>Categoría del subproducto</commentInRDBMS>
+<generatorID>95DDB440-5D71-AA13-273D-88DB07C8215B</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Ventana_Observacion" id="6E47A360-56ED-2526-EC3C-9E768C3C0338">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Ventana de observación del subproducto</comment>
+<commentInRDBMS>Ventana de observación del subproducto</commentInRDBMS>
+<generatorID>D5482AB0-2EDE-B79B-4988-427606E0067C</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Requerimiento_Calidad" id="8B7D49A2-6F84-BE86-54A2-655A44C080C4">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Requerimiento de calidad del subproducto</comment>
+<commentInRDBMS>Requerimiento de calidad del subproducto</commentInRDBMS>
+<generatorID>F2EE4838-4D4B-795D-D537-3A6648BE6285</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Peso_Relativo_1" id="343860A1-95A1-6429-4BE3-F334469A1DB3">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Peso relativo 1 del subproducto</comment>
+<commentInRDBMS>Peso relativo 1 del subproducto</commentInRDBMS>
+<generatorID>8428A171-E56F-DC08-79D8-43D01DD69301</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Peso_Relativo_2" id="95E82B91-9E28-8493-7BB0-D89718A74C49">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Peso relativo 2 del subproducto</comment>
+<commentInRDBMS>Peso relativo 2 del subproducto</commentInRDBMS>
+<generatorID>69620D38-CCB5-CE85-F9BA-1C5E02910E02</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vigencia" id="183E1853-E435-0B46-2FE9-047AEA7D202A">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Vigencia del subproducto</comment>
+<commentInRDBMS>Vigencia del subproducto</commentInRDBMS>
+<generatorID>F730A6FB-49E0-2EE7-D6C5-55707BF45864</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Producto" id="E2135DD0-E6F9-2FFC-5AB2-BE50EC4FA3CC">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Codigo del tipo de producto</comment>
+<commentInRDBMS>Codigo del tipo de producto</commentInRDBMS>
+<generatorID>B4AA80A9-A0DD-2AD9-81D0-9762486F3F66</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<delegate>BF12E865-E3F5-E0FE-A92C-2E5953AE16F7</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1CCD3C9A-AE1E-1D1E-6ACE-B173F4113178" referredColumn="BF12E865-E3F5-E0FE-A92C-2E5953AE16F7"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7F6DC944-96FF-36B3-A167-9C02C5A3E3C3" name="Subproducto_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>3D1035F3-6AF8-8D22-BB70-9A68FE485E55</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FEB93B3A-0553-A62C-B424-4DF6CD798EC4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FF66D95C-F37C-8D8E-A255-84F3F1EB0E70" name="Subproducto_Producto_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>9AD7E5E4-D268-882F-50AA-A07B626BF7F8</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E2135DD0-E6F9-2FFC-5AB2-BE50EC4FA3CC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

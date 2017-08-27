@@ -1,0 +1,84 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.GrupoLinea;
+import com.sigeco.ejb.sessionbean.AreaEstrategicaFacade;
+import com.sigeco.ejb.sessionbean.FacultadFacade;
+import com.sigeco.ejb.sessionbean.GrupoInvestigacionFacade;
+import com.sigeco.ejb.sessionbean.GrupoLineaFacade;
+import com.sigeco.ejb.sessionbean.LineaInvestigacionFacade;
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author csacanam
+ */
+@Stateless
+public class GrupoInvestigacionSB
+{
+    @EJB
+    AreaEstrategicaFacade areaEstrategicaFacade;
+    
+    @EJB
+    FacultadFacade facultadFacade;
+    
+    @EJB
+    GrupoInvestigacionFacade grupoInvestigacionFacade;
+    
+    @EJB
+    LineaInvestigacionFacade lineaInvestigacionFacade;
+    
+    @EJB
+    private GrupoLineaFacade grupoLineaFacade;
+
+    // Lógica especializada
+    
+    /**
+     * Permite obrtener todos los grupo linea asociados a un grupo de investigación
+     * @param grupoInv Grupo de investigación
+     * @return Lista de grupos línea que están asociados a un grupo de investigación
+     */
+    public List<GrupoLinea> getGrupoLineaFromGrupoInv(GrupoInvestigacion grupoInv)
+    {
+        Query gruposLinea = grupoLineaFacade.getEntityManager().createNamedQuery("GrupoLinea.findByCodigoGrupo").setParameter("codigoGrupo", grupoInv.getCodigoGrupo());
+        return gruposLinea.getResultList();  
+    }
+    
+
+    // Getters para el CRUD
+    public AreaEstrategicaFacade getAreaEstrategicaFacade()
+    {
+        return areaEstrategicaFacade;
+    }
+    
+    public FacultadFacade getFacultadFacade()
+    {
+        return facultadFacade;
+    }
+
+    public GrupoInvestigacionFacade getGrupoInvestigacionFacade()
+    {
+        return grupoInvestigacionFacade;
+    }
+
+    
+    public LineaInvestigacionFacade getLineaInvestigacionFacade()
+    {
+        return lineaInvestigacionFacade;
+    }
+     
+    public GrupoLineaFacade getGrupoLineaFacade()
+    {
+        return grupoLineaFacade;
+    }
+    
+}

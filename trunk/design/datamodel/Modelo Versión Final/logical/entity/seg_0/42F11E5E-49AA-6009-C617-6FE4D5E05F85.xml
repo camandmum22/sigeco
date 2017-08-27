@@ -1,0 +1,147 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="42F11E5E-49AA-6009-C617-6FE4D5E05F85" name="Entregable">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>ENTR</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo" id="BF8400D8-FD03-9D0F-6905-125F1E461AD0">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<comment>Código del producto</comment>
+<commentInRDBMS>Código del producto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>9DCAA409-AADD-20B1-39C8-020531DEE58F</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Nombre" id="6039F303-AFDC-79F6-C6ED-D9B8BBF443DA">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<comment>Nombre del producto</comment>
+<commentInRDBMS>Nombre del producto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>86F96949-5693-C26B-B7F0-B0CDCDE12CFD</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="FechaEstimada" id="11985639-F194-CAB4-95A8-546D9AAF8FA6">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<comment>Fecha estimada del producto</comment>
+<commentInRDBMS>Fecha estimada del producto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>8C121757-331B-9882-B80A-439762186523</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+</Attribute>
+<Attribute name="FechaReal" id="DEFB0283-F513-5E83-B88F-BF1E4543BA13">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<comment>Fecha real del producto</comment>
+<commentInRDBMS>Fecha real del producto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>94DAA058-03E8-C15E-7409-34BC49D317E6</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+</Attribute>
+<Attribute name="Codigo_Proyecto" id="02341039-478E-F0BF-D96B-FB1680A0251C">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 05:00:32 UTC</createdTime>
+<comment>Código del proyecto</comment>
+<commentInRDBMS>Código del proyecto</commentInRDBMS>
+<generatorID>F640E434-71D1-BB8A-6942-E88BDB9E7A6F</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>4BE536AC-3374-DCEF-8B2F-F8F6873D9DDA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Estado" id="BC12FB2C-E207-CCE0-187D-AA086CCE7E84">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-20 04:49:52 UTC</createdTime>
+<comment>Código del estado</comment>
+<commentInRDBMS>Código del estado</commentInRDBMS>
+<generatorID>C7F6CF7B-7C62-1AC3-60CC-FA148F070699</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>9FF70A89-200E-BB56-E201-19ECB90E2522</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Subproducto" id="B84291B1-EBCF-B577-BFE1-BB487A046E8A">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-27 05:29:20 UTC</createdTime>
+<comment>Código del subproducto</comment>
+<commentInRDBMS>Código del subproducto</commentInRDBMS>
+<generatorID>08ADA1C3-4DB4-BC2A-9968-B22E7DA8C964</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>1CDC2E08-672B-DE5E-AE17-8D3078B98D4E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B023AD0D-E056-27C1-8A9A-9AA897F941D2" name="Prodcuto PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>BF8400D8-FD03-9D0F-6905-125F1E461AD0</newElementsIDs>
+<usedAttributes>
+<attributeRef>BF8400D8-FD03-9D0F-6905-125F1E461AD0</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

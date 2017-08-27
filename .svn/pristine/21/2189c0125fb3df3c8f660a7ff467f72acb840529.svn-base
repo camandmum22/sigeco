@@ -1,0 +1,131 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.subsistemas.AuthAutSB;
+import com.sigeco.utilities.Mensajes;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ <p>
+ @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class AuthAutNB
+{
+    //---------------------
+    //Atributos del control
+    //---------------------
+
+    @EJB
+    private AuthAutSB authAutSB;
+
+    /**
+     El usuario actual que esta logueado
+     */
+    private Usuario usuarioActual;
+
+    //----------------------------
+    //Atributos de la presentacion
+    //----------------------------
+
+    /**
+     Creates a new instance of AuthAutNB
+     */
+    public AuthAutNB()
+    {
+    }
+
+    //--------
+    //Metodos
+    //--------
+    @PostConstruct
+    public void init()
+    {
+        usuarioActual = new Usuario();
+    }
+
+    /**
+     Se invoca cuando algún usuario va a loguearse en el sitio
+     */
+    public void autenticar()
+    {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        HttpServletRequest httpServletRequest = (HttpServletRequest)ec.getRequest();
+
+        try
+        {
+            setUsuarioActual( authAutSB.autenticar( usuarioActual.getDocumento(), usuarioActual.getContraseña() ) );
+
+            if( getUsuarioActual() != null )
+            {
+                ec.redirect( httpServletRequest.getContextPath() + "/faces/index.xhtml" );
+            }
+        }
+        catch( Exception ex )
+        {
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_ERROR, "No se pudo iniciar sesión", "Intenta más tarde" );
+        }
+    }
+
+    /**
+     Desloguea el usuario actual
+     */
+    public void cerrarSesion()
+    {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
+        HttpServletRequest req = (HttpServletRequest)ec.getRequest();
+
+        try
+        {
+            getUsuarioActual().setCodigoUsuario( null );
+            ec.redirect( req.getContextPath() + "/faces/login.xhtml" );
+        }
+        catch( Exception ex )
+        {
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_ERROR, "No se pudo cerrar sesión", "Intente más tarde" );
+        }
+    }
+
+    //----------------------------
+    //Getters and Setters
+    //----------------------------
+    public AuthAutSB getAuthAutSB()
+    {
+        return authAutSB;
+    }
+
+    public void setAuthAutSB( AuthAutSB authAutSB )
+    {
+        this.authAutSB = authAutSB;
+    }
+
+    public Usuario getUsuarioActual()
+    {
+        return usuarioActual;
+    }
+
+    public void setUsuarioActual( Usuario usuarioActual )
+    {
+        this.usuarioActual = usuarioActual;
+    }
+
+    public boolean isLogged()
+    {
+        return getUsuarioActual().getCodigoUsuario() != null;
+    }
+}

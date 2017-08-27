@@ -1,0 +1,119 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.entities.Rubro;
+import com.sigeco.ejb.exceptions.RubroException;
+import com.sigeco.ejb.sessionbean.PcsRubroFacade;
+import com.sigeco.ejb.sessionbean.RolProyectoFacade;
+import com.sigeco.ejb.sessionbean.RubroFacade;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
+
+/**
+ *
+ * @author csacanam
+ */
+@Stateless
+public class PresupuestoSB
+{
+
+    @EJB
+    private RubroFacade rubroFacade;
+
+    @EJB
+    private PcsRubroFacade pcsRubroFacade;
+
+    //Lógica especializada
+    /**
+     * Método que crea un rubro nuevo para los proyectos con los siguientes
+     * parpametros:
+     *
+     * @param nombre
+     * @param descripcion
+     * @throws RubroException - Cuando los parámetros no están explícitos.
+     */
+    public void crearRubro(String nombre, String descripcion) throws RubroException
+    {
+        if (nombre == null || descripcion == null)
+        {
+            throw new RubroException("El rubro debe tener todos los datos completos.");
+        } else
+        {
+            Rubro rubroNuevo = new Rubro();
+            rubroNuevo.setNombre(nombre);
+            rubroNuevo.setDescripcion(descripcion);
+            rubroFacade.create(rubroNuevo);
+        }
+    }
+
+    /**
+     * Método que permite editar un rubro ya existente con los siguientes
+     * parámetros:
+     *
+     * @param codigo
+     * @param nombre
+     * @param descripcion
+     * @throws RubroException
+     */
+    public void editarRubro(long codigo, String nombre, String descripcion) throws RubroException
+    {
+        if (nombre == null || descripcion == null)
+        {
+            throw new RubroException("El rubro debe tener todos los datos completos.");
+        } else
+        {
+            Rubro rubroEditar = new Rubro(codigo, nombre);
+            rubroEditar.setDescripcion(descripcion);
+            rubroFacade.edit(rubroEditar);
+        }
+    }
+
+    /**
+     * Método que permite remover un rubro ya existente con los siguientes
+     * parámetros:
+     *
+     * @param codigo
+     * @param nombre
+     * @param descripcion
+     * @throws RubroException
+     */
+    public void removerRubro(long codigo, String nombre, String descripcion) throws RubroException
+    {
+        if (nombre == null || descripcion == null)
+        {
+            throw new RubroException("El rubro debe tener todos los datos completos.");
+        } else
+        {
+            Rubro rubroEliminar = new Rubro(codigo, nombre);
+            rubroEliminar.setDescripcion(descripcion);
+            rubroFacade.remove(rubroEliminar);
+        }
+    }
+
+    public RubroFacade getRubroFacade()
+    {
+        return rubroFacade;
+    }
+
+    public void setRubroFacade(RubroFacade rubroFacade)
+    {
+        this.rubroFacade = rubroFacade;
+    }
+
+    public PcsRubroFacade getPcsRubroFacade()
+    {
+        return pcsRubroFacade;
+    }
+
+    public void setPcsRubroFacade(PcsRubroFacade pcsRubroFacade)
+    {
+        this.pcsRubroFacade = pcsRubroFacade;
+    }
+    
+    
+}

@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Rubro;
+import com.sigeco.ejb.exceptions.RubroException;
+import com.sigeco.ejb.subsistemas.PresupuestoSB;
+import com.sigeco.utilities.Mensajes;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class PresupuestoNB
+{
+
+    //Atributos de un rubro
+    private Rubro rubro;
+
+    @EJB
+    PresupuestoSB presupuestoSB;
+
+    /**
+     * Creates a new instance of PresupuestoNB
+     */
+    public PresupuestoNB()
+    {
+    }
+
+    /**
+     * Me permite crear un nuevo rubro en el sistema.
+     *
+     */
+    public void crearRubro()
+    {
+        try
+        {
+            presupuestoSB.crearRubro(rubro.getNombre(), rubro.getDescripcion());
+        } catch (RubroException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo crear", ex.getMessage());
+        }
+    }
+
+    /**
+     * Método que permite editar un rubro ya existente con los siguientes
+     * parámetros:
+     *
+     *
+     */
+    public void editarRubro()
+    {
+        try
+        {
+            presupuestoSB.editarRubro(rubro.getCodigo(), rubro.getNombre(), rubro.getDescripcion());
+        } catch (RubroException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo editar", ex.getMessage());
+        }
+    }
+
+    /**
+     * Método que permite remover un rubro ya existente con los siguientes
+     * parámetros:
+     *
+     *
+     */
+    public void removerRubro()
+    {
+        try
+        {
+            presupuestoSB.removerRubro(rubro.getCodigo(), rubro.getNombre(), rubro.getDescripcion());
+        } catch (RubroException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo remover", ex.getMessage());
+        }
+    }
+
+    public Rubro getRubro()
+    {
+        return rubro;
+    }
+
+    public void setRubro(Rubro rubro)
+    {
+        this.rubro = rubro;
+    }
+}

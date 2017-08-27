@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="MOD_TAR" directorySegmentName="seg_0" id="8F339035-B672-9585-16BD-D88CF7212789">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 22:52:43 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>B410DA96-F428-DCBE-6BA5-6BDA819C70E0</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>6404CE34-4B1E-9DD1-CFD1-9D59BF9BDC7C</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>56B4AB76-42C2-42DB-9A9A-1D396B18D9D6</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

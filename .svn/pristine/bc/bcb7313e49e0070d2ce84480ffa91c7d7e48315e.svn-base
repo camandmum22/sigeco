@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C3536BB5-0161-98E6-6D3A-0869A3AF03A4" name="Rol_Proyecto">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>DAEC3380-5832-7BD1-3C92-2AF3FA190C1F</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_RolPI" id="993BFA63-912C-9FBD-CEC3-ADD5893C4161">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del rol en un proyecto de investigación</comment>
+<commentInRDBMS>Código del rol en un proyecto de investigación</commentInRDBMS>
+<generatorID>A9076325-715D-2F49-E83D-040CA0B3938D</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="73A1A9CB-1783-B73F-514F-5620865E96E2">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre del rol en un proyecto de investigación.&lt;br/&gt;Investigador Principal&lt;br/&gt;Co Investigador&lt;br/&gt;Estudiante&lt;br/&gt;Asesor&lt;br/&gt;Profesional&lt;br/&gt;Asistente de Investigación&lt;br/&gt;Joven Investigador&lt;br/&gt;Externo</comment>
+<commentInRDBMS>Nombre del rol en un proyecto de investigación.&lt;br/&gt;Investigador Principal&lt;br/&gt;Co Investigador&lt;br/&gt;Estudiante&lt;br/&gt;Asesor&lt;br/&gt;Profesional&lt;br/&gt;Asistente de Investigación&lt;br/&gt;Joven Investigador&lt;br/&gt;Externo</commentInRDBMS>
+<generatorID>EF81B19D-66A4-8B3C-1226-5BBEDF73603F</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2D500055-852F-97B6-1BD8-1A78D4959806" name="Rol_Proyecto_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>DEB914A9-28AF-D2F6-0428-D98D6BA62ECF</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="993BFA63-912C-9FBD-CEC3-ADD5893C4161"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

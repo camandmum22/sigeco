@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7E53C0EE-A12B-67BC-40A2-F9205978509E" name="Investigador">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>DE16A0C3-EEB1-E253-FDA1-036242D092A6</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Grupo" id="7D451562-743C-13DC-F5F0-C389D72A980D">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del grupo de investigación</comment>
+<commentInRDBMS>Código del grupo de investigación</commentInRDBMS>
+<generatorID>A85C6A35-03D1-E402-58A6-DF2DB4CB4EBF</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<delegate>0EAAFC5A-3F78-FF17-23A3-52882FA7502F</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="33D60741-DB46-1403-0CB6-25ECDBE9B9D7" referredColumn="0EAAFC5A-3F78-FF17-23A3-52882FA7502F"/>
+</associations>
+</Column>
+<Column name="Codigo_Usuario" id="46BD3FDF-3C4A-D8FB-04FC-5E0D81639945">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del usuario</comment>
+<commentInRDBMS>Código del usuario</commentInRDBMS>
+<generatorID>A94C1A6A-57E1-3243-F718-8D46EF6247DF</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<delegate>77FF0873-6C0E-BEE3-8AE9-677ED19C6E09</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="51DADE9E-7891-415F-BB4E-9074B7445298" referredColumn="77FF0873-6C0E-BEE3-8AE9-677ED19C6E09"/>
+</associations>
+</Column>
+<Column name="EsLider" id="118A4BC6-B207-BCE6-D9CD-A126A158D81D">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Atributo que permite conocer si el usuario del grupo de investigación, es Líder de Investigación.&lt;br/&gt;S=Sí&lt;br/&gt;N=No</comment>
+<commentInRDBMS>Atributo que permite conocer si el usuario del grupo de investigación, es Líder de Investigación.&lt;br/&gt;S=Sí&lt;br/&gt;N=No</commentInRDBMS>
+<generatorID>64F39C64-B965-F759-A09F-44C6DFB99B16</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3E4DA222-D8A6-C443-2424-FC8254F35E77" name="Investigador_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>7AC09006-75A0-0AF1-62A8-8813DC55583D</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7D451562-743C-13DC-F5F0-C389D72A980D"/>
+<colUsage columnID="46BD3FDF-3C4A-D8FB-04FC-5E0D81639945"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="681C8186-6134-DD08-ADF6-D6D1DC233BA5" name="Investigador_Grupo_Investigacion_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>8F162C4C-C93A-D3C6-9BA3-A3539D564302</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7D451562-743C-13DC-F5F0-C389D72A980D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8CB89E18-F268-ACDB-44DE-3ED55D38B1C9" name="Investigador_Usuario_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>E39F761B-D3AC-EBCA-E70C-18F24ADFD94E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="46BD3FDF-3C4A-D8FB-04FC-5E0D81639945"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

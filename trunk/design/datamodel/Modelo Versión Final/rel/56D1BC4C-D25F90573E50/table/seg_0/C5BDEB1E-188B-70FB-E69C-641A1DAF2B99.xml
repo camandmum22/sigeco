@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C5BDEB1E-188B-70FB-E69C-641A1DAF2B99" name="Linea_Investigacion">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>335F9851-8F22-24B6-CB0F-8F4C4BB6EAEA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Linea" id="C3BB4BD8-05C3-EF3F-4614-F3592BD5C735">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la línea de investigación</comment>
+<commentInRDBMS>Código de la línea de investigación</commentInRDBMS>
+<generatorID>136000F0-9F7B-851C-15D7-AA97B364DB9E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="F3C99DB5-DC42-E2F0-8188-8439E93F581F">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre de la línea de investigación</comment>
+<commentInRDBMS>Nombre de la línea de investigación</commentInRDBMS>
+<generatorID>04E1135A-6AEE-6B3C-F2B9-39F00296AC44</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripcion" id="44BF6F02-4D25-88B6-87D1-761C52591E8D">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Descripción de la línea de investigación</comment>
+<commentInRDBMS>Descripción de la línea de investigación</commentInRDBMS>
+<generatorID>AE092368-C61C-37C3-563C-96B1631999BD</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Vencimiento_Acreditacion" id="99FB862C-BF62-9238-6A35-CEBE7CC9A485">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Indica si la línea de investigación está acreditada oficialmente.</comment>
+<commentInRDBMS>Indica si la línea de investigación está acreditada oficialmente.</commentInRDBMS>
+<generatorID>F962D68E-962F-86CF-98BF-EE2ED0D518A5</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="16588E0C-B76A-4C32-27BC-61C6494F9FA4" name="Linea_Investigacion_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>1FDE0C4B-A02A-8449-9CEF-3C5385BFB576</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3BB4BD8-05C3-EF3F-4614-F3592BD5C735"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

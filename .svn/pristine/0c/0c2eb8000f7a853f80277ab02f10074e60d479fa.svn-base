@@ -1,0 +1,77 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.sessionbean.TarifaFacade;
+import com.sigeco.ejb.sessionbean.UsuarioFacade;
+import com.sigeco.ejb.utilities.CipherAlgorithms;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
+
+/**
+ * <p>
+ * @author csacanam
+ */
+@Stateful
+public class UsuarioSB
+{
+
+    @EJB
+    private UsuarioFacade usuarioFacade;
+
+    @EJB
+    private TarifaFacade tarifaFacade;
+
+    public UsuarioFacade getUsuarioFacade()
+    {
+        return usuarioFacade;
+    }
+
+    public void setUsuarioFacade(UsuarioFacade usuarioFacade)
+    {
+        this.usuarioFacade = usuarioFacade;
+    }
+
+    public TarifaFacade getTarifaFacade()
+    {
+        return tarifaFacade;
+    }
+
+    public void setTarifaFacade(TarifaFacade tarifaFacade)
+    {
+        this.tarifaFacade = tarifaFacade;
+    }
+
+    /**
+     * Valida si la contraseña del usuario indentificado con el documento es la
+     * registrada en el sistema
+     * <p>
+     * @param documento El documento del usuario
+     * @param contrasenia La contrasenia que se quiere validar
+     * @return El usuario o null si no es valida o el usuario no existe
+     */
+    public Usuario isValidPassword(String documento, String contrasenia) throws Exception
+    {
+//        Query query = usuarioFacade.getEntityManager().createNamedQuery("Usuario.findByDocumento", Usuario.class).setParameter("documento", documento);
+//        List<Usuario> lista = query.getResultList();
+        
+        List<Usuario> lista = usuarioFacade.findBy( "Documento", documento);
+        
+        if (!lista.isEmpty())
+        {
+            Usuario usuario = lista.get(0);
+
+            if (CipherAlgorithms.decryptAES(usuario.getContraseña()).equals(contrasenia))
+            {
+                return usuario;
+            }
+        }
+
+        return null;
+    }
+}

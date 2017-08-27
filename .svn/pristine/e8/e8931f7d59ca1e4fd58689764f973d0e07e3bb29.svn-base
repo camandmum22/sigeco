@@ -1,0 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.subsistemas.GrupoInvestigacionSB;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author csacanam
+ */
+@FacesConverter("grupoInvestigacionConverter")
+public class GrupoInvestigacionConverter implements Converter
+{
+    
+    private List<GrupoInvestigacion> gruposInvestigacion = new ArrayList<>();
+    
+    @EJB
+    GrupoInvestigacionSB grupoInvestigacionSB;
+    
+    public GrupoInvestigacionConverter()
+    {
+    }
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value)
+    {
+        if (value.trim().equals(""))
+        {
+            return null;
+        } else
+        {
+            
+            //Obtener nuevos grupos de investigación
+            gruposInvestigacion.clear();
+            gruposInvestigacion = grupoInvestigacionSB.getGrupoInvestigacionFacade().findAll();
+
+            //Encontrar grupo de investigación y retornarlo
+            for (GrupoInvestigacion grupoInv : gruposInvestigacion)
+            {
+                if (grupoInv.getCodigoGrupo().equals(value))
+                {
+                    return grupoInv;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value)
+    {
+        if (value == null || value.equals(""))
+        {
+            return "";
+        } else
+        {
+            return ((GrupoInvestigacion) value).getCodigoGrupo();
+        }
+
+    }
+
+}

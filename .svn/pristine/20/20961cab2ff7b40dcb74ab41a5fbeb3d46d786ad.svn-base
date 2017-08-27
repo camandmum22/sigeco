@@ -1,0 +1,212 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.entities.Facultad;
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.Investigador;
+import com.sigeco.ejb.entities.RolSistema;
+import com.sigeco.ejb.entities.Tarifa;
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.exceptions.UsuarioException;
+import com.sigeco.ejb.sessionbean.TarifaFacade;
+import com.sigeco.ejb.sessionbean.UsuarioFacade;
+import com.sigeco.ejb.utilities.CipherAlgorithms;
+import com.sigeco.ejb.utilities.Validaciones;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
+
+/**
+ * <p>
+ * @author csacanam
+ */
+@Stateful
+public class UsuarioSB {
+
+    @EJB
+    private UsuarioFacade usuarioFacade;
+
+    @EJB
+    private TarifaFacade tarifaFacade;
+
+    public UsuarioFacade getUsuarioFacade() {
+        return usuarioFacade;
+    }
+
+    public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
+        this.usuarioFacade = usuarioFacade;
+    }
+
+    public TarifaFacade getTarifaFacade() {
+        return tarifaFacade;
+    }
+
+    public void setTarifaFacade(TarifaFacade tarifaFacade) {
+        this.tarifaFacade = tarifaFacade;
+    }
+
+    /**
+     * Valida si la contraseña del usuario indentificado con el documento es la
+     * registrada en el sistema
+     * <p>
+     * @param documento El documento del usuario
+     * @param contrasenia La contrasenia que se quiere validar
+     * @return El usuario o null si no es valida o el usuario no existe
+     */
+    public Usuario isValidPassword(String documento, String contrasenia) throws Exception {
+//        Query query = usuarioFacade.getEntityManager().createNamedQuery("Usuario.findByDocumento", Usuario.class).setParameter("documento", documento);
+//        List<Usuario> lista = query.getResultList();
+
+        List<Usuario> lista = usuarioFacade.findBy("Documento", documento);
+
+        if (!lista.isEmpty()) {
+            Usuario usuario = lista.get(0);
+
+            if (CipherAlgorithms.decryptAES(usuario.getPass()).equals(contrasenia)) {
+                return usuario;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Devuleve el objeto Usuario asociado a un documento, si no existe ningun
+     * usuario asociado a ese documento devulve null
+     * <p>
+     * @param documento El documento del usuario
+     * @return El usuario o null si no es valida o el usuario no existe
+     */
+    public Usuario darUsuarioConDocumento(String documento) {
+        Usuario u = null;
+        List<Usuario> usus = usuarioFacade.findBy("Documento", documento);
+        if (!usus.isEmpty() && usus.get(0) != null) {
+            u = usus.get(0);
+        }
+        return u;
+    }
+
+    /**
+     * Permite verificar si el usuario asociado a un domuento corresponde al
+     * Lider de un Grupo de Investigacion
+     * <p>
+     * @param documento El documento del usuario
+     */
+    public boolean esLiderDeGrupoDeInvestigacion(String documento) {
+        boolean lider = false;
+        Usuario u = null;
+        List<Usuario> usus = usuarioFacade.findBy("Documento", documento);
+        if (!usus.isEmpty() && usus.get(0) != null) {
+            u = usus.get(0);
+
+        }
+        return lider;
+    }
+
+    /**
+     * Permite verificar si el usuario asociado a un domuento corresponde al
+     * Decano
+     * <p>
+     * @param documento El documento del usuario
+     */
+    public boolean esDecano(String documento) {
+        boolean esDecano = false;
+        Usuario u = null;
+        List<Usuario> usus = usuarioFacade.findBy("Documento", documento);
+        if (!usus.isEmpty() && usus.get(0) != null) {
+            u = usus.get(0);
+        }
+        if (u.getFacCodigo() != null && u.getFacCodigo().getCodigo() != null) {
+            esDecano = true;
+        }
+        return esDecano;
+    }
+
+    /**
+     * Devuelve la facultad del usuario asociado a un domuento que corresponde
+     * al Decano
+     * <p>
+     * @param documento El documento del usuario
+     */
+    public Facultad darFacultadDecano(String documento) {
+        Usuario u = null;
+        Facultad f = null;
+        List<Usuario> usus = usuarioFacade.findBy("Documento", documento);
+        if (!usus.isEmpty() && usus.get(0) != null) {
+            u = usus.get(0);
+        }
+        if (u.getFacCodigo() != null && u.getFacCodigo().getCodigo() != null) {
+            f = u.getFacCodigo();
+        }
+        return f;
+    }
+    
+    /**
+     * Devuelve el grupo de investigacion asociado a un domuento que corresponde
+     * a un Lider de Investigacion
+     * <p>
+     * @param documento El documento del usuario
+     */
+    public GrupoInvestigacion darGrupoDeInvestigacionLiderDeInvestigacion(String documento) {
+        Usuario u = null;
+        //GrupoInvestigacion gi = null;
+        List<Usuario> usus = usuarioFacade.findBy("Documento", documento);
+        if (!usus.isEmpty() && usus.get(0) != null) {
+            u = usus.get(0);
+        }
+        if (u.getInvestigadorList()!= null && !u.getInvestigadorList().isEmpty()) {
+            for (Investigador in : u.getInvestigadorList()){
+                String esLider = in.getEslider().toUpperCase();
+                if(esLider!= null && (esLider.startsWith("Y") || esLider.startsWith("S"))){
+                    return in.getGrupoInvestigacion();
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Metodo que verifica si el usuario es decano es de la OAI. Nota: El decano
+     * o la OAI no pueden crear proyectos de investigación.
+     */
+    public boolean esInvestigador(String documento) {
+        boolean esInvestigador = false;
+        List<Usuario> usus = usuarioFacade.findBy("Documento", documento);
+        if (!usus.isEmpty()) {
+            long codigoRolInvestigador = 1;
+            Usuario usuario= usus.get(0);
+            
+            esInvestigador = usuario.getRolSistemaList().contains(new RolSistema(codigoRolInvestigador));
+        }
+        return esInvestigador;
+        
+    }
+    
+    public void editarUsuario(String tipoDocumento, String documento, String nombre, 
+            String email, String telefono, String otraInstitucion, String pass/*, List<RolSistema> rolSistemaList,
+            List<Investigador> investigadorList, List<Tarifa> tarifaList*/) throws UsuarioException, Exception {
+
+        if (Validaciones.esVacio(tipoDocumento) || Validaciones.esVacio(documento)
+                || Validaciones.esVacio(nombre) || Validaciones.esVacio(email)
+                || Validaciones.esVacio(telefono) || Validaciones.esVacio(otraInstitucion)
+                || Validaciones.esVacio(pass)) {
+            throw new UsuarioException("Ingrese todos los datos.");
+        }
+        
+        List<Usuario> usuario = usuarioFacade.findBy("Documento", documento);
+        Usuario usu = usuario.get(0);
+        
+        usu.setTipoDocumento(tipoDocumento);
+        usu.setDocumento(documento);
+        usu.setNombre(nombre);
+        usu.setEmail(email);
+        usu.setTelefono(telefono);
+        usu.setOtraInstitucion(otraInstitucion);
+        usu.setPass(CipherAlgorithms.encryptAES(pass));
+        usuarioFacade.edit(usu);
+    }
+}

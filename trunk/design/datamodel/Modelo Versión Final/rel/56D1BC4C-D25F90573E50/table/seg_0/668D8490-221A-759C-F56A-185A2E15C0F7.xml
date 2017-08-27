@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="668D8490-221A-759C-F56A-185A2E15C0F7" name="Permisos">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>A134274C-DDB9-8C0E-8129-FCA5F5E49B72</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Url" id="7A4B89A0-6B3D-F8A1-1937-C6E60E3EC79D">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Permisos de un rol</comment>
+<commentInRDBMS>Permisos de un rol</commentInRDBMS>
+<generatorID>481515A6-F956-248D-1C76-98C67D60F153</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="ECD6A8C8-68C0-4CDC-00C7-E78EF33C291B">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre del rol</comment>
+<commentInRDBMS>Nombre del rol</commentInRDBMS>
+<generatorID>757DBA89-6AF8-7361-FDDF-AA077848B6D0</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_RolPI" id="7A4A014D-5A8A-AAA9-352B-1F89EEE38008">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del rol en un proyecto de investigación</comment>
+<commentInRDBMS>Código del rol en un proyecto de investigación</commentInRDBMS>
+<generatorID>ACBB5CD2-0D8C-4E5E-2534-4120F505D8B6</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<delegate>993BFA63-912C-9FBD-CEC3-ADD5893C4161</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="733D1110-CF7D-6042-DAA3-E49E1EB4AE14" referredColumn="993BFA63-912C-9FBD-CEC3-ADD5893C4161"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D3C93032-7218-C044-5526-1485C72848D6" name="Permisos_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>D497755B-2863-46E8-9893-1B0E08515952</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7A4B89A0-6B3D-F8A1-1937-C6E60E3EC79D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C9E8B3D6-BC4A-DC7E-1240-99F4F34DD5ED" name="Permisos_Rol_Proyecto_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>EC9573C8-8B9B-A67E-7ADA-4009F1D94924</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7A4A014D-5A8A-AAA9-352B-1F89EEE38008"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

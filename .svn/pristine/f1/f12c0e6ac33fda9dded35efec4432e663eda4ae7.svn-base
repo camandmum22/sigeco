@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html     
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Desasociar rubros</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        
+        <h:outputStylesheet library="css" name="styles.css"  />
+        <h1>Desasociar rubros</h1>
+        
+               <!-- Formulario de creación de proyecto de investigación -->
+        <h:form id="form" >
+            <!-- Espacio para los mensajes emergentes -->
+            <p:growl id="growl" life="2000" />
+            <!-- Panel de información básica -->
+            <p:panel id="panel" header="Información general">
+                <h:panelGrid columns="2" width="80%" cellpadding="4px" cellspacing="5px">
+                    
+                    <p:outputLabel for="proyectoInv" value="Proyecto de investigación:" />
+                    <h:selectOneMenu id="proyectoInv" value="#{proyectosNB.proyectosInvestigacion}" required="true" class="comboLineaInvCrearProyecto">
+                       <f:converter converterId="proyectosConverter" />
+                        <f:selectItems value="#{proyectosNB.proyectosInvestigacion}" var="proyectoInv" itemLabel="#{proyectoInv.titulo}" itemValue="#{proyectoInv}" />
+                    </h:selectOneMenu>
+
+                    <p:outputLabel for="rubroAsociado" value="Rubros asociados:" />
+                    <h:selectOneMenu id="rubroAsociado" required="true" >
+                        <f:selectItems />
+                    </h:selectOneMenu>   
+                                        
+                   </h:panelGrid>
+            </p:panel>
+
+            <!-- Botón crear proyecto -->
+            <p:commandButton value="Desasociar" update="growl" actionListener="#{proyectosNB.crearProyecto()}" styleClass="ui-priority-primary" />
+
+        </h:form>
+               
+    </h:body>
+</html>

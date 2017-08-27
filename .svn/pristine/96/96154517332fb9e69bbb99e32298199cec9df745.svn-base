@@ -1,0 +1,531 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.entities.Convocatoria;
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.entities.Facultad;
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.GrupoLinea;
+import com.sigeco.ejb.entities.Investigador;
+import com.sigeco.ejb.entities.LineaInvestigacion;
+import com.sigeco.ejb.entities.ProConSol;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.entities.UsuarioPcs;
+import com.sigeco.ejb.exceptions.ProyectoException;
+import com.sigeco.ejb.sessionbean.GrupoLineaFacade;
+import com.sigeco.ejb.sessionbean.InvestigadorFacade;
+import com.sigeco.ejb.sessionbean.LineaInvestigacionFacade;
+import com.sigeco.ejb.sessionbean.ProyectoInvestigacionFacade;
+import com.sigeco.ejb.sessionbean.RolProyectoFacade;
+import com.sigeco.ejb.sessionbean.TipoInvestigacionFacade;
+import com.sigeco.ejb.sessionbean.TipoProyectoFacade;
+import com.sigeco.ejb.sessionbean.UsuarioPcsFacade;
+import com.sigeco.ejb.utilities.Validaciones;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author csacanam
+ */
+@Stateless
+public class ProyectosSB {
+
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+    @EJB
+    private TipoInvestigacionFacade tipoInvestigacionFacade;
+
+    @EJB
+    private RolProyectoFacade rolProyectoFacade;
+
+    @EJB
+    private ProyectoInvestigacionFacade proyectoFacade;
+
+    @EJB
+    private TipoProyectoFacade tipoProyectoFacade;
+
+    @EJB
+    private LineaInvestigacionFacade lineaInvestigacionFacade;
+
+    @EJB
+    private GrupoLineaFacade grupoLineaFacade;
+
+    @EJB
+    private InvestigadorFacade investigadoresFacade;
+
+    @EJB
+    private UsuarioSB usuarioSB;
+
+    @EJB
+    private ConvocatoriaSB convocatoriaSB;
+
+    @EJB
+    private UsuarioPcsFacade usuarioPcsFacade;
+
+    /**
+     * Permite crear un nuevo proyecto de investigación
+     *
+     * @param proyectoNuevo Nuevo proyecto de investigación
+     * @param usuario Usuario investigador
+     * @throws ProyectoException Excepción ante cualquier problema en la
+     * validación
+     */
+    public void crearProyecto(ProyectoInvestigacion proyectoNuevo, Usuario usuario) throws ProyectoException {
+        if (!usuarioSB.esInvestigador(usuario.getDocumento())) {
+
+            throw new ProyectoException("El usuario no tiene permiso para realizar esta acción");
+        }
+        if (proyectoNuevo != null) {
+
+            //Validar campos obligatorios
+            if (!Validaciones.esVacio(proyectoNuevo.getTitulo()) && !Validaciones.esVacio(proyectoNuevo.getResumenEjecutivo()) && proyectoNuevo.getFechafin() != null && proyectoNuevo.getFechainicio() != null && new BigDecimal(proyectoNuevo.getPresupuestoEsperado()).doubleValue() > 0 && proyectoNuevo.getTipInvCodigo() != null && proyectoNuevo.getTipProCodigo() != null && proyectoNuevo.getGrupoLinea() != null) {
+                //Documento de aprobación ética
+                if (!proyectoNuevo.getAprobacionEtica().equals("Y") && proyectoNuevo.getDocEtica() != null) {
+                    throw new ProyectoException("Debes adjuntar un documento de ética");
+
+                } //Se puede hacer el registro del proyecto
+                else {
+                    //Cambiar a estado registrado
+                    proyectoNuevo.setEstCodigo(new Estado(EstadosSB.PROYECTO_REGISTRADO));
+                    //Registrar proyecto de investigación
+                    proyectoFacade.create(proyectoNuevo);
+                }
+
+            } else {
+                throw new ProyectoException("No puedes dejar campos vacíos");
+            }
+        } else {
+            throw new ProyectoException("No puede dejar campos vacíos");
+        }
+
+    }
+
+    /**
+     * Método que permite editar un proyecto con la información básica
+     *
+     * @param codigo
+     * @param titulo
+     * @param resumenEjecutivo
+     * @param fechaInicio
+     * @param fechaFin
+     * @param aprobacionEtica
+     * @throws ProyectoException
+     */
+    public void editarProyecto(long codigo, String titulo, String resumenEjecutivo, Date fechaInicio, Date fechaFin, BigDecimal presupuestoEsperado, String aprobacionEtica) throws ProyectoException {
+
+        if (titulo == null || resumenEjecutivo == null || fechaInicio == null || fechaFin == null || presupuestoEsperado == null || aprobacionEtica.equals("Y")) {
+            throw new ProyectoException("El proyecto debe tener estos datos completos.");
+        } else {
+            ProyectoInvestigacion proyecto = proyectoFacade.find(codigo);
+            if (proyecto != null) {
+                proyecto.setTitulo(titulo);
+                proyecto.setResumenEjecutivo(resumenEjecutivo);
+                proyecto.setPresupuestoEsperado(presupuestoEsperado.toString());
+                proyecto.setFechainicio(fechaInicio);
+                proyecto.setFechafin(fechaFin);
+
+                proyectoFacade.edit(proyecto);
+            } else {
+                throw new ProyectoException("No existe proyecto de investigación con ese código");
+            }
+        }
+    }
+
+    /**
+     * Devuleve el objeto ProyectoInvestigacion asociado a un codigo, si no
+     * existe ningun proyecto asociado a ese codigo devulve null
+     * <p>
+     * @param codigo El codigo del ProyectoInvestigacion
+     * @return El proyecto o null si no es valido o el proyecto no existe
+     */
+    //No estoy seguro si uso bien el findBy en la forma 2
+    public ProyectoInvestigacion darProyectoConCodigo(Long codigo) {
+        ProyectoInvestigacion p = null;
+        if (codigo != null) {
+            p = proyectoFacade.find(codigo);
+        }
+        return p;
+    }
+
+    /**
+     * Permite a un Lider de Investigacion Aprobar o Rechazar un Proyecto de
+     * Investigacion registrado en su grupo de investigacion
+     * <p>
+     * @param usuario El documento del usuario que representa al Lider de
+     * investigacion
+     * @param proyecto El Codigo del ProyectoInvestigacion que se esta evaluando
+     * @param aprueba El resultado de la evaluacion: true si aprueba, false en
+     * caso contrario
+     * @param observaciones Las observaciones para el proyecto
+     * @throws Exception Si no se cumple las verificaciones
+     */
+    public void evaluarProyectoPorLiderDeInvestigacion(String usuario, Long proyecto, boolean aprueba, String observaciones) throws Exception {
+        ProyectoInvestigacion p = darProyectoConCodigo(proyecto);
+        if (p == null) {
+            throw new ProyectoException("El codigo: " + proyecto + " no corresponde a un proyecto de investigacion valido");
+        }
+        Estado e = new Estado();
+        if (aprueba) {
+            e.setCodigo(EstadosSB.PROYECTO_APROBADO_LIDER);
+        } else {
+            e.setCodigo(EstadosSB.PROYECTO_RECHAZADO_LIDER);
+        }
+        p.setEstCodigo(e);
+        //p.setObservaciones(observaciones);
+
+        proyectoFacade.edit(p);
+    }
+
+    /**
+     * Permite a un Decano Aprobar o Rechazar un Proyecto de Investigacion
+     * registrado en su facultad
+     * <p>
+     * @param usuario El documento del usuario que representa al Lider de
+     * investigacion
+     * @param proyecto El Codigo del ProyectoInvestigacion que se esta evaluando
+     * @param aprueba El resultado de la evaluacion: true si aprueba, false en
+     * caso contrario
+     * @param observaciones Las observaciones para el proyecto
+     * @throws Exception Si no se cumple las verificaciones
+     */
+    public void evaluarProyectoPorDecano(String usuario, Long proyecto, boolean aprueba, String observaciones) throws Exception {
+        ProyectoInvestigacion p = darProyectoConCodigo(proyecto);
+        if (p == null) {
+            throw new ProyectoException("El codigo: " + proyecto + " no corresponde a un proyecto de investigacion valido");
+        }
+        Estado e = new Estado();
+        if (aprueba) {
+            e.setCodigo(EstadosSB.PROYECTO_APROBADO_DECANO);
+        } else {
+            e.setCodigo(EstadosSB.PROYECTO_RECHAZADO_DECANO);
+        }
+        p.setEstCodigo(e);
+        //p.setObservaciones(observaciones);
+
+        proyectoFacade.edit(p);
+    }
+
+    /**
+     * Permite aprobar o rechazar un proyecto por parte del comité de investigación
+     * @param codPro Código del proyecto a aprobar
+     * @param aprobado True si el proyecto es aprobado, false si es rechazado.
+     * @param observaciones Observaciones realizadas al momento de aprobar o rechazar un proyecto.
+     */
+    public void evaluarProyectoPorComiteInvestigacion(Long codPro, boolean aprobado, String observaciones) {
+
+        ProyectoInvestigacion proyecto = proyectoFacade.find(codPro);
+        if(proyecto.getEstCodigo().getCodigo()==EstadosSB.PROYECTO_APROBADO_DECANO){
+            if(aprobado){
+                proyecto.setEstCodigo(new Estado(EstadosSB.PROYECTO_APROBADO_COMITE));
+                proyecto.setObservaciones(observaciones);
+            }else{
+                proyecto.setEstCodigo(new Estado(EstadosSB.PROYECTO_RECHAZADO_COMITE));
+                proyecto.setObservaciones(observaciones);
+            }
+        }       
+        proyectoFacade.edit(proyecto);       
+    }
+
+    /**
+     * Permite obtener las líneas de investigación de un grupo de investigación
+     *
+     * @param grupoInvestigacion Grupo de investigación
+     * @return Líneas de investigación del grupo de investigación
+     */
+    public List<LineaInvestigacion> buscarLineasPorGrupo(GrupoInvestigacion grupoInvestigacion) {
+        List<LineaInvestigacion> lineasInvestigacion = new ArrayList();
+
+        if (grupoInvestigacion != null) {
+            Query query = grupoLineaFacade.getEntityManager().createNamedQuery("GrupoLinea.findByCodigoGrupo");
+            query.setParameter("codigoGrupo", grupoInvestigacion.getCodigo());
+            List<GrupoLinea> gruposLinea = query.getResultList();
+
+            for (GrupoLinea grupoLinea : gruposLinea) {
+                lineasInvestigacion.add(grupoLinea.getLineaInvestigacion());
+            }
+        }
+
+        return lineasInvestigacion;
+
+    }
+
+    /**
+     * Permite obtener los proyectos de investigación de una facultad
+     *
+     * @param facultad Facultad
+     * @return Proyectos de investigación de una facultad
+     */
+    public List<ProyectoInvestigacion> darProyectosDeFacultad(Facultad facultad) {
+        List<ProyectoInvestigacion> proyectos = new ArrayList();
+        if (facultad.getGrupoInvestigacionList() != null && !facultad.getGrupoInvestigacionList().isEmpty()) {
+            for (GrupoInvestigacion gi : facultad.getGrupoInvestigacionList()) {
+                List<ProyectoInvestigacion> lista = darProyectosDeGrupoDeInvestigacion(gi);
+                proyectos.addAll(lista);
+            }
+        }
+        return proyectos;
+    }
+
+    /**
+     * Permite obtener los proyectos de investigación de un grupo de
+     * investigación
+     *
+     * @param grupo Grupo de investigación
+     * @return Proyectos de investigación de un grupo de investigación
+     */
+    public List<ProyectoInvestigacion> darProyectosDeGrupoDeInvestigacion(GrupoInvestigacion grupo) {
+        List<ProyectoInvestigacion> proyectos = new ArrayList();
+        if (grupo.getGrupoLineaList() != null && !grupo.getGrupoLineaList().isEmpty()) {
+            for (GrupoLinea gl : grupo.getGrupoLineaList()) {
+                if (gl.getProyectoInvestigacionList() != null && !gl.getProyectoInvestigacionList().isEmpty()) {
+                    for (ProyectoInvestigacion p : gl.getProyectoInvestigacionList()) {
+                        proyectos.add(p);
+                    }
+                }
+            }
+        }
+        return proyectos;
+    }
+    
+    /**
+     * Permite obtener los proyectos de investigación que fueron aprobados por un Lider de investigacion
+     *
+     * @return Proyectos de investigación aprobados por un Lider de investigacion
+     */
+    public List<ProyectoInvestigacion> darProyectosAprobadosPorLiderDeInvestigacion() {
+        List<ProyectoInvestigacion> proyectos = new ArrayList();
+        List<ProyectoInvestigacion> todos = proyectoFacade.findAll();
+        for(ProyectoInvestigacion pi : todos){
+            if(pi!= null && pi.getEstCodigo()!= null && pi.getEstCodigo().getCodigo()!= null &&
+                   (pi.getEstCodigo().getCodigo().equals(EstadosSB.PROYECTO_APROBADO_LIDER)
+                || pi.getEstCodigo().getCodigo() == EstadosSB.PROYECTO_APROBADO_LIDER)){
+                proyectos.add(pi);
+            }
+        }
+        return proyectos;
+    }
+    
+    /**
+     * Permite obtener los proyectos de investigación que fueron aprobados por un decano
+     *
+     * @return Proyectos de investigación aprobados por un decano
+     */
+    public List<ProyectoInvestigacion> darProyectosAprobadosPorDecanos() {
+        List<ProyectoInvestigacion> proyectos = new ArrayList();
+        List<ProyectoInvestigacion> todos = proyectoFacade.findAll();
+        for(ProyectoInvestigacion pi : todos){
+            if(pi!= null && pi.getEstCodigo()!= null && pi.getEstCodigo().getCodigo()!= null &&
+                   (pi.getEstCodigo().getCodigo().equals(EstadosSB.PROYECTO_APROBADO_DECANO)
+                || pi.getEstCodigo().getCodigo() == EstadosSB.PROYECTO_APROBADO_DECANO)){
+                proyectos.add(pi);
+            }
+        }
+        return proyectos;
+    }
+    
+    /**
+     * Permite obtener los proyectos de investigación que fueron aprobados por un Lider de investigacion
+     * y pertenecen a una facultad determinada
+     * @param facultad Facultad
+     * @return Proyectos de investigación aprobados por un Lider de investigacion
+     * y pertenecen a una facultad determinada
+     */
+    public List<ProyectoInvestigacion> darProyectosAprobadosPorLiderConFacultad(Facultad facultad) {
+        List<ProyectoInvestigacion> proyectos = new ArrayList();
+        List<ProyectoInvestigacion> aprobados = darProyectosAprobadosPorLiderDeInvestigacion();
+        for(ProyectoInvestigacion a : aprobados){
+            Facultad facultadA = hallarFacultadDeProyectoDeInvestigacion(a);
+            if(facultadA != null && (facultad.getCodigo().equals(facultadA.getCodigo()) ||
+                    facultad.getSiglas().equals(facultadA.getSiglas()))){
+                proyectos.add(a);
+            }
+        }
+        return proyectos;
+    }
+    
+    /**
+     * Permite obtener la facultad que corresponde a un Proyecto de Investigacion
+     * @param proyecto Proyecto de Investigacion
+     * @return la Facultad correspondiente a un Proyecto de Investigacion
+     */
+    public Facultad hallarFacultadDeProyectoDeInvestigacion(ProyectoInvestigacion proyecto){
+        Facultad facultad = null;
+        if(proyecto.getGrupoLinea()!= null && proyecto.getGrupoLinea().getGrupoInvestigacion()!= null
+                && proyecto.getGrupoLinea().getGrupoInvestigacion().getFacCodigo()!= null){
+        facultad = proyecto.getGrupoLinea().getGrupoInvestigacion().getFacCodigo();
+        }
+        return facultad;
+    }
+    
+    /**
+     * Permite obtener los proyectos de investigación de una convocatoria actual
+     *
+     * @param convocatoria, es el código de una convocatoria
+     * @return proyectos
+     */
+    public List<ProyectoInvestigacion> darproyectosConvActual() {
+
+        List<ProyectoInvestigacion> proyectos = new ArrayList();
+        Convocatoria conv = convocatoriaSB.darConvocatoriaActual();
+        for (int i = 0; i > conv.getProConSolList().size(); i++) {
+            ProConSol pro = conv.getProConSolList().get(i);
+            ProyectoInvestigacion proyectoInv = pro.getProyectoInvestigacion();
+            proyectos.add(proyectoInv);
+        }
+        return proyectos;
+    }
+
+    /**
+     * Permite dar los proyectos de una convocatoria pasada
+     * @return proyectos
+     */
+    public List<ProyectoInvestigacion> darProyectosConvPasada() {
+        List<ProyectoInvestigacion> proyectos = new ArrayList();
+        Convocatoria convActual = convocatoriaSB.darConvocatoriaActual();
+        Date fechaIniConvActual = convocatoriaSB.getFechaInicioConvocatoria(convActual.getCodigo());
+        List<Convocatoria> convPas = convocatoriaSB.darConvocatoriaPasadas();
+        int año = fechaIniConvActual.getYear();
+        for (int i = 0; i > convPas.size(); i++) {
+            Date temp = convocatoriaSB.getFechaInicioConvocatoria(convPas.get(i).getCodigo());
+            int añoTemp = temp.getYear();
+            if (añoTemp == año - 1) {
+                List<ProConSol> pro = convPas.get(i).getProConSolList();
+                for (int j = 0; j > pro.size(); j++) {
+                    proyectos.add(pro.get(i).getProyectoInvestigacion());
+                }
+            }
+        }
+        return proyectos;
+    }
+
+    /**
+     * Permite dar los proyectos de un líder de proyecto
+     *
+     * @param codigo Es el código del líder de proyecto
+     * @return proyectos
+     */
+    public List<ProyectoInvestigacion> darProyectosLiderProyecto(Long codigo) {
+        List<ProyectoInvestigacion> proyectos = new ArrayList<>();
+        List<UsuarioPcs> usuariosPCS = usuarioPcsFacade.findAll();
+        List<UsuarioPcs> temp = new ArrayList<>();
+        for (int i = 0; i > usuariosPCS.size(); i++) {
+            if (usuariosPCS.get(i).getTarifa().getUsuario().getCodigo() == codigo && usuariosPCS.get(i).getRolProCodigo().getCodigo() == 1) {
+                temp.add(usuariosPCS.get(i));
+            }
+        }
+        for (UsuarioPcs x : temp) {
+            proyectos.add(x.getProConSol().getProyectoInvestigacion());
+        }
+        return proyectos;
+    }
+
+    /**
+     * Permite dar los proyectos de un líder de proyecto en una convocatoria
+     * pasada
+     *
+     * @param codLider es el código del Líder de proyecto
+     * @param codConv es el código de la convocatoria
+     * @return proyectos
+     */
+    public List<ProyectoInvestigacion> proyectosConvPasadaLider(Long codLider, Long codConv) {
+        List<ProyectoInvestigacion> proyecLider = darProyectosLiderProyecto(codLider);
+        List<ProyectoInvestigacion> proyecConvPas = darProyectosConvPasada();
+        List<ProyectoInvestigacion> proyectos = new ArrayList<>();
+        for (int i = 0; i > proyecLider.size(); i++) {
+            ProyectoInvestigacion proyCompLid = proyecLider.get(i);
+            for (int j = 0; j > proyecConvPas.size(); j++) {
+                ProyectoInvestigacion proyCompConv = proyecConvPas.get(i);
+                if (proyCompLid.getCodigo() == proyCompConv.getCodigo()) {
+                    proyectos.add(proyCompLid);
+                }
+            }
+        }
+        return proyectos;
+    }
+
+    public List<ProyectoInvestigacion> darProyectosAprobadosDecano(){
+        List<ProyectoInvestigacion> aprobados = new ArrayList<>();
+        /*darproyectosConvActual().stream().filter((p) -> (p.getEstCodigo().getCodigo()==EstadosSB.PROYECTO_APROBADO_DECANO)).forEach((p) -> {
+            aprobados.add(p);
+        });*/
+        
+        for(ProyectoInvestigacion p : darproyectosConvActual()){
+            if(p.getEstCodigo().getCodigo()==EstadosSB.PROYECTO_APROBADO_DECANO){
+                aprobados.add(p);
+            }
+        }
+        return aprobados;
+    }
+    
+    //Getters y setters
+    public ProyectoInvestigacionFacade getProyectoFacade() {
+        return proyectoFacade;
+    }
+
+    public TipoInvestigacionFacade getTipoInvestigacionFacade() {
+        return tipoInvestigacionFacade;
+    }
+
+    public RolProyectoFacade getRolProyectoFacade() {
+        return rolProyectoFacade;
+    }
+
+    public TipoProyectoFacade getTipoProyectoFacade() {
+        return tipoProyectoFacade;
+    }
+
+    public LineaInvestigacionFacade getLineaInvestigacionFacade() {
+        return lineaInvestigacionFacade;
+    }
+
+    public InvestigadorFacade getInvestigadoresFacade() {
+        return investigadoresFacade;
+    }
+
+    public void setTipoInvestigacionFacade(TipoInvestigacionFacade tipoInvestigacionFacade) {
+        this.tipoInvestigacionFacade = tipoInvestigacionFacade;
+    }
+
+    public void setRolProyectoFacade(RolProyectoFacade rolProyectoFacade) {
+        this.rolProyectoFacade = rolProyectoFacade;
+    }
+
+    public void setProyectoFacade(ProyectoInvestigacionFacade proyectoFacade) {
+        this.proyectoFacade = proyectoFacade;
+    }
+
+    public void setTipoProyectoFacade(TipoProyectoFacade tipoProyectoFacade) {
+        this.tipoProyectoFacade = tipoProyectoFacade;
+    }
+
+    public GrupoLineaFacade getGrupoLineaFacade() {
+        return grupoLineaFacade;
+    }
+
+    public void setGrupoLineaFacade(GrupoLineaFacade grupoLineaFacade) {
+        this.grupoLineaFacade = grupoLineaFacade;
+    }
+
+    public void setInvestigadoresFacade(InvestigadorFacade investigadoresFacade) {
+        this.investigadoresFacade = investigadoresFacade;
+    }
+
+    public ConvocatoriaSB getConvocatoriaSB() {
+        return convocatoriaSB;
+    }
+
+}

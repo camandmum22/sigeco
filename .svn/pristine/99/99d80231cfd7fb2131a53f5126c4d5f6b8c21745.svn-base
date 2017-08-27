@@ -1,0 +1,184 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.exceptions.UsuarioException;
+import com.sigeco.ejb.subsistemas.UsuarioSB;
+import com.sigeco.ejb.utilities.CipherAlgorithms;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import com.sigeco.utilities.Mensajes;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class UsuarioNB
+{
+
+    private Usuario usuario;
+    private String verificacion, busquedaDoc;
+    private CipherAlgorithms cipher;
+
+    @EJB
+    private UsuarioSB usuarioSB;
+    
+   
+    
+
+    /**
+     * Creates a new instance of UsuarioNB
+     */
+    public UsuarioNB()
+    {
+        busquedaDoc="";
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        setUsuario(new Usuario());
+        setVerificacion("");
+    }
+
+    /**
+     * Método que me permite registrar un usuario.
+     */
+    public void registrarUsuario()
+    {
+        try
+        {
+            if (!verificarContrasena())
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No coincide con la contraseña", ""));
+            } else
+            {
+                usuario.setPass(cipher.encryptAES(usuario.getPass()));
+                usuarioSB.getUsuarioFacade().create(usuario);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void editarUsuario(){
+        try {
+            usuarioSB.editarUsuario(usuario.getTipoDocumento(), usuario.getDocumento(), usuario.getNombre(),
+                    usuario.getEmail(), usuario.getTelefono(), usuario.getOtraInstitucion(), usuario.getPass());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "Se editó el usuario.");
+        } catch (UsuarioException ex) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error", ex.getMessage());
+        } catch (Exception ex) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error", ex.getMessage());
+        }
+    }
+    
+    public boolean verificarContrasena()
+    {
+        if (usuario.getPass() == null)
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Debe llenar el campo cerificar contraseña", ""));
+        } else if (!usuario.getPass().equals(verificacion))
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No coincide con la contraseña", ""));
+        } else
+        {
+            return usuario.getPass() != null ? usuario.getPass().equals(verificacion) : false;
+        }
+        return usuario.getPass() != null ? usuario.getPass().equals(verificacion) : false;
+    }
+    
+    /**
+     * Obtiene un usuario de acuerdo a un documento de usuario dado
+     * @param documento - Documento del usuario a ser buscado
+     */
+    public void read() {
+        List<Usuario> busqueda = usuarioSB.getUsuarioFacade().findBy("Documento", busquedaDoc);
+        if (busqueda.size()>0) {
+            try {
+                setUsuario(busqueda.get(0));
+                usuario.setPass(cipher.decryptAES(usuario.getPass()));
+            } catch (Exception ex) {
+                Logger.getLogger(UsuarioNB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+            setUsuario(new Usuario());
+        
+    }
+
+    public UsuarioSB getUsuarioSB()
+    {
+        return usuarioSB;
+    }
+
+    public void setUsuarioSB(UsuarioSB usuarioSB)
+    {
+        this.usuarioSB = usuarioSB;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario()
+    {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario)
+    {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the verificacion
+     */
+    public String getVerificacion()
+    {
+        return verificacion;
+    }
+
+    /**
+     * @param verificacion the verificacion to set
+     */
+    public void setVerificacion(String verificacion)
+    {
+        this.verificacion = verificacion;
+    }
+
+    /**
+     * @return the busquedaDoc
+     */
+    public String getBusquedaDoc()
+    {
+        return busquedaDoc;
+    }
+
+    /**
+     * @param busquedaDoc the verificacion to set
+     */
+    public void setBusquedaDoc(String busquedaDoc)
+    {
+        this.busquedaDoc = busquedaDoc;
+    }
+}

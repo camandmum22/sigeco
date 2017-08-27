@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="CON_FAS" directorySegmentName="seg_0" id="C3129044-C7E7-67FA-9657-6504DEBE3997">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:50:11 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>AA5098D2-8214-C607-8E92-58F4358B36E0</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7B7C74AC-E969-7E52-679D-2E0865F064ED</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>FAA77360-85EB-AA2E-A004-CCC724045A1A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

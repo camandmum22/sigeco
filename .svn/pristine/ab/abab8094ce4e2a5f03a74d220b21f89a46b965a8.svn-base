@@ -1,0 +1,65 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.sessionbean;
+
+import com.sigeco.ejb.entities.Convocatoria;
+import com.sigeco.ejb.subsistemas.AuditoriaSB;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+/**
+ <p>
+ @author csacanam
+ */
+@Stateless
+public class ConvocatoriaFacade extends AbstractFacade<Convocatoria>
+{
+    @PersistenceContext( unitName = "SIGECO_EA-ejbPU" )
+    private EntityManager em;
+
+    @EJB
+    AuditoriaSB auditoriaSB;
+
+    @Override
+    public EntityManager getEntityManager()
+    {
+        return em;
+    }
+
+    public ConvocatoriaFacade()
+    {
+        super( Convocatoria.class );
+    }
+
+    @Override
+    public void create( Convocatoria convocatoria )
+    {
+        String info[] =
+        {
+            "Codigo: " + convocatoria.getCodigo(),
+            "Nombre: " + convocatoria.getNombre(),
+            "Codigo Estado: " + convocatoria.getEstCodigo(),
+            "Nombre Estado: " + convocatoria.getEstCodigo().getNombre(),
+            "Lista ProConSol: " + convocatoria.getProConSolList().toString(),
+            "Lista FacultadConvocatoria: " + convocatoria.getFacultadConvocatoriaList().toString(),
+            "Lista Fases: " + convocatoria.getFaseList().toString(),
+        };
+        auditoriaSB.registrarLog( "Se creó una convocatoria", info );
+        super.create( convocatoria );
+    }
+
+    //No estoy seguro si este metodo funciona
+    public Integer findMaxId()
+    {
+        List<BigDecimal> resultado = em.createQuery( "SELECT CAST(con.codigoConvocatoria AS DECIMAL) FROM Convocatoria con" ).getResultList();
+        resultado.sort( null );
+        return resultado.get( resultado.size() - 1 ).intValue();
+    }
+}

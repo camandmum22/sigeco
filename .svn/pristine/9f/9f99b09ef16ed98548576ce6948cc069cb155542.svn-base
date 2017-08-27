@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Proyectos de investigación</title>
+    </h:head>
+    <h:body>
+
+        <!-- Se cargan las hojas de estilo -->
+        <h:outputStylesheet library="css" name="styles.css"  />
+        <h1>Editar Proyecto de Investigación</h1>
+           <f:metadata>
+                <f:viewParam name="proyectoId" value="#{proyectosNB.proyecto.codigo}"/>
+           </f:metadata>
+        <!-- Formulario para la edición de un proyecto de investigación -->
+        <h:form id="form" >
+            <!-- Espacio para los mensajes emergentes -->
+            <p:growl id="growl" life="2000" />
+            <!-- Panel de información básica -->
+            <p:panel id="panel" header="Información general">
+                <h:panelGrid columns="2" width="100%" cellpadding="5px" cellspacing="5px">
+                     
+                    <p:outputLabel value="Código del proyecto: "></p:outputLabel>
+                    <p:inputText value="#{proyectosNB.proyecto.codigo}" required="true" > </p:inputText>
+                    
+                    <p:outputLabel value="Título del proyecto "></p:outputLabel>
+                    <p:inputText value="#{proyectosNB.proyecto.titulo}" required="true">  </p:inputText>
+                    
+                    <p:outputLabel for="fechaInicioPI" value="Fecha de inicio:" />
+                    <p:calendar id="fechaInicioPI" value="#{proyectosNB.proyecto.fechainicio}" required="true" />
+                    
+                    <p:outputLabel for="fechaFinPI" value="Fecha de finalización:" />
+                    <p:calendar id="fechaFinPI" value="#{proyectosNB.proyecto.fechafin}" required="true"/>                    
+                                      
+                    <p:outputLabel value="Presupuesto Esperado " ></p:outputLabel>
+                    <p:inputText value="#{proyectosNB.proyecto.presupuestoEsperado}" required="true">  </p:inputText>
+                    
+                     <p:outputLabel for="aprobacionPI" value="Aprobación ética:" />                    
+                     <p:selectBooleanCheckbox  id="aprobacionPI" value="#{proyectosNB.proyecto.aprobacionEtica}">
+                        <p:ajax update="refresh" event="change" />
+                    </p:selectBooleanCheckbox>                   
+                     
+
+                </h:panelGrid>
+
+                <h:panelGroup id="refresh" class="panelGroupAprobacionDoc">
+                    <p:outputLabel for="aprobacionDocPI" value="Documento ética:" rendered="#{proyectosNB.proyecto.aprobacionEtica}"/>                    
+                    <p:fileUpload  id="aprobacionDocPI" class="aprobacionDocPI" value="#{proyectosNB.aprobacionEticaDoc}" mode="simple" rendered="#{proyectosNB.proyecto.aprobacionEtica}"/>
+                </h:panelGroup>
+                
+                <p:inputTextarea id="resumenPI" rows="10" placeholder="Resumen ejecutivo" required="true" class="resumenPI" value="#{proyectosNB.proyecto.resumenEjecutivo}"/>
+                  
+                                
+               </p:panel>       
+             
+            <!-- Botón editar proyecto -->
+            <p:commandButton value="Editar" update="growl" actionListener="#{proyectosNB.editarProyecto()}" styleClass="ui-priority-primary" class="btnEditarProyecto"/>
+
+            <!-- Botón Volver -->
+            <p:button outcome="/faces/proyectos/proyectos.xhtml" value="Volver" >
+            </p:button>
+        </h:form>
+
+    </h:body>
+</html>
+
+

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Modelo Versión Final" id="8D31BBA1-AC62-6830-C49A-976B589F884F" version="3.5">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-20 18:54:39 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo_GL</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>8D31BBA1-AC62-6830-C49A-976B589F884F</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="6F8C8E2F-D7A8-3143-07B1-406723C0D259">
+<designStoragePath>C:\Tablas</designStoragePath>
+</designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="5D40B367-EC7D-7D54-D48B-E21B2EB6995F">
+<designStoragePath>C:\ScriptTablaTipoProyectos</designStoragePath>
+</designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="B603E859-A8A5-49A0-6A73-3970C950AFA9">
+<designStoragePath>C:\ScriptTablaTipoProyectos</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
+</OSDM_Design>

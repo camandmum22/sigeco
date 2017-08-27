@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Registrar Usuario</title>
+    </h:head>
+    <h:body>
+        <h:form>
+           
+            <p:panel id="panel" header="Información general">
+                <h:panelGrid columns="2" width="100%" cellpadding="5px" cellspacing="5px">
+                    
+                    <p:outputLabel for="TipoDocumento" value="Tipo de documento" />
+                    <p:selectOneMenu id="TipoDocumento" value="#{usuarioNB.usuario.tipoDocumento}" style="width:125px">
+                        <f:selectItem itemLabel="CC" itemValue="CC" />
+                        <f:selectItem itemLabel="TI" itemValue="TI" />
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Identificacion" value="Identificación: " />
+                    <p:inputText  id="Identificacion" value="#{usuarioNB.usuario.documento}" required="true"></p:inputText>
+
+                    <p:outputLabel for="Nombres" value="Nombres: " />
+                    <p:inputText  id="Nombres" value="#{usuarioNB.usuario.nombre}" required="true"></p:inputText>
+                    
+                    <p:outputLabel for="Email" value="Email: " />
+                    <p:inputText  id="Email" value="#{usuarioNB.usuario.email}" required="true"></p:inputText>
+                    
+                    <p:outputLabel for="Telefono" value="Teléfono" />
+                    <p:inputText  id="Telefono" value="#{usuarioNB.usuario.telefono}" required="true"></p:inputText>
+                    
+                    <p:outputLabel for="Contraseña" value="Contraseña: " />
+                    <p:inputText  id="Contraseña" value="#{usuarioNB.usuario.contraseña}" required="true" type="password"></p:inputText>
+                    
+                    <p:outputLabel for="Confirmarcontraseña" value="Confirmar contraseña: " />
+                    <p:inputText  id="Confirmarcontraseña" value="#{usuarioNB.verificacion}" required="true" type="password">
+                        <!--<p:ajax event="keyup" listener="#{usuarioNB.verificarContrasena()}"/>-->
+                    </p:inputText>
+                    <p:messages id="messages" showSummary="true" showDetail="true" autoUpdate="true" closable="true"/>
+                    
+                    <p:commandButton id="Registrar" value="Registrar Usuario" actionListener="#{usuarioNB.registrarUsuario()}"></p:commandButton>
+            
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>

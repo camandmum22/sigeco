@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0027C984-7C43-EB42-CF70-2CB44D3C7430" name="Producto">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>166E77B6-A618-7984-9964-64ED27CFF0DF</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>PRO</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Producto" id="BF12E865-E3F5-E0FE-A92C-2E5953AE16F7">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del producto</comment>
+<commentInRDBMS>Código del producto</commentInRDBMS>
+<generatorID>EE986675-50DD-EBCC-16E5-51AFD06E00D8</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="8F3BFA2B-04DE-248F-3F79-561058BC56C0">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre del producto</comment>
+<commentInRDBMS>Nombre del producto</commentInRDBMS>
+<generatorID>A938DAAE-43EA-A5D1-35B4-A621507A3F33</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Clasificacion" id="A562057E-3B31-0151-2B69-B6D32E8C39A6">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la clasificación del producto</comment>
+<commentInRDBMS>Código de la clasificación del producto</commentInRDBMS>
+<generatorID>7E28EAE9-44E0-1B17-113C-B1FB3954CBDF</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<delegate>431146D6-E796-0CCA-0FF0-1479BE886DA4</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4F29C548-5653-720C-75CE-C4CD28943837" referredColumn="431146D6-E796-0CCA-0FF0-1479BE886DA4"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E3F0C444-3E94-6591-8591-5E937C62077F" name="Producto_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>366E76BC-B6B5-F85A-E7A7-6229AC6FA559</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BF12E865-E3F5-E0FE-A92C-2E5953AE16F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0D40B56-868A-CB9D-B234-C1728DDABB89" name="Producto_Clasificacion_Producto_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>EEC7257D-C8F5-8141-7F73-CFE778815845</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A562057E-3B31-0151-2B69-B6D32E8C39A6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

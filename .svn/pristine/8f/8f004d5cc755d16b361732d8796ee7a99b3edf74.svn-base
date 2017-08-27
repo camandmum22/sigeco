@@ -1,0 +1,199 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author csacanam
+ */
+@Entity
+@Table(name = "PRO_CON_SOL")
+@XmlRootElement
+@NamedQueries(
+{
+    @NamedQuery(name = "ProConSol.findAll", query = "SELECT p FROM ProConSol p"),
+    @NamedQuery(name = "ProConSol.findByCodigoConvocatoria", query = "SELECT p FROM ProConSol p WHERE p.proConSolPK.codigoConvocatoria = :codigoConvocatoria"),
+    @NamedQuery(name = "ProConSol.findByCodigoProyecto", query = "SELECT p FROM ProConSol p WHERE p.proConSolPK.codigoProyecto = :codigoProyecto"),
+    @NamedQuery(name = "ProConSol.findByCodigoSolicitud", query = "SELECT p FROM ProConSol p WHERE p.proConSolPK.codigoSolicitud = :codigoSolicitud")
+})
+public class ProConSol implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    @EmbeddedId
+    protected ProConSolPK proConSolPK;
+    @Lob
+    private Serializable cronograma;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "TIPO_VINCULACION", nullable = false, length = 15)
+    private String tipoVinculacion;
+    @JoinColumn(name = "CODIGO_CONVOCATORIA", referencedColumnName = "CODIGO_CONVOCATORIA", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Convocatoria convocatoria;
+    @JoinColumn(name = "CODIGO_PROYECTO", referencedColumnName = "CODIGO_PROYECTO", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private ProyectoInvestigacion proyectoInvestigacion;
+    @JoinColumn(name = "CODIGO_SOLICITUD", referencedColumnName = "CODIGO_SOLICITUD", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Solicitud solicitud;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proConSol", fetch = FetchType.LAZY)
+    private List<PcsRubro> pcsRubroList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proConSol", fetch = FetchType.LAZY)
+    private List<UsuarioPcs> usuarioPcsList;
+
+    public ProConSol()
+    {
+    }
+
+    public ProConSol(ProConSolPK proConSolPK)
+    {
+        this.proConSolPK = proConSolPK;
+    }
+
+    public ProConSol(Long codigoConvocatoria, Long codigoProyecto, Long codigoSolicitud, String tipoVinculacion)
+    {
+        this.proConSolPK = new ProConSolPK(codigoConvocatoria, codigoProyecto, codigoSolicitud);
+        this.tipoVinculacion = tipoVinculacion;
+    }
+
+    public ProConSolPK getProConSolPK()
+    {
+        return proConSolPK;
+    }
+
+    public void setProConSolPK(ProConSolPK proConSolPK)
+    {
+        this.proConSolPK = proConSolPK;
+    }
+
+    public Serializable getCronograma()
+    {
+        return cronograma;
+    }
+
+    public void setCronograma(Serializable cronograma)
+    {
+        this.cronograma = cronograma;
+    }
+
+    public Convocatoria getConvocatoria()
+    {
+        return convocatoria;
+    }
+
+    public void setConvocatoria(Convocatoria convocatoria)
+    {
+        this.convocatoria = convocatoria;
+    }
+
+    public ProyectoInvestigacion getProyectoInvestigacion()
+    {
+        return proyectoInvestigacion;
+    }
+
+    public void setProyectoInvestigacion(ProyectoInvestigacion proyectoInvestigacion)
+    {
+        this.proyectoInvestigacion = proyectoInvestigacion;
+    }
+
+    public Solicitud getSolicitud()
+    {
+        return solicitud;
+    }
+
+    public void setSolicitud(Solicitud solicitud)
+    {
+        this.solicitud = solicitud;
+    }
+
+    @XmlTransient
+    public List<PcsRubro> getPcsRubroList()
+    {
+        return pcsRubroList;
+    }
+
+    public void setPcsRubroList(List<PcsRubro> pcsRubroList)
+    {
+        this.pcsRubroList = pcsRubroList;
+    }
+
+    @XmlTransient
+    public List<UsuarioPcs> getUsuarioPcsList()
+    {
+        return usuarioPcsList;
+    }
+
+    public void setUsuarioPcsList(List<UsuarioPcs> usuarioPcsList)
+    {
+        this.usuarioPcsList = usuarioPcsList;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (proConSolPK != null ? proConSolPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProConSol))
+        {
+            return false;
+        }
+        ProConSol other = (ProConSol) object;
+        if ((this.proConSolPK == null && other.proConSolPK != null) || (this.proConSolPK != null && !this.proConSolPK.equals(other.proConSolPK)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.ProConSol[ proConSolPK=" + proConSolPK + " ]";
+    }
+
+    /**
+     * @return the tipoVinculacion
+     */
+    public String getTipoVinculacion() {
+        return tipoVinculacion;
+    }
+
+    /**
+     * @param tipoVinculacion the tipoVinculacion to set
+     */
+    public void setTipoVinculacion(String tipoVinculacion) {
+        this.tipoVinculacion = tipoVinculacion;
+    }
+    
+}

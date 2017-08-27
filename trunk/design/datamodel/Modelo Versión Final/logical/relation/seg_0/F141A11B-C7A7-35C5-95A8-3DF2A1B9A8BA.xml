@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="RPI_UPI" directorySegmentName="seg_0" id="F141A11B-C7A7-35C5-95A8-3DF2A1B9A8BA">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 15:00:36 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>DEB914A9-28AF-D2F6-0428-D98D6BA62ECF</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DAEC3380-5832-7BD1-3C92-2AF3FA190C1F</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9A46A6C1-10FB-793D-2990-F7CDA59AC61A</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

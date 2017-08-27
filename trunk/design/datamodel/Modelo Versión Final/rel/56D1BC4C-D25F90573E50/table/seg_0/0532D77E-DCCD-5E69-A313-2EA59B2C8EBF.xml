@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0532D77E-DCCD-5E69-A313-2EA59B2C8EBF" name="Grupo_Linea">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>89CF2090-D046-5734-D99C-173BC78D4B56</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Grupo" id="C3137418-EEA1-6AA1-993E-134D9981D010">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del grupo de investigación</comment>
+<commentInRDBMS>Código del grupo de investigación</commentInRDBMS>
+<generatorID>848B40C7-88AD-2445-08F1-2243CD9FDA6F</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<delegate>0EAAFC5A-3F78-FF17-23A3-52882FA7502F</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A86E02B8-2B59-F297-79CB-9D83756C2769" referredColumn="0EAAFC5A-3F78-FF17-23A3-52882FA7502F"/>
+</associations>
+</Column>
+<Column name="Codigo_Linea" id="D65E3821-8CE9-FBB4-4FE3-9E1954012659">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la línea de investigación</comment>
+<commentInRDBMS>Código de la línea de investigación</commentInRDBMS>
+<generatorID>B2A369C5-1840-10E3-7600-FE6C9D0D9BDE</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<delegate>C3BB4BD8-05C3-EF3F-4614-F3592BD5C735</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2F00450D-8D6D-2DDD-54E4-CDE346CCA03F" referredColumn="C3BB4BD8-05C3-EF3F-4614-F3592BD5C735"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="76ADD057-1196-47DA-1CC4-C3B4F9E9DB94" name="Grupo_Linea_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>F4CC003F-CEB9-FEFF-482E-AF8D21A8A9B5</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3137418-EEA1-6AA1-993E-134D9981D010"/>
+<colUsage columnID="D65E3821-8CE9-FBB4-4FE3-9E1954012659"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5FEB328-F1FF-EA93-017E-E81FDEB992B7" name="Grupo_Linea_Grupo_Investigacion_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>3BEE0DB5-358C-A8F4-7F7B-A697ADBDFEA3</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C3137418-EEA1-6AA1-993E-134D9981D010"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0059AD36-EF71-5995-603C-186663FCE747" name="Grupo_Linea_Linea_Investigacion_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>C637433D-AFAB-CA3F-D44A-4020EF6094D4</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D65E3821-8CE9-FBB4-4FE3-9E1954012659"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

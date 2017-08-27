@@ -1,0 +1,63 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.Modalidad;
+import com.sigeco.ejb.sessionbean.ModalidadFacade;
+import com.sigeco.ejb.utilities.InputChecks;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author csacanam
+ */
+@FacesConverter( "modalidadConverter" )
+public class ModalidadConverter implements Converter
+{
+    @EJB
+    ModalidadFacade modalidadFacade;
+
+    public ModalidadConverter()
+    {
+    }
+
+    @Override
+    public Object getAsObject( FacesContext context, UIComponent component, String value )
+    {
+        if( InputChecks.isTrimEmptyOrNull( value ) )
+        {
+            return null;
+        }
+        else
+        {
+            List<Modalidad> listaModalidades = modalidadFacade.findBy("Codigo",  Long.parseLong( value ));
+
+            if( listaModalidades.size() > 0 )
+            {
+                return listaModalidades.get( 0 );
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public String getAsString( FacesContext context, UIComponent component, Object value )
+    {
+         if ( value != null){
+            return ( (Modalidad) value).getCodigo()+"";
+        }
+        
+        return "";
+
+    }
+
+}

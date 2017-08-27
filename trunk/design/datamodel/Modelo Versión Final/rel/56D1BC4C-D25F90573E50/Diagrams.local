@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="main_view" objectID="ABE6CFA5-137A-1C88-96E0-C01741EC4426" name="Relational_1" visible="true"/>
+   <object objectType="sub_view" objectID="F4A30F44-CD0A-72B5-43BD-475095A0AD71" name="From_LM_Auth_Aut" visible="false"/>
+   <object objectType="sub_view" objectID="68008F80-1379-037D-CCE3-BF00A9D9486E" name="From_LM_Convocatoria" visible="false"/>
+   <object objectType="sub_view" objectID="30FCB336-2CDC-EE48-2B16-D632D6C38B63" name="From_LM_Entregable" visible="false"/>
+   <object objectType="sub_view" objectID="50610EC0-A40F-07F3-F1CB-852AFB03BDE1" name="From_LM_Estado" visible="false"/>
+   <object objectType="sub_view" objectID="BA59D464-5FAB-C5C1-8122-2E07072CA831" name="From_LM_Facultad" visible="false"/>
+   <object objectType="sub_view" objectID="8C493D76-8054-9666-F9F9-D877BF47734B" name="From_LM_Notificacion" visible="false"/>
+   <object objectType="sub_view" objectID="49CE309D-1E9F-2F3D-C42A-3D4542894B96" name="From_LM_Proyecto" visible="false"/>
+   <object objectType="sub_view" objectID="E9C935A2-9FFE-733D-B633-086B6C7D0B36" name="From_LM_Solicitud" visible="false"/>
+   <object objectType="sub_view" objectID="0EE8604D-8E8B-9BD4-F8E5-A2946B7B61E3" name="From_LM_Usuario" visible="false"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

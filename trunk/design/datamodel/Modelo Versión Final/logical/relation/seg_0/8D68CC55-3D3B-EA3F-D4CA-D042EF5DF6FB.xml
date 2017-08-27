@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="PFC_CON" directorySegmentName="seg_0" id="8D68CC55-3D3B-EA3F-D4CA-D042EF5DF6FB">
+<createdBy>1107074044</createdBy>
+<createdTime>2015-03-27 21:50:59 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>AA5098D2-8214-C607-8E92-58F4358B36E0</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>7B7C74AC-E969-7E52-679D-2E0865F064ED</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>008C36C2-2390-4360-F34F-00FE927DB3C8</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E9FE2A8C-8D88-6214-8C66-4E2EF20FAC70" name="Usuario_PCS_Rol_Proyecto_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>F141A11B-C7A7-35C5-95A8-3DF2A1B9A8BA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<containerWithKeyObject>7E206E4B-AC0A-3A6B-7DE0-79D3A7CEAEC5</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>B40120E3-2D14-0BD2-1E74-09F8C353E7F0</localFKIndex>
+<keyObject>2D500055-852F-97B6-1BD8-1A78D4959806</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="EA1B79D6-77C8-9A8F-5064-4F063B9D9E84" name="Linea_Area_Area_Estrategica_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>E37BC3BB-D604-5449-F085-30FD14724C6B</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<containerWithKeyObject>5F3DBC54-999E-B688-0FB3-5279BBCDAD4B</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>03E557C1-C0A7-9CA8-B10A-CA2D153EB16B</localFKIndex>
+<keyObject>F3E413FD-F204-16F3-AB42-D0BF21F6A6A5</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

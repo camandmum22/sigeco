@@ -1,0 +1,633 @@
+-- Generado por Oracle SQL Developer Data Modeler 4.0.3.853
+--   en:        2015-03-27 00:50:56 COT
+--   sitio:      Oracle Database 11g
+--   tipo:      Oracle Database 11g
+
+
+
+
+DROP TABLE Area_Estrategica CASCADE CONSTRAINTS ;
+
+DROP TABLE Clasificacion_Colciencias CASCADE CONSTRAINTS ;
+
+DROP TABLE Clasificacion_Producto CASCADE CONSTRAINTS ;
+
+DROP TABLE Convocatoria CASCADE CONSTRAINTS ;
+
+DROP TABLE Entregable CASCADE CONSTRAINTS ;
+
+DROP TABLE Estado CASCADE CONSTRAINTS ;
+
+DROP TABLE Facultad CASCADE CONSTRAINTS ;
+
+DROP TABLE Fase CASCADE CONSTRAINTS ;
+
+DROP TABLE Grupo_Investigacion CASCADE CONSTRAINTS ;
+
+DROP TABLE Grupo_Linea CASCADE CONSTRAINTS ;
+
+DROP TABLE Grupo_Usuario CASCADE CONSTRAINTS ;
+
+DROP TABLE Linea_Area CASCADE CONSTRAINTS ;
+
+DROP TABLE Linea_Investigacion CASCADE CONSTRAINTS ;
+
+DROP TABLE Menu CASCADE CONSTRAINTS ;
+
+DROP TABLE Modalidad CASCADE CONSTRAINTS ;
+
+DROP TABLE Pagina_Xhtml CASCADE CONSTRAINTS ;
+
+DROP TABLE Permisos CASCADE CONSTRAINTS ;
+
+DROP TABLE Permisos_Rol CASCADE CONSTRAINTS ;
+
+DROP TABLE Producto CASCADE CONSTRAINTS ;
+
+DROP TABLE Proyecto_Investigacion CASCADE CONSTRAINTS ;
+
+DROP TABLE Proyecto_Rubro CASCADE CONSTRAINTS ;
+
+DROP TABLE Rol_GrupoInvest CASCADE CONSTRAINTS ;
+
+DROP TABLE Rol_Menu CASCADE CONSTRAINTS ;
+
+DROP TABLE Rol_Usuario CASCADE CONSTRAINTS ;
+
+DROP TABLE Rubro CASCADE CONSTRAINTS ;
+
+DROP TABLE Solicitud_Adicion CASCADE CONSTRAINTS ;
+
+DROP TABLE Solicitud_Prorroga CASCADE CONSTRAINTS ;
+
+DROP TABLE Subproducto CASCADE CONSTRAINTS ;
+
+DROP TABLE Tarifa CASCADE CONSTRAINTS ;
+
+DROP TABLE Tipo_Investigacion CASCADE CONSTRAINTS ;
+
+DROP TABLE Tipo_Proyecto CASCADE CONSTRAINTS ;
+
+DROP TABLE Usuario CASCADE CONSTRAINTS ;
+
+DROP TABLE Usuario_Proyecto CASCADE CONSTRAINTS ;
+
+DROP TABLE Usuario_Rol CASCADE CONSTRAINTS ;
+
+--  Tabla que representa el conjunto de áreas estratégicas a las que un
+--  proyecto puede apuntar.
+CREATE TABLE Area_Estrategica
+  (
+    --  Código del área estratégica
+    Codigo_Area VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Nombre del área estratégica
+    Nombre      VARCHAR2 (50 CHAR) NOT NULL ,
+    Descripcion VARCHAR2 (500 CHAR)
+  ) ;
+ALTER TABLE Area_Estrategica ADD CONSTRAINT Area_Estrategica_PK PRIMARY KEY ( Codigo_Area ) ;
+
+CREATE TABLE Clasificacion_Colciencias
+  (
+    --  Código de la clasificación de colciencias
+    Codigo_Colciencias VARCHAR2 (5 CHAR) NOT NULL ,
+    --  Nombre de la clasificación de colciencias
+    Clasificacion VARCHAR2 (50 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Clasificacion_Colciencias ADD CONSTRAINT Clasificacion_Colciencias_PK PRIMARY KEY ( Codigo_Colciencias ) ;
+
+CREATE TABLE Clasificacion_Producto
+  (
+    --  Código de la clasificación del producto
+    Codigo_Clasificacion VARCHAR2 (6 CHAR) NOT NULL ,
+    --  Nombre de la clasificación del producto
+    Clasificacion VARCHAR2 (100 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Clasificacion_Producto ADD CONSTRAINT Clasificacion_Producto_PK PRIMARY KEY ( Codigo_Clasificacion ) ;
+
+CREATE TABLE Convocatoria
+  (
+    --  Código de la convocatoria
+    Codigo_Convocatoria VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Código del estado
+    Codigo_Estado VARCHAR2 (4 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Convocatoria ADD CONSTRAINT Convocatoria_PK PRIMARY KEY ( Codigo_Convocatoria ) ;
+
+CREATE TABLE Entregable
+  (
+    --  Código del producto
+    Codigo VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Nombre del producto
+    Nombre VARCHAR2 (100 CHAR) NOT NULL ,
+    --  Fecha estimada del producto
+    FechaEstimada DATE ,
+    --  Fecha real del producto
+    FechaReal DATE ,
+    --  Código del proyecto
+    Codigo_Proyecto VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Código del estado
+    Codigo_Estado      VARCHAR2 (4 CHAR) NOT NULL ,
+    Codigo_Subproducto VARCHAR2 (4 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Entregable ADD CONSTRAINT Entregable_PK PRIMARY KEY ( Codigo ) ;
+
+CREATE TABLE Estado
+  (
+    --  Código del estado
+    Codigo_Estado VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Nombre del estado
+    Nombre_Estado VARCHAR2 (20 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Estado ADD CONSTRAINT Estado_PK PRIMARY KEY ( Codigo_Estado ) ;
+
+CREATE TABLE Facultad
+  (
+    --  Código de la facultad
+    Codigo_Facultad VARCHAR2 (2 CHAR) NOT NULL ,
+    --  Nombre de la facultad
+    Nombre VARCHAR2 (50 CHAR) NOT NULL ,
+    --  Siglas de la facultad
+    Siglas VARCHAR2 (5 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Facultad ADD CONSTRAINT Facultad_PK PRIMARY KEY ( Codigo_Facultad ) ;
+
+CREATE TABLE Fase
+  (
+    --  Código de la fase de la convocatoria
+    Codigo_Fase VARCHAR2 (2 CHAR) NOT NULL ,
+    --  Nombre de la fase de la convocatoria
+    Nombre VARCHAR2 (50 CHAR) NOT NULL ,
+    --  Fecha de inicio de la fase de la convocatoria
+    Fecha_Ini DATE NOT NULL ,
+    --  Fecha de finalización de la fase de la convocatoria
+    Fecha_Fin DATE NOT NULL ,
+    --  Código de la convocatoria
+    Codigo_Convocatoria VARCHAR2 (4 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Fase ADD CONSTRAINT Fase_PK PRIMARY KEY ( Codigo_Fase ) ;
+
+CREATE TABLE Grupo_Investigacion
+  (
+    --  Código del grupo de investigación
+    Codigo_Grupo VARCHAR2 (6 CHAR) NOT NULL ,
+    --  Nombre del grupo de investigación
+    Nombre VARCHAR2 (50 CHAR) NOT NULL ,
+    --  Código de la facultad
+    Codigo_Facultad VARCHAR2 (2 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Grupo_Investigacion ADD CONSTRAINT Grupo_Investigacion_PK PRIMARY KEY ( Codigo_Grupo ) ;
+
+CREATE TABLE Grupo_Linea
+  (
+    --  Código del grupo de investigación
+    Codigo_Grupo VARCHAR2 (6 CHAR) NOT NULL ,
+    --  Código de la línea de investigación
+    Codigo_Linea VARCHAR2 (5 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Grupo_Linea ADD CONSTRAINT Grupo_Linea_PK PRIMARY KEY ( Codigo_Grupo, Codigo_Linea ) ;
+
+CREATE TABLE Grupo_Usuario
+  (
+    --  Código del grupo de investigación
+    Codigo_Grupo VARCHAR2 (6 CHAR) NOT NULL ,
+    --  Código del usuario
+    Codigo_Usuario VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Atributo que permite conocer si el usuario del grupo de investigación, es
+    --  Líder de Investigación.
+    EsLider CHAR (1) ,
+    --  Código del rol en un grupo de investigación
+    Codigo_RolGI VARCHAR2 (3 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Grupo_Usuario ADD CONSTRAINT Grupo_Usuario_PK PRIMARY KEY ( Codigo_Grupo, Codigo_Usuario ) ;
+
+CREATE TABLE Linea_Area
+  (
+    --  Código de la línea de investigación
+    Codigo_Linea VARCHAR2 (5 CHAR) NOT NULL ,
+    --  Código del área estratégica
+    Codigo_Area VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Tipo de relación entre línea de investigación y área estratégica.
+    --  P=Principal
+    --  S=Secundaria
+    Tipo VARCHAR2 (1 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Linea_Area ADD CONSTRAINT Linea_Area_PK PRIMARY KEY ( Codigo_Area, Codigo_Linea ) ;
+
+CREATE TABLE Linea_Investigacion
+  (
+    --  Código de la línea de investigación
+    Codigo_Linea VARCHAR2 (5 CHAR) NOT NULL ,
+    --  Nombre de la línea de investigación
+    Nombre VARCHAR2 (50 CHAR) NOT NULL ,
+    --  Descripción de la línea de investigación
+    Descripcion VARCHAR2 (500 CHAR) ,
+    --  Indica si la línea de investigación está acreditada oficialmente.
+    --  'S' - Sí
+    --  'N' - No
+    Vencimiento_Acreditacion DATE
+  ) ;
+ALTER TABLE Linea_Investigacion ADD CONSTRAINT Linea_Investigacion_PK PRIMARY KEY ( Codigo_Linea ) ;
+
+CREATE TABLE Menu
+  (
+    --  Código del menú
+    Codigo_Menu VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Nombre del menú
+    Nombre_Menu VARCHAR2 (20 CHAR) NOT NULL ,
+    --  Código del menú
+    Codigo_Menu1 VARCHAR2 (3 CHAR)
+  ) ;
+ALTER TABLE Menu ADD CONSTRAINT Menu_PK PRIMARY KEY ( Codigo_Menu ) ;
+
+CREATE TABLE Modalidad
+  (
+    Codigo_Modalidad INTEGER NOT NULL ,
+    Nombre           VARCHAR2 (15 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Modalidad ADD CONSTRAINT Modalidad_PK PRIMARY KEY ( Codigo_Modalidad ) ;
+
+CREATE TABLE Pagina_Xhtml
+  (
+    --  Código de la página xhtml
+    Codigo_Pag VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Nombre de la página xhtml
+    Nombre_Pag VARCHAR2 (20 CHAR) NOT NULL ,
+    --  Código del menú
+    Codigo_Menu VARCHAR2 (3 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Pagina_Xhtml ADD CONSTRAINT Pagina_Xhtml_PK PRIMARY KEY ( Codigo_Pag ) ;
+
+CREATE TABLE Permisos
+  (
+    --  Permisos de un rol
+    Url VARCHAR2 (20 BYTE) NOT NULL ,
+    --  Nombre del rol
+    Nombre VARCHAR2 (20 BYTE) NOT NULL
+  ) ;
+ALTER TABLE Permisos ADD CONSTRAINT Permisos_PK PRIMARY KEY ( Url ) ;
+
+CREATE TABLE Permisos_Rol
+  (
+    --  Código del rol
+    Codigo_Rol VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Permisos de un rol
+    Url VARCHAR2 (20 BYTE) NOT NULL
+  ) ;
+ALTER TABLE Permisos_Rol ADD CONSTRAINT Permisos_Rol_PK PRIMARY KEY ( Codigo_Rol, Url ) ;
+
+CREATE TABLE Producto
+  (
+    --  Código del producto
+    Codigo_Producto VARCHAR2 (6 CHAR) NOT NULL ,
+    --  Nombre del producto
+    Nombre VARCHAR2 (50 CHAR) NOT NULL ,
+    --  Código de la clasificación del producto
+    Codigo_Clasificacion VARCHAR2 (6 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Producto ADD CONSTRAINT Producto_PK PRIMARY KEY ( Codigo_Producto ) ;
+
+CREATE TABLE Proyecto_Investigacion
+  (
+    --  Código del proyecto
+    Codigo_Proyecto VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Título del proyecto
+    Titulo VARCHAR2 (50 CHAR) NOT NULL ,
+    --  Descripción del proyecto
+    Resumen_Ejecutivo VARCHAR2 (500 CHAR) NOT NULL ,
+    --  Fecha de inicio del proyecto
+    FechaInicio DATE NOT NULL ,
+    --  Fecha de finalización del proyecto
+    FechaFin DATE NOT NULL ,
+    --  Resultados esperados por el proyecto
+    Resultados VARCHAR2 (500 CHAR) ,
+    --  Problema que resolverá el proyecto de investigación
+    Problema VARCHAR2 (50 CHAR) ,
+    --  Código de la convocatoria
+    Codigo_Convocatoria VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Código del grupo de investigación
+    Codigo_Grupo VARCHAR2 (6 CHAR) NOT NULL ,
+    --  Código de la línea de investigación
+    Codigo_Linea VARCHAR2 (5 CHAR) NOT NULL ,
+    --  Código de la clasificación de colciencias
+    Codigo_Colciencias VARCHAR2 (5 CHAR) NOT NULL ,
+    --  Código del estado
+    Codigo_Estado1 VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Presupuesto global del proyecto
+    Presupuesto_Global VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Indica si el proyecto requiere aprobación del comité de Ética.
+    --  S=Sí
+    --  N=No
+    Aprobacion_Etica VARCHAR2 (1 CHAR) NOT NULL ,
+    --  Estado del arte del proyecto
+    Estado_Arte VARCHAR2 (1000 CHAR) ,
+    --  Código del tipo de investigación
+    Codigo_TIN VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Código del tipo de proyecto
+    Codigo_TPR VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Código del Cenco asignado al proyecto
+    Cenco VARCHAR2 (20 CHAR)
+  ) ;
+COMMENT ON COLUMN Proyecto_Investigacion.Codigo_Proyecto
+IS
+  'Identificación única del proyecto de investigación' ;
+  COMMENT ON COLUMN Proyecto_Investigacion.Titulo
+IS
+  'Título del proyecto de investigación.' ;
+  COMMENT ON COLUMN Proyecto_Investigacion.FechaInicio
+IS
+  'Fecha de inicio del proyecto de investigación.' ;
+  COMMENT ON COLUMN Proyecto_Investigacion.FechaFin
+IS
+  'Fecha final del proyecto de investigación' ;
+  ALTER TABLE Proyecto_Investigacion ADD CONSTRAINT Proyecto_Investigacion_PK PRIMARY KEY ( Codigo_Proyecto ) ;
+
+CREATE TABLE Proyecto_Rubro
+  (
+    --  Cantidad monetaria del rubro
+    Cantidad NUMBER NOT NULL ,
+    --  Código del proyecto
+    Codigo_Proyecto VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Código del rubro
+    Codigo_Rubro VARCHAR2 (4 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Proyecto_Rubro ADD CONSTRAINT Proyecto_Rubro_PK PRIMARY KEY ( Codigo_Proyecto, Codigo_Rubro ) ;
+
+CREATE TABLE Rol_GrupoInvest
+  (
+    --  Código del rol en un grupo de investigación
+    Codigo_RolGI VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Nombre del rol en un grupo de investigación
+    Nombre VARCHAR2 (20 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Rol_GrupoInvest ADD CONSTRAINT Rol_GrupoInvest_PK PRIMARY KEY ( Codigo_RolGI ) ;
+
+CREATE TABLE Rol_Menu
+  (
+    --  Código del rol
+    Codigo_Rol VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Código del menú
+    Codigo_Menu VARCHAR2 (3 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Rol_Menu ADD CONSTRAINT Rol_Menu_PK PRIMARY KEY ( Codigo_Rol, Codigo_Menu ) ;
+
+CREATE TABLE Rol_Usuario
+  (
+    --  Código del rol
+    Codigo_Rol VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Nombre del rol
+    Nombre VARCHAR2 (20 CHAR) NOT NULL ,
+    --  Descripción del rol
+    Descripcion VARCHAR2 (500 CHAR)
+  ) ;
+ALTER TABLE Rol_Usuario ADD CONSTRAINT Rol_Usuario_PK PRIMARY KEY ( Codigo_Rol ) ;
+
+--  Tabla que representa los rubros existentes dentro de la Universidad, los
+--  cuales pueden ser asignados a un Proyecto.
+CREATE TABLE Rubro
+  (
+    --  Código del rubro
+    Codigo_Rubro VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Nombre del rubro
+    Nombre VARCHAR2 (20 CHAR) NOT NULL ,
+    --  Descripción del rubro
+    Descripcion VARCHAR2 (500 CHAR)
+  ) ;
+ALTER TABLE Rubro ADD CONSTRAINT Rubro_PK PRIMARY KEY ( Codigo_Rubro ) ;
+
+CREATE TABLE Solicitud_Adicion
+  (
+    --  El código de la solicitud
+    Codigo INTEGER NOT NULL ,
+    --  Cantidad de dinero solicitado para adición
+    Cantidad INTEGER NOT NULL ,
+    --  Código del proyecto
+    Codigo_Proyecto VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Código del estado
+    Codigo_Estado VARCHAR2 (4 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Solicitud_Adicion ADD CONSTRAINT Solicitud_Adicion_PK PRIMARY KEY ( Codigo ) ;
+
+CREATE TABLE Solicitud_Prorroga
+  (
+    Codigo INTEGER NOT NULL ,
+    Fecha  DATE NOT NULL ,
+    --  Código del proyecto
+    Codigo_Proyecto VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Código del estado
+    Codigo_Estado VARCHAR2 (4 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Solicitud_Prorroga ADD CONSTRAINT Solicitud_Prorroga_PK PRIMARY KEY ( Codigo ) ;
+
+CREATE TABLE Subproducto
+  (
+    --  Código del subproducto
+    Codigo_Subproducto VARCHAR2 (4 CHAR) NOT NULL ,
+    --  Categoría del subproducto
+    Categoria VARCHAR2 (10 CHAR) NOT NULL ,
+    --  Ventana de observación del subproducto
+    Ventana_Observacion INTEGER NOT NULL ,
+    --  Requerimiento de calidad del subproducto
+    Requerimiento_Calidad VARCHAR2 (500 CHAR) NOT NULL ,
+    --  Peso relativo 1 del subproducto
+    Peso_Relativo_1 VARCHAR2 (10 CHAR) NOT NULL ,
+    --  Peso relativo 2 del subproducto
+    Peso_Relativo_2 VARCHAR2 (10 CHAR) NOT NULL ,
+    --  Vigencia del subproducto
+    Vigencia DATE NOT NULL ,
+    --  Codigo del tipo de producto
+    Codigo_Producto VARCHAR2 (6 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Subproducto ADD CONSTRAINT Subproducto_PK PRIMARY KEY ( Codigo_Subproducto ) ;
+
+CREATE TABLE Tarifa
+  (
+    Valor NUMBER NOT NULL ,
+    --  Código del usuario
+    Codigo_Usuario   VARCHAR2 (8 CHAR) NOT NULL ,
+    Codigo_Modalidad INTEGER NOT NULL
+  ) ;
+ALTER TABLE Tarifa ADD CONSTRAINT Tarifa_PK PRIMARY KEY ( Codigo_Usuario, Codigo_Modalidad ) ;
+
+CREATE TABLE Tipo_Investigacion
+  (
+    --  Código del tipo de investigación
+    Codigo_TIN VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Tipo de investigación
+    Tipo VARCHAR2 (50 CHAR) NOT NULL ,
+    --  Descripción del tipo de investigación
+    Descripcion VARCHAR2 (500 CHAR)
+  ) ;
+ALTER TABLE Tipo_Investigacion ADD CONSTRAINT Tipo_Investigacion_PK PRIMARY KEY ( Codigo_TIN ) ;
+
+CREATE TABLE Tipo_Proyecto
+  (
+    --  Código del tipo de proyecto
+    Codigo_TPR VARCHAR2 (3 CHAR) NOT NULL ,
+    --  Nombre del tipo de proyecto
+    Nombre VARCHAR2 (20 CHAR) NOT NULL ,
+    --  Descripción del tipo de proyecto
+    Descripcion VARCHAR2 (500 CHAR)
+  ) ;
+ALTER TABLE Tipo_Proyecto ADD CONSTRAINT Tipo_Proyecto_PK PRIMARY KEY ( Codigo_TPR ) ;
+
+CREATE TABLE Usuario
+  (
+    --  Código del usuario
+    Codigo_Usuario VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Tipo de documento de indentificación
+    Tipo_Documento VARCHAR2 (2 CHAR) NOT NULL ,
+    --  Número del documento de identidad
+    Documento VARCHAR2 (15 CHAR) NOT NULL ,
+    --  Nombre del usuario
+    Nombre VARCHAR2 (30 CHAR) NOT NULL ,
+    --  Apellidos del usuario
+    Apellidos VARCHAR2 (30 CHAR) NOT NULL ,
+    --  Correo electrónico del usuario
+    Email VARCHAR2 (20 CHAR) NOT NULL ,
+    --  Teléfono del usuario
+    Telefono VARCHAR2 (15 CHAR) NOT NULL ,
+    --  Cargo del Usuario
+    Cargo VARCHAR2 (50 CHAR) NOT NULL ,
+    --  Indica a que otra institución pertenece el investigador en caso de
+    --  pertenecer a una diferente
+    Otra_Institucion VARCHAR2 (50 CHAR) ,
+    --  Código del estado
+    Codigo_Estado VARCHAR2 (4 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Usuario ADD CONSTRAINT Usuario_PK PRIMARY KEY ( Codigo_Usuario ) ;
+
+CREATE TABLE Usuario_Proyecto
+  (
+    --  La dedicación en horas al Proyecto de Investigación
+    Dedicacion INTEGER NOT NULL ,
+    --  Código del usuario
+    Codigo_Usuario VARCHAR2 (8 CHAR) NOT NULL ,
+    --  Código del proyecto
+    Codigo_Proyecto VARCHAR2 (8 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Usuario_Proyecto ADD CONSTRAINT Usuario_Proyecto_PK PRIMARY KEY ( Codigo_Usuario, Codigo_Proyecto ) ;
+
+CREATE TABLE Usuario_Rol
+  (
+    Codigo_Usuario VARCHAR2 (8 CHAR) NOT NULL ,
+    Codigo_Rol     VARCHAR2 (4 CHAR) NOT NULL
+  ) ;
+ALTER TABLE Usuario_Rol ADD CONSTRAINT Usuario_Rol_PK PRIMARY KEY ( Codigo_Usuario, Codigo_Rol ) ;
+
+ALTER TABLE Convocatoria ADD CONSTRAINT Convocatoria_Estado_FK FOREIGN KEY ( Codigo_Estado ) REFERENCES Estado ( Codigo_Estado ) ;
+
+ALTER TABLE Entregable ADD CONSTRAINT Entregable_Estado_FK FOREIGN KEY ( Codigo_Estado ) REFERENCES Estado ( Codigo_Estado ) ;
+
+ALTER TABLE Entregable ADD CONSTRAINT Entregable_Proyecto_FK FOREIGN KEY ( Codigo_Proyecto ) REFERENCES Proyecto_Investigacion ( Codigo_Proyecto ) ;
+
+ALTER TABLE Entregable ADD CONSTRAINT Entregable_Subproducto_FK FOREIGN KEY ( Codigo_Subproducto ) REFERENCES Subproducto ( Codigo_Subproducto ) ;
+
+ALTER TABLE Fase ADD CONSTRAINT Fase_Convocatoria_FK FOREIGN KEY ( Codigo_Convocatoria ) REFERENCES Convocatoria ( Codigo_Convocatoria ) ;
+
+ALTER TABLE Grupo_Linea ADD CONSTRAINT GL_Grupo_FK FOREIGN KEY ( Codigo_Grupo ) REFERENCES Grupo_Investigacion ( Codigo_Grupo ) ;
+
+ALTER TABLE Grupo_Linea ADD CONSTRAINT GL_Linea_FK FOREIGN KEY ( Codigo_Linea ) REFERENCES Linea_Investigacion ( Codigo_Linea ) ;
+
+ALTER TABLE Grupo_Usuario ADD CONSTRAINT GU_Grupo_FK FOREIGN KEY ( Codigo_Grupo ) REFERENCES Grupo_Investigacion ( Codigo_Grupo ) ;
+
+ALTER TABLE Grupo_Usuario ADD CONSTRAINT GU_Rol_Grupo_FK FOREIGN KEY ( Codigo_RolGI ) REFERENCES Rol_GrupoInvest ( Codigo_RolGI ) ;
+
+ALTER TABLE Grupo_Usuario ADD CONSTRAINT GU_Usuario_FK FOREIGN KEY ( Codigo_Usuario ) REFERENCES Usuario ( Codigo_Usuario ) ;
+
+ALTER TABLE Grupo_Investigacion ADD CONSTRAINT Grupo_Facultad_FK FOREIGN KEY ( Codigo_Facultad ) REFERENCES Facultad ( Codigo_Facultad ) ;
+
+ALTER TABLE Linea_Area ADD CONSTRAINT LA_Area_FK FOREIGN KEY ( Codigo_Area ) REFERENCES Area_Estrategica ( Codigo_Area ) ;
+
+ALTER TABLE Linea_Area ADD CONSTRAINT LA_Linea_FK FOREIGN KEY ( Codigo_Linea ) REFERENCES Linea_Investigacion ( Codigo_Linea ) ;
+
+ALTER TABLE Menu ADD CONSTRAINT Menu_Menu_FK FOREIGN KEY ( Codigo_Menu1 ) REFERENCES Menu ( Codigo_Menu ) ;
+
+ALTER TABLE Proyecto_Rubro ADD CONSTRAINT PR_Proyecto_FK FOREIGN KEY ( Codigo_Proyecto ) REFERENCES Proyecto_Investigacion ( Codigo_Proyecto ) ;
+
+ALTER TABLE Proyecto_Rubro ADD CONSTRAINT PR_Rubro_FK FOREIGN KEY ( Codigo_Rubro ) REFERENCES Rubro ( Codigo_Rubro ) ;
+
+ALTER TABLE Pagina_Xhtml ADD CONSTRAINT Pagina_Xhtml_Menu_FK FOREIGN KEY ( Codigo_Menu ) REFERENCES Menu ( Codigo_Menu ) ;
+
+ALTER TABLE Permisos_Rol ADD CONSTRAINT Permisos_Rol_Permisos_FK FOREIGN KEY ( Url ) REFERENCES Permisos ( Url ) ;
+
+ALTER TABLE Permisos_Rol ADD CONSTRAINT Permisos_Rol_Rol_Usuario_FK FOREIGN KEY ( Codigo_Rol ) REFERENCES Rol_Usuario ( Codigo_Rol ) ;
+
+ALTER TABLE Producto ADD CONSTRAINT Producto_Clasificacion_FK FOREIGN KEY ( Codigo_Clasificacion ) REFERENCES Clasificacion_Producto ( Codigo_Clasificacion ) ;
+
+ALTER TABLE Proyecto_Investigacion ADD CONSTRAINT Proyecto_CC_FK FOREIGN KEY ( Codigo_Colciencias ) REFERENCES Clasificacion_Colciencias ( Codigo_Colciencias ) ;
+
+ALTER TABLE Proyecto_Investigacion ADD CONSTRAINT Proyecto_Convocatoria_FK FOREIGN KEY ( Codigo_Convocatoria ) REFERENCES Convocatoria ( Codigo_Convocatoria ) ;
+
+ALTER TABLE Proyecto_Investigacion ADD CONSTRAINT Proyecto_Estado_FK FOREIGN KEY ( Codigo_Estado1 ) REFERENCES Estado ( Codigo_Estado ) ;
+
+ALTER TABLE Proyecto_Investigacion ADD CONSTRAINT Proyecto_GL_FK FOREIGN KEY ( Codigo_Grupo, Codigo_Linea ) REFERENCES Grupo_Linea ( Codigo_Grupo, Codigo_Linea ) ;
+
+ALTER TABLE Proyecto_Investigacion ADD CONSTRAINT Proyecto_TipInv_FK FOREIGN KEY ( Codigo_TIN ) REFERENCES Tipo_Investigacion ( Codigo_TIN ) ;
+
+ALTER TABLE Proyecto_Investigacion ADD CONSTRAINT Proyecto_Tipo_Proyecto_FK FOREIGN KEY ( Codigo_TPR ) REFERENCES Tipo_Proyecto ( Codigo_TPR ) ;
+
+ALTER TABLE Rol_Menu ADD CONSTRAINT Rol_Menu_Menu_FK FOREIGN KEY ( Codigo_Menu ) REFERENCES Menu ( Codigo_Menu ) ;
+
+ALTER TABLE Rol_Menu ADD CONSTRAINT Rol_Menu_Rol_Usuario_FK FOREIGN KEY ( Codigo_Rol ) REFERENCES Rol_Usuario ( Codigo_Rol ) ;
+
+ALTER TABLE Solicitud_Adicion ADD CONSTRAINT Solicitud_Adicion_Estado_FK FOREIGN KEY ( Codigo_Estado ) REFERENCES Estado ( Codigo_Estado ) ;
+
+ALTER TABLE Solicitud_Adicion ADD CONSTRAINT Solicitud_Adicion_Proyecto_FK FOREIGN KEY ( Codigo_Proyecto ) REFERENCES Proyecto_Investigacion ( Codigo_Proyecto ) ;
+
+ALTER TABLE Solicitud_Prorroga ADD CONSTRAINT Solicitud_Prorroga_Estado_FK FOREIGN KEY ( Codigo_Estado ) REFERENCES Estado ( Codigo_Estado ) ;
+
+ALTER TABLE Solicitud_Prorroga ADD CONSTRAINT Solicitud_Prorroga_Proyecto_FK FOREIGN KEY ( Codigo_Proyecto ) REFERENCES Proyecto_Investigacion ( Codigo_Proyecto ) ;
+
+ALTER TABLE Subproducto ADD CONSTRAINT Subproducto_Producto_FK FOREIGN KEY ( Codigo_Producto ) REFERENCES Producto ( Codigo_Producto ) ;
+
+ALTER TABLE Tarifa ADD CONSTRAINT Tarifa_Modalidad_FK FOREIGN KEY ( Codigo_Modalidad ) REFERENCES Modalidad ( Codigo_Modalidad ) ;
+
+ALTER TABLE Tarifa ADD CONSTRAINT Tarifa_Usuario_FK FOREIGN KEY ( Codigo_Usuario ) REFERENCES Usuario ( Codigo_Usuario ) ;
+
+ALTER TABLE Usuario_Proyecto ADD CONSTRAINT UP_Proyecto_FK FOREIGN KEY ( Codigo_Proyecto ) REFERENCES Proyecto_Investigacion ( Codigo_Proyecto ) ;
+
+ALTER TABLE Usuario_Proyecto ADD CONSTRAINT UP_Usuario_FK FOREIGN KEY ( Codigo_Usuario ) REFERENCES Usuario ( Codigo_Usuario ) ;
+
+ALTER TABLE Usuario ADD CONSTRAINT Usuario_Estado_FK FOREIGN KEY ( Codigo_Estado ) REFERENCES Estado ( Codigo_Estado ) ;
+
+ALTER TABLE Usuario_Rol ADD CONSTRAINT Usuario_Rol_Rol_Usuario_FK FOREIGN KEY ( Codigo_Rol ) REFERENCES Rol_Usuario ( Codigo_Rol ) ;
+
+ALTER TABLE Usuario_Rol ADD CONSTRAINT Usuario_Rol_Usuario_FK FOREIGN KEY ( Codigo_Usuario ) REFERENCES Usuario ( Codigo_Usuario ) ;
+
+
+-- Informe de Resumen de Oracle SQL Developer Data Modeler: 
+-- 
+-- CREATE TABLE                            34
+-- CREATE INDEX                             0
+-- ALTER TABLE                             74
+-- CREATE VIEW                              0
+-- CREATE PACKAGE                           0
+-- CREATE PACKAGE BODY                      0
+-- CREATE PROCEDURE                         0
+-- CREATE FUNCTION                          0
+-- CREATE TRIGGER                           0
+-- ALTER TRIGGER                            0
+-- CREATE COLLECTION TYPE                   0
+-- CREATE STRUCTURED TYPE                   0
+-- CREATE STRUCTURED TYPE BODY              0
+-- CREATE CLUSTER                           0
+-- CREATE CONTEXT                           0
+-- CREATE DATABASE                          0
+-- CREATE DIMENSION                         0
+-- CREATE DIRECTORY                         0
+-- CREATE DISK GROUP                        0
+-- CREATE ROLE                              0
+-- CREATE ROLLBACK SEGMENT                  0
+-- CREATE SEQUENCE                          0
+-- CREATE MATERIALIZED VIEW                 0
+-- CREATE SYNONYM                           0
+-- CREATE TABLESPACE                        0
+-- CREATE USER                              0
+-- 
+-- DROP TABLESPACE                          0
+-- DROP DATABASE                            0
+-- 
+-- REDACTION POLICY                         0
+-- 
+-- ERRORS                                   0
+-- WARNINGS                                 0

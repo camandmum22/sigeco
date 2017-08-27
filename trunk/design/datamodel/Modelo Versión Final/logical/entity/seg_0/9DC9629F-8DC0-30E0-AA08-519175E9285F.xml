@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9DC9629F-8DC0-30E0-AA08-519175E9285F" name="Area_Estrategica">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:21:22 UTC</createdTime>
+<comment>Tabla que representa el conjunto de áreas estratégicas a las que un proyecto puede apuntar.</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Area" id="CA4157C4-4A7F-4F4E-ACFF-5D604348B3C3">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:21:23 UTC</createdTime>
+<comment>Código del área estratégica</comment>
+<commentInRDBMS>Código del área estratégica</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>1DCEB04A-9593-04F3-EE87-34C324720F61</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Nombre" id="6416A92D-1058-1AC1-6F00-16B65053A3D7">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:21:23 UTC</createdTime>
+<comment>Nombre del área estratégica</comment>
+<commentInRDBMS>Nombre del área estratégica</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<notes>El nombre del área estratégica</notes>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>BF52E5C7-EE69-3372-E060-247C4C878007</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Descripcion" id="6E233F9C-0030-51FD-15B1-AB12A89B1C1E">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:32:40 UTC</createdTime>
+<comment>Descripción del área estratégica</comment>
+<commentInRDBMS>Descripción del área estratégica</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="BE24B991-CFEC-B54C-CFCC-910206611155" name="{entity} PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:21:23 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>CA4157C4-4A7F-4F4E-ACFF-5D604348B3C3</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

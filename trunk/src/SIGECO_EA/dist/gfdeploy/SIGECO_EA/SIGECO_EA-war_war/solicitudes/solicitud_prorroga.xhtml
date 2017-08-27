@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Solicitud Prorroga</title>
+    </h:head>
+    <h:body>
+        &nbsp;
+        &nbsp;
+        <h:form>
+            <h:outputText value="Solicitud Prórroga" style=" color: #666666; font-size: 35px; font-family:'Arial'"></h:outputText>
+        </h:form>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+         <h:form>
+             <!-- Lista de proyectos de investigación de un líder de proyecto-->
+            <p:panel id="panel" header="Proyectos Investigación">              
+                <h:panelGrid columns="6" width="100%" cellpadding="5px" cellspacing="5px">
+                    <p:selectOneListbox id="advanced" value="#{solicitudesNB.proyectoInvestigacion}" converter="proyectosConverter" filter="false" style="width:450px">  
+                        <f:selectItems value="#{proyectosNB.proyectosInvestigacion}" var="proyecto" itemLabel="#{proyecto.titulo}" itemValue="#{proyecto}" />
+                        <p:ajax process="@this" partialSubmit="true"/>
+                    </p:selectOneListbox>
+                </h:panelGrid>   
+            </p:panel>
+
+        </h:form>
+        <br></br>
+        <br></br>
+            <h:form enctype="multipart/form-data">
+            <p:outputLabel value="Cronograma  "></p:outputLabel>
+            <p:growl id="messages" showDetail="true" />
+                 <p:fileUpload value="#{solicitudesNB.file}" mode="simple"/>
+                 <br></br>
+                 <br></br>
+                 <br></br>
+                &nbsp;
+                 <p:commandButton value="Terminar" ajax="false" actionListener="#{solicitudesNB.guardarSolicitud()}" disabled="false" />
+            </h:form>
+            <!-- Botón Volver -->
+    </h:body>
+</html>
+

@@ -1,0 +1,385 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ <p>
+ @author csacanam
+ */
+@Entity
+@Table( name = "PROYECTO_INVESTIGACION" )
+@XmlRootElement
+@NamedQueries(
+                {
+            @NamedQuery( name = "ProyectoInvestigacion.findAll", query = "SELECT p FROM ProyectoInvestigacion p" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByCodigoProyecto", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.codigoProyecto = :codigoProyecto" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByTitulo", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.titulo = :titulo" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByResumenEjecutivo", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.resumenEjecutivo = :resumenEjecutivo" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByFechainicio", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.fechainicio = :fechainicio" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByFechafin", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.fechafin = :fechafin" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByResultados", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.resultados = :resultados" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByProblema", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.problema = :problema" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByPresupuestoEsperado", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.presupuestoEsperado = :presupuestoEsperado" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByAprobacionEtica", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.aprobacionEtica = :aprobacionEtica" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByCenco", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.cenco = :cenco" ),
+            @NamedQuery( name = "ProyectoInvestigacion.findByPresupuestoAsignado", query = "SELECT p FROM ProyectoInvestigacion p WHERE p.presupuestoAsignado = :presupuestoAsignado" )
+        } )
+public class ProyectoInvestigacion implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @SequenceGenerator( name = "PROYECTO_INVESTIGACION_GENERATOR", sequenceName = "SQ_PROYECTO_INVESTIGACION", allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "PROYECTO_INVESTIGACION_GENERATOR" )
+    @Basic( optional = false )
+    @NotNull
+    @Column( name = "CODIGO_PROYECTO", nullable = false )
+    private Long codigoProyecto;
+
+    @Basic( optional = false )
+    @NotNull
+    @Size( min = 1, max = 50 )
+    @Column( nullable = false, length = 50 )
+    private String titulo;
+
+    @Basic( optional = false )
+    @NotNull
+    @Size( min = 1, max = 500 )
+    @Column( name = "RESUMEN_EJECUTIVO", nullable = false, length = 500 )
+    private String resumenEjecutivo;
+
+    @Basic( optional = false )
+    @NotNull
+    @Column( nullable = false )
+    @Temporal( TemporalType.TIMESTAMP )
+    private Date fechainicio;
+
+    @Basic( optional = false )
+    @NotNull
+    @Column( nullable = false )
+    @Temporal( TemporalType.TIMESTAMP )
+    private Date fechafin;
+
+    @Size( max = 500 )
+    @Column( length = 500 )
+    private String resultados;
+
+    @Size( max = 50 )
+    @Column( length = 50 )
+    private String problema;
+
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
+    @Basic( optional = false )
+    @NotNull
+    @Column( name = "PRESUPUESTO_ESPERADO", nullable = false, precision = 10, scale = 2 )
+    private BigDecimal presupuestoEsperado;
+
+    @Basic( optional = false )
+    @NotNull
+    @Size( min = 1, max = 10 )
+    @Column( name = "APROBACION_ETICA", nullable = false, length = 10 )
+    private String aprobacionEtica;
+
+    @Size( max = 20 )
+    @Column( length = 20 )
+    private String cenco;
+
+    @Column( name = "PRESUPUESTO_ASIGNADO" )
+    private BigInteger presupuestoAsignado;
+
+    @Lob
+    @Column( name = "DOC_ETICA" )
+    private Serializable docEtica;
+
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "proyectoInvestigacion", fetch = FetchType.LAZY )
+    private List<ProConSol> proConSolList;
+
+    @JoinColumn( name = "CODIGO_ESTADO", referencedColumnName = "CODIGO_ESTADO", nullable = false )
+    @ManyToOne( optional = false, fetch = FetchType.LAZY )
+    private Estado codigoEstado;
+
+    @JoinColumns(
+                        {
+                @JoinColumn( name = "CODIGO_GRUPO", referencedColumnName = "CODIGO_GRUPO", nullable = false ),
+                @JoinColumn( name = "CODIGO_LINEA", referencedColumnName = "CODIGO_LINEA", nullable = false )
+            } )
+    @ManyToOne( optional = false, fetch = FetchType.LAZY )
+    private GrupoLinea grupoLinea;
+
+    @JoinColumn( name = "CODIGO_TIN", referencedColumnName = "CODIGO_TIN", nullable = false )
+    @ManyToOne( optional = false, fetch = FetchType.LAZY )
+    private TipoInvestigacion codigoTin;
+
+    @JoinColumn( name = "CODIGO_TPR", referencedColumnName = "CODIGO_TPR", nullable = false )
+    @ManyToOne( optional = false, fetch = FetchType.LAZY )
+    private TipoProyecto codigoTpr;
+
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "codigoProyecto", fetch = FetchType.LAZY )
+    private List<Entregable> entregableList;
+
+    public ProyectoInvestigacion()
+    {
+    }
+
+    public ProyectoInvestigacion( Long codigoProyecto )
+    {
+        this.codigoProyecto = codigoProyecto;
+    }
+
+    public ProyectoInvestigacion( Long codigoProyecto, String titulo, String resumenEjecutivo, Date fechainicio, Date fechafin, BigDecimal presupuestoEsperado, String aprobacionEtica )
+    {
+        this.codigoProyecto = codigoProyecto;
+        this.titulo = titulo;
+        this.resumenEjecutivo = resumenEjecutivo;
+        this.fechainicio = fechainicio;
+        this.fechafin = fechafin;
+        this.presupuestoEsperado = presupuestoEsperado;
+        this.aprobacionEtica = aprobacionEtica;
+    }
+
+    public Long getCodigoProyecto()
+    {
+        return codigoProyecto;
+    }
+
+    public void setCodigoProyecto( Long codigoProyecto )
+    {
+        this.codigoProyecto = codigoProyecto;
+    }
+
+    public String getTitulo()
+    {
+        return titulo;
+    }
+
+    public void setTitulo( String titulo )
+    {
+        this.titulo = titulo;
+    }
+
+    public String getResumenEjecutivo()
+    {
+        return resumenEjecutivo;
+    }
+
+    public void setResumenEjecutivo( String resumenEjecutivo )
+    {
+        this.resumenEjecutivo = resumenEjecutivo;
+    }
+
+    public Date getFechainicio()
+    {
+        return fechainicio;
+    }
+
+    public void setFechainicio( Date fechainicio )
+    {
+        this.fechainicio = fechainicio;
+    }
+
+    public Date getFechafin()
+    {
+        return fechafin;
+    }
+
+    public void setFechafin( Date fechafin )
+    {
+        this.fechafin = fechafin;
+    }
+
+    public String getResultados()
+    {
+        return resultados;
+    }
+
+    public void setResultados( String resultados )
+    {
+        this.resultados = resultados;
+    }
+
+    public String getProblema()
+    {
+        return problema;
+    }
+
+    public void setProblema( String problema )
+    {
+        this.problema = problema;
+    }
+
+    public BigDecimal getPresupuestoEsperado()
+    {
+        return presupuestoEsperado;
+    }
+
+    public void setPresupuestoEsperado( BigDecimal presupuestoEsperado )
+    {
+        this.presupuestoEsperado = presupuestoEsperado;
+    }
+
+    public String getAprobacionEtica()
+    {
+        return aprobacionEtica;
+    }
+
+    public void setAprobacionEtica( String aprobacionEtica )
+    {
+        this.aprobacionEtica = aprobacionEtica;
+    }
+
+    public String getCenco()
+    {
+        return cenco;
+    }
+
+    public void setCenco( String cenco )
+    {
+        this.cenco = cenco;
+    }
+
+    public BigInteger getPresupuestoAsignado()
+    {
+        return presupuestoAsignado;
+    }
+
+    public void setPresupuestoAsignado( BigInteger presupuestoAsignado )
+    {
+        this.presupuestoAsignado = presupuestoAsignado;
+    }
+
+    public Serializable getDocEtica()
+    {
+        return docEtica;
+    }
+
+    public void setDocEtica( Serializable docEtica )
+    {
+        this.docEtica = docEtica;
+    }
+
+    @XmlTransient
+    public List<ProConSol> getProConSolList()
+    {
+        return proConSolList;
+    }
+
+    public void setProConSolList( List<ProConSol> proConSolList )
+    {
+        this.proConSolList = proConSolList;
+    }
+
+    public Estado getCodigoEstado()
+    {
+        return codigoEstado;
+    }
+
+    public void setCodigoEstado( Estado codigoEstado )
+    {
+        this.codigoEstado = codigoEstado;
+    }
+
+    public GrupoLinea getGrupoLinea()
+    {
+        return grupoLinea;
+    }
+
+    public void setGrupoLinea( GrupoLinea grupoLinea )
+    {
+        this.grupoLinea = grupoLinea;
+    }
+
+    public TipoInvestigacion getCodigoTin()
+    {
+        return codigoTin;
+    }
+
+    public void setCodigoTin( TipoInvestigacion codigoTin )
+    {
+        this.codigoTin = codigoTin;
+    }
+
+    public TipoProyecto getCodigoTpr()
+    {
+        return codigoTpr;
+    }
+
+    public void setCodigoTpr( TipoProyecto codigoTpr )
+    {
+        this.codigoTpr = codigoTpr;
+    }
+
+    @XmlTransient
+    public List<Entregable> getEntregableList()
+    {
+        return entregableList;
+    }
+
+    public void setEntregableList( List<Entregable> entregableList )
+    {
+        this.entregableList = entregableList;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += ( codigoProyecto != null ? codigoProyecto.hashCode() : 0 );
+        return hash;
+    }
+
+    @Override
+    public boolean equals( Object object )
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if( !( object instanceof ProyectoInvestigacion ) )
+        {
+            return false;
+        }
+        ProyectoInvestigacion other = (ProyectoInvestigacion)object;
+        if( ( this.codigoProyecto == null && other.codigoProyecto != null ) || ( this.codigoProyecto != null && !this.codigoProyecto.equals( other.codigoProyecto ) ) )
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.ProyectoInvestigacion[ codigoProyecto=" + codigoProyecto + " ]";
+    }
+
+}

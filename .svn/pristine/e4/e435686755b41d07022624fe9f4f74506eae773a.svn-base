@@ -1,0 +1,98 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+/**
+ *
+ * @author csacanam
+ */
+@Embeddable
+public class InvestigadorPK implements Serializable
+{
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "CODIGO_GRUPO", nullable = false, length = 10)
+    private String codigoGrupo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "CODIGO_USUARIO", nullable = false, length = 10)
+    private Long codigoUsuario;
+
+    public InvestigadorPK()
+    {
+    }
+
+    public InvestigadorPK(String codigoGrupo, Long codigoUsuario)
+    {
+        this.codigoGrupo = codigoGrupo;
+        this.codigoUsuario = codigoUsuario;
+    }
+
+    public String getCodigoGrupo()
+    {
+        return codigoGrupo;
+    }
+
+    public void setCodigoGrupo(String codigoGrupo)
+    {
+        this.codigoGrupo = codigoGrupo;
+    }
+
+    public Long getCodigoUsuario()
+    {
+        return codigoUsuario;
+    }
+
+    public void setCodigoUsuario(Long codigoUsuario)
+    {
+        this.codigoUsuario = codigoUsuario;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoGrupo != null ? codigoGrupo.hashCode() : 0);
+        hash += (codigoUsuario != null ? codigoUsuario.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof InvestigadorPK))
+        {
+            return false;
+        }
+        InvestigadorPK other = (InvestigadorPK) object;
+        if ((this.codigoGrupo == null && other.codigoGrupo != null) || (this.codigoGrupo != null && !this.codigoGrupo.equals(other.codigoGrupo)))
+        {
+            return false;
+        }
+        if ((this.codigoUsuario == null && other.codigoUsuario != null) || (this.codigoUsuario != null && !this.codigoUsuario.equals(other.codigoUsuario)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.InvestigadorPK[ codigoGrupo=" + codigoGrupo + ", codigoUsuario=" + codigoUsuario + " ]";
+    }
+    
+}

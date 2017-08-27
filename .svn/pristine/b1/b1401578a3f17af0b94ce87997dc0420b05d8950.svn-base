@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Proyectos de investigación</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+
+        <!-- Se cargan las hojas de estilo -->
+        <h:outputStylesheet library="css" name="styles.css"  />
+
+        <h1>Crear proyecto de investigación</h1>
+
+        <!-- Formulario de creación de proyecto de investigación -->
+        <h:form id="form" enctype="multipart/form-data">
+            <!-- Espacio para los mensajes emergentes -->
+            <p:growl id="growl" life="2000" />
+            <!-- Panel de información básica -->
+            <p:panel id="panel" header="Información general">
+                <h:panelGrid columns="2" width="100%" cellpadding="5px" cellspacing="5px">
+
+                    <p:outputLabel for="tituloPI" value="Título:" />
+                    <p:inputText  id="tituloPI" value="#{proyectosNB.proyectoNuevo.titulo}" required="true">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+
+                    <p:outputLabel for="grupoInvestigacionPI" value="Grupo investigación:" />
+                    <h:selectOneMenu id="grupoInvestigacionPI" value="#{proyectosNB.grupoInvestigacion}" required="true" class="comboLineaInvCrearProyecto">
+                        <f:converter converterId="grupoInvestigacionConverter" />
+                        <f:selectItems value="#{proyectosNB.gruposInvestigacion}" var="grupoInv" itemLabel="#{grupoInv.nombre}" itemValue="#{grupoInv}" />
+                        <p:ajax listener="#{proyectosNB.onGroupsChange}" update="lineaInvPI" event="change"/>
+                    </h:selectOneMenu>                                
+
+                    <p:outputLabel for="lineaInvPI" value="Línea de investigación:" />
+                    <h:selectOneMenu id="lineaInvPI" value="#{proyectosNB.lineaInvestigacion}" required="true" class="comboLineaInvCrearProyecto">
+                        <f:converter converterId="lineaInvestigacionConverter" />
+                        <f:selectItems value="#{proyectosNB.lineasInvestigacion}" var="lineaInv" itemLabel="#{lineaInv.nombre}" itemValue="#{lineaInv}" />                      
+                    </h:selectOneMenu>
+
+                    <p:outputLabel for="tipoInvPI" value="Tipo de investigación:" />
+                    <h:selectOneMenu id="tipoInvPI" value="#{proyectosNB.proyectoNuevo.tipInvCodigo}" required="true" class="comboLineaInvCrearProyecto">
+                        <f:converter converterId="tipoInvConverter" />
+                        <f:selectItems value="#{proyectosNB.tiposInvestigacion}" var="tipoInv" itemLabel="#{tipoInv.tipo}" itemValue="#{tipoInv}" />
+                    </h:selectOneMenu>
+
+                    <p:outputLabel for="tipoProyPI" value="Tipo de proyecto:" />
+                    <h:selectOneMenu id="tipoProyPI" value="#{proyectosNB.proyectoNuevo.tipProCodigo}" required="true" class="comboLineaInvCrearProyecto">
+                        <f:converter converterId="tipoProyectoConverter" />
+                        <f:selectItems value="#{proyectosNB.tiposProyecto}" var="tipoProy" itemLabel="#{tipoProy.nombre}" itemValue="#{tipoProy}" />
+                    </h:selectOneMenu>
+
+                    <p:outputLabel for="fechaInicioPI" value="Fecha de inicio:" />
+                    <p:calendar id="fechaInicioPI" value="#{proyectosNB.proyectoNuevo.fechainicio}" required="true" />
+
+                    <p:outputLabel for="fechaFinPI" value="Fecha de finalización:" />
+                    <p:calendar id="fechaFinPI" value="#{proyectosNB.proyectoNuevo.fechafin}" required="true"/>
+
+                    <p:outputLabel for="presupuestoEsperadoPI" value="Presupuesto esperado:" />
+                    <p:inputText id="presupuestoEsperadoPI" value="#{proyectosNB.proyectoNuevo.presupuestoEsperado}" required="true">
+                        <f:convertNumber pattern="##0.00" maxIntegerDigits="4"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="aprobacionPI" value="Aprobación ética:" />                    
+                    <p:selectBooleanCheckbox  id="aprobacionPI" value="#{proyectosNB.aprobacionEtica}">
+                        <p:ajax update="refresh" event="change" />
+                    </p:selectBooleanCheckbox>
+
+                </h:panelGrid>
+
+
+                <h:panelGroup id="refresh" class="panelGroupAprobacionDoc">
+                    <p:outputLabel for="aprobacionDocPI" value="Documento ética:" rendered="#{proyectosNB.aprobacionEtica}"/>                    
+                    <p:fileUpload  id="aprobacionDocPI" class="aprobacionDocPI" value="#{proyectosNB.aprobacionEticaDoc}" mode="simple" rendered="#{proyectosNB.aprobacionEtica}"/>
+                </h:panelGroup>
+
+                <p:outputLabel  value="Equipo de Investigadores:" />
+                <p:commandButton value="Agregar" type="button" onclick="PF('dlg2').show();" />
+                <p:dialog header="Agregar Investigador" widgetVar="dlg2" modal="true" height="400" width="700" resizable="false">
+
+                    <h:form id="agregarInvestigador"> 
+                        <h:panelGrid columns="2" width="100%" cellpadding="5px" cellspacing="5px">
+
+
+                            <p:outputLabel value="Investigador: " for="investigadores" />
+                            <p:selectOneListbox id="investigadores" value="#{proyectosNB.investigadorEquipo}"  filter="true" filterMatchMode="contains" style="height:240px;width:300px" >
+                                <p:ajax listener="#{proyectosNB.cambio()}" update="gi"></p:ajax>
+                                <f:selectItems value="#{proyectosNB.investigadores}" var="inv" itemLabel="#{inv.usuario.nombre}" itemValue="#{inv}" />
+                            </p:selectOneListbox>
+
+                            <p:outputLabel value="Grupo de investigación: " />
+                            <p:inputText id="gi" value="#{proyectosNB.grupoInvestigacionInvestigador}" class="comboLineaInvCrearProyecto"/>
+
+                            <p:outputLabel value="Rol:" for="listaRoles"/>
+                            <h:selectOneMenu id="listaRoles" value="#{proyectosNB.rolInvestigador}" required="true" class="comboLineaInvCrearProyecto" >
+                                <f:selectItems value="#{proyectosNB.rolesProyecto}" var="rolesProy" itemLabel="#{rolesProy.nombre}" itemValue="#{rolesProy}" />
+                            </h:selectOneMenu>
+
+                            <p:outputLabel value="Modalidad:" for="listaModalidades"/>
+                            <h:selectOneMenu id="listaModalidades" value="#{proyectosNB.modalidadInvestigador}" required="true" class="comboLineaInvCrearProyecto">
+                                <f:selectItems value="#{proyectosNB.modalidadesInvestigadores}" var="modalidInv" itemLabel="#{modalidInv}" itemValue="#{modalidInv}" />
+                            </h:selectOneMenu>                                
+
+                        </h:panelGrid>
+                        <h:panelGrid columns="1" width="100%" cellpadding="5px" cellspacing="5px">
+                            <p:commandButton value="Agregar" actionListener="#{proyectosNB.agregarInvestigadorAEquipo()}" oncomplete="PF('dlg2').hide();" styleClass="ui-priority-primary"/>
+                        </h:panelGrid>
+                    </h:form>
+
+                </p:dialog> 
+
+                <p:dataTable id="tablaInv" var="tablaInvestigadores" >
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{proyectosNB.investigadorEquipo.usuario.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Rol">
+                        <h:outputText value="#{proyectosNB.rolInvestigador.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Grupo de Investigación">
+                        <h:outputText value="#{proyectosNB.investigadorEquipo.grupoInvestigacion.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Modalidad">
+                        <h:outputText value="#{proyectosNB.modalidadInvestigador}" />
+                    </p:column>
+                </p:dataTable>
+
+                <p:inputTextarea id="resumenPI" rows="10" placeholder="Resumen ejecutivo" required="true" class="resumenPI" value="#{proyectosNB.proyectoNuevo.resumenEjecutivo}"/>
+
+
+            </p:panel>
+
+            <!-- Botón crear proyecto -->
+            <p:commandButton value="Crear" update="growl" actionListener="#{proyectosNB.crearProyecto()}" styleClass="ui-priority-primary" class="btnCrearProyecto"/>
+
+        </h:form>
+
+    </h:body>
+</html>
+

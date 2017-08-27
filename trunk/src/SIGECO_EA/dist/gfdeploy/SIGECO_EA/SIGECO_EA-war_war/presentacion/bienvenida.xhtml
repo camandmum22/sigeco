@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<style type="text/css">
+			body {
+				margin-left: 0px;
+				margin-top: 0px;
+				margin-right: 0px;
+				margin-bottom: 0px;
+			}
+			
+			.centrado {
+				position: absolute; /*Posicionamiento absoluto*/
+				
+				left: 50%; /*Desde la izquierda, colocar al 50% de la pantalla*/
+				width: 400px; /*Le ponemos el valor del ancho*/
+				margin-top: -200px; /*Restamos la mitad de alto para centrarlo verticalmente*/
+				height: 400px; /*Le ponemos el valor del alto*/
+				margin-left: -150px; /*Restamos la mitad de ancho para centrarlo horizontalmente*/
+			}
+		</style>
+	</h:head>	
+	<h:body>
+		<div class="centrado">
+			<h:form styleClass="formulario">
+				<table width="300x" border="0">
+					<tr>
+						<td align="center">
+							HOLA
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							BIENVENIDO
+						</td>
+					</tr>
+				</table>
+				<p:messages id="messages" closable="true" style="width: 300px; align:center;" />  
+			</h:form>
+		</div>
+	</h:body>
+</html>

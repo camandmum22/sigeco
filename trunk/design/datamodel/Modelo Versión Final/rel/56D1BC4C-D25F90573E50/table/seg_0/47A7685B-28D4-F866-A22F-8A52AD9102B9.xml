@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="47A7685B-28D4-F866-A22F-8A52AD9102B9" name="Pagina_Xhtml">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>B557F5F3-C394-5354-C8E2-E5EDD722E8E5</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Pag" id="B03322DE-0CB9-AC60-57CC-3F71196B98C9">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la página xhtml</comment>
+<commentInRDBMS>Código de la página xhtml</commentInRDBMS>
+<generatorID>CEEEBE00-DB03-9E0C-6EEB-DCBA8C0F2F97</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre_Pag" id="B2464827-49A4-64E0-906E-157AF0C88981">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre de la página xhtml</comment>
+<commentInRDBMS>Nombre de la página xhtml</commentInRDBMS>
+<generatorID>FF7B101E-DB33-A5DB-C08C-3288D4E48B30</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Menu" id="44B4F17C-3126-D629-F4A0-710FF84AFAF8">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del menú</comment>
+<commentInRDBMS>Código del menú</commentInRDBMS>
+<generatorID>1A3E38E8-5F1F-1E7A-4DEF-5FC2B56CA730</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<delegate>A374B9CF-4C7E-5CAD-E6FF-4DB80389362F</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="84CC6562-6966-7E09-4821-AE82B86B84FA" referredColumn="A374B9CF-4C7E-5CAD-E6FF-4DB80389362F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="76C46557-B615-1A93-A03E-C638AD5526F5" name="Pagina_Xhtml_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>0C5742A1-D75E-8CDC-227F-B0A23800C906</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B03322DE-0CB9-AC60-57CC-3F71196B98C9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9C1815BF-7828-40F6-BF83-6494027F571F" name="Pagina_Xhtml_Menu_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>20A04D23-CD95-6AFC-77FB-51B741A4BDF3</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44B4F17C-3126-D629-F4A0-710FF84AFAF8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

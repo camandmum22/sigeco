@@ -1,0 +1,114 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.math.BigInteger;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ *
+ * @author germandavidlozano
+ */
+@Entity
+@Table(name = "FACULTAD_CONVOCATORIA")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "FacultadConvocatoria.findAll", query = "SELECT f FROM FacultadConvocatoria f"),
+    @NamedQuery(name = "FacultadConvocatoria.findByConCodigo", query = "SELECT f FROM FacultadConvocatoria f WHERE f.facultadConvocatoriaPK.conCodigo = :conCodigo"),
+    @NamedQuery(name = "FacultadConvocatoria.findByPresupuesto", query = "SELECT f FROM FacultadConvocatoria f WHERE f.presupuesto = :presupuesto"),
+    @NamedQuery(name = "FacultadConvocatoria.findByFacCodigo", query = "SELECT f FROM FacultadConvocatoria f WHERE f.facultadConvocatoriaPK.facCodigo = :faccodigo")})
+public class FacultadConvocatoria implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @EmbeddedId
+    protected FacultadConvocatoriaPK facultadConvocatoriaPK;
+    @Column(name = "PRESUPUESTO")
+    private BigInteger presupuesto;
+    @JoinColumn(name = "CON_CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Convocatoria convocatoria;
+    @JoinColumn(name = "FAC_CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Facultad facultad;
+
+    public FacultadConvocatoria() {
+    }
+
+    public FacultadConvocatoria(FacultadConvocatoriaPK facultadConvocatoriaPK) {
+        this.facultadConvocatoriaPK = facultadConvocatoriaPK;
+    }
+
+    public FacultadConvocatoria(long conCodigo, BigInteger facCodigo) {
+        this.facultadConvocatoriaPK = new FacultadConvocatoriaPK(conCodigo, facCodigo);
+    }
+
+    public FacultadConvocatoriaPK getFacultadConvocatoriaPK() {
+        return facultadConvocatoriaPK;
+    }
+
+    public void setFacultadConvocatoriaPK(FacultadConvocatoriaPK facultadConvocatoriaPK) {
+        this.facultadConvocatoriaPK = facultadConvocatoriaPK;
+    }
+
+    public BigInteger getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(BigInteger presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+
+    public Convocatoria getConvocatoria() {
+        return convocatoria;
+    }
+
+    public void setConvocatoria(Convocatoria convocatoria) {
+        this.convocatoria = convocatoria;
+    }
+
+    public Facultad getFacultad() {
+        return facultad;
+    }
+
+    public void setFacultad(Facultad facultad) {
+        this.facultad = facultad;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (facultadConvocatoriaPK != null ? facultadConvocatoriaPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof FacultadConvocatoria)) {
+            return false;
+        }
+        FacultadConvocatoria other = (FacultadConvocatoria) object;
+        if ((this.facultadConvocatoriaPK == null && other.facultadConvocatoriaPK != null) || (this.facultadConvocatoriaPK != null && !this.facultadConvocatoriaPK.equals(other.facultadConvocatoriaPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.sigeco.ejb.entities.FacultadConvocatoria[ facultadConvocatoriaPK=" + facultadConvocatoriaPK + " ]";
+    }
+    
+}

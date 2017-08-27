@@ -1,0 +1,905 @@
+<<<<<<< .mine
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.GrupoLinea;
+import com.sigeco.ejb.entities.GrupoLineaPK;
+import com.sigeco.ejb.entities.Investigador;
+import com.sigeco.ejb.entities.LineaInvestigacion;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.RolProyecto;
+import com.sigeco.ejb.entities.TipoInvestigacion;
+
+import com.sigeco.ejb.entities.TipoProyecto;
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.exceptions.ProyectoException;
+import com.sigeco.ejb.subsistemas.EstadosSB;
+import com.sigeco.ejb.subsistemas.GrupoInvestigacionSB;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import com.sigeco.utilities.Mensajes;
+import com.sigeco.utilities.Validaciones;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import org.primefaces.model.UploadedFile;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@RequestScoped
+public class ProyectosNB
+{
+
+    //Atributos de un proyectoNuevo
+    private GrupoInvestigacion grupoInvestigacion;
+    private LineaInvestigacion lineaInvestigacion;
+    private boolean aprobacionEtica;
+    private UploadedFile aprobacionEticaDoc;
+    private ProyectoInvestigacion proyectoNuevo;
+    
+    //Creación de equipo de investigación
+    private List<Object> equipoInvestigadores;
+    private Investigador investigadorEquipo;
+    private String grupoInvestigacionInvestigador;
+    private RolProyecto rolInvestigador;
+    private String modalidadInvestigador;
+    //Atributos para editar un proyecto
+    private ProyectoInvestigacion proyecto;
+
+    //Lista de entidades
+    private List<Investigador> investigadores;
+    private List<String> modalidadesInvestigadores; 
+    private List<RolProyecto> rolesProyecto;
+    private List<GrupoInvestigacion> gruposInvestigacion;
+    private List<ProyectoInvestigacion> proyectosInvestigacion;
+    
+    private List<TipoProyecto> tiposProyecto;
+    private List<LineaInvestigacion> lineasInvestigacion;
+    private List<TipoInvestigacion> tiposInvestigacion;
+
+    //Session bean
+    @EJB
+    GrupoInvestigacionSB grupoInvestigacionSB;
+
+    @EJB
+    ProyectosSB proyectoSB;
+
+    /**
+     * Creates a new instance of ProyectosNB
+     */
+    public ProyectosNB()
+    {
+
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        setModalidadesInvestigadores(Arrays.asList("Profesor Tiempo Completo","Profesor Hora Cátedra","Joven Investigador Colciencias",
+                "Joven Investigador Icesi","Estudiante en proyecto de Grado - Pregrado","Estudiante Maestría",
+                "Estudiante Doctorado","Estudiante Monitor","Estudiante de Semillero","Estudiante Asistente o Practicante",
+                "Asistente de Investigación","Colaborador Tiempo Completo","Externo"));
+        rolesProyecto = proyectoSB.getRolProyectoFacade().findAll();
+        investigadores= proyectoSB.getInvestigadoresFacade().findAll();
+        gruposInvestigacion = grupoInvestigacionSB.getGrupoInvestigacionFacade().findAll();
+        proyectosInvestigacion = proyectoSB.getProyectoFacade().findAll();
+        tiposProyecto = proyectoSB.getTipoProyectoFacade().findAll();
+        lineasInvestigacion = proyectoSB.getLineaInvestigacionFacade().findAll();
+        tiposInvestigacion = proyectoSB.getTipoInvestigacionFacade().findAll();
+        proyecto = new ProyectoInvestigacion();
+        proyectoNuevo = new ProyectoInvestigacion();
+
+    }
+
+    /**
+     * Permite crear un proyectoNuevo de investigación
+     */
+    public void crearProyecto()
+    {
+
+        //Poner aprobación ética
+        if (aprobacionEtica)
+        {
+            proyectoNuevo.setAprobacionEtica("Y");
+        } else
+        {
+            proyectoNuevo.setAprobacionEtica("N");
+        }
+
+        //Agregar documento de aprobación de ética
+        if (aprobacionEticaDoc != null)
+        {
+            File archivo = new File(aprobacionEticaDoc.getFileName());
+            
+            if (archivo.isFile())
+            {
+                proyectoNuevo.setDocEtica(archivo);
+            } else
+            {
+                proyectoNuevo.setDocEtica(null);
+            }
+        } else
+        {
+            proyectoNuevo.setDocEtica(null);
+        }
+
+        //Agregar grupo linea
+        if (grupoInvestigacion != null && lineaInvestigacion != null)
+        {
+            GrupoLineaPK grupoLineaPK = new GrupoLineaPK(grupoInvestigacion.getCodigoGrupo(), lineaInvestigacion.getCodigoLinea());
+            GrupoLinea gLinea = new GrupoLinea(grupoLineaPK);
+            gLinea.setGrupoInvestigacion(grupoInvestigacion);
+            gLinea.setLineaInvestigacion(lineaInvestigacion);
+            proyectoNuevo.setGrupoLinea(gLinea);
+        } else
+        {
+            proyectoNuevo.setGrupoLinea(null);
+        }
+
+        //Crear proyecto de investigación
+        try
+        {
+            proyectoSB.crearProyecto(proyectoNuevo);
+            proyectosInvestigacion.add(proyectoNuevo);
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Se creó el proyecto de investigación", "Se creó el proyecto de investigación");
+        } catch (ProyectoException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "¡Hubo problemas!", ex.getMessage());
+        }
+
+    }
+
+    /**
+     * Permite editar un proyectoNuevo de Investigación
+     */
+    public void editarProyecto()
+    {
+
+        try
+        {
+            proyectoSB.editarProyecto(proyecto.getCodigoProyecto(), proyecto.getTitulo(), proyecto.getResumenEjecutivo(), proyecto.getFechainicio(), proyecto.getFechafin(),
+                    proyecto.getPresupuestoEsperado(), proyecto.getAprobacionEtica());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Se editó el proyecto de investigación", proyecto.toString());
+
+        } catch (ProyectoException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo editar", "No se pudo editar");
+        }
+    }
+    
+    public List<Usuario> completarTexto(String query) {
+        List<Usuario> resultados = new ArrayList<Usuario>();
+        
+        for(int i = 0; i < getInvestigadores().size(); i++) {
+           Usuario inv = getInvestigadores().get(i).getUsuario();
+           if(inv.getNombre().contains(query)){
+                   resultados.add(inv);
+           }
+        }
+         
+        return resultados;
+    }
+    
+    public void agregarInvestigadorAEquipo(){
+        
+    }
+ 
+    //Getter y setters
+    public boolean isAprobacionEtica()
+    {
+        return aprobacionEtica;
+    }
+
+    public UploadedFile getAprobacionEticaDoc()
+    {
+        return aprobacionEticaDoc;
+    }
+
+    public GrupoInvestigacion getGrupoInvestigacion()
+    {
+        return grupoInvestigacion;
+    }
+
+    public List<GrupoInvestigacion> getGruposInvestigacion()
+    {
+        return gruposInvestigacion;
+    }
+
+    public List<ProyectoInvestigacion> getProyectosInvestigacion()
+    {
+        return proyectosInvestigacion;
+    }
+
+    public void setAprobacionEtica(boolean aprobacionEtica)
+    {
+        this.aprobacionEtica = aprobacionEtica;
+    }
+
+    public LineaInvestigacion getLineaInvestigacion()
+    {
+        return lineaInvestigacion;
+    }
+
+    public List<TipoProyecto> getTiposProyecto()
+    {
+        return tiposProyecto;
+    }
+
+    public List<LineaInvestigacion> getLineasInvestigacion()
+    {
+        return lineasInvestigacion;
+    }
+
+    public List<TipoInvestigacion> getTiposInvestigacion()
+    {
+        return tiposInvestigacion;
+    }
+
+    public void setAprobacionEticaDoc(UploadedFile aprobacionEticaDoc)
+    {
+        this.aprobacionEticaDoc = aprobacionEticaDoc;
+    }
+
+    public void setGrupoInvestigacion(GrupoInvestigacion grupoInvestigacion)
+    {
+        this.grupoInvestigacion = grupoInvestigacion;
+    }
+
+    public void setGruposInvestigacion(List<GrupoInvestigacion> gruposInvestigacion)
+    {
+        this.gruposInvestigacion = gruposInvestigacion;
+    }
+
+    public void setProyectosInvestigacion(List<ProyectoInvestigacion> proyectosInvestigacion)
+    {
+        this.proyectosInvestigacion = proyectosInvestigacion;
+    }
+
+    public void setTiposProyecto(List<TipoProyecto> tiposProyecto)
+    {
+        this.tiposProyecto = tiposProyecto;
+    }
+
+    public void setLineaInvestigacion(LineaInvestigacion lineaInvestigacion)
+    {
+        this.lineaInvestigacion = lineaInvestigacion;
+    }
+
+    public ProyectoInvestigacion getProyecto()
+    {
+        return proyecto;
+    }
+
+    public void setProyecto(ProyectoInvestigacion proyecto)
+    {
+        this.proyecto = proyecto;
+    }
+
+    public ProyectoInvestigacion getProyectoNuevo()
+    {
+        return proyectoNuevo;
+    }
+
+    public void setProyectoNuevo(ProyectoInvestigacion proyectoNuevo)
+    {
+        this.proyectoNuevo = proyectoNuevo;
+    }
+
+    public void onGroupsChange()
+    {
+        if (grupoInvestigacion != null)
+        {
+            lineasInvestigacion = proyectoSB.buscarLineasPorGrupo(grupoInvestigacion);
+        }
+
+    }
+
+    /**
+     * @return the investigadorEquipo
+     */
+    public Investigador getInvestigadorEquipo() {
+        return investigadorEquipo;
+    }
+
+    /**
+     * @param investigadorEquipo the investigadorEquipo to set
+     */
+    public void setInvestigadorEquipo(Investigador investigadorEquipo) {
+        this.investigadorEquipo = investigadorEquipo;
+    }
+
+    /**
+     * @return the investigadores
+     */
+    public List<Investigador> getInvestigadores() {
+        return investigadores;
+    }
+
+    /**
+     * @param investigadores the investigadores to set
+     */
+    public void setInvestigadores(List<Investigador> investigadores) {
+        this.investigadores = investigadores;
+    }
+
+    /**
+     * @return the rolesProyecto
+     */
+    public List<RolProyecto> getRolesProyecto() {
+        return rolesProyecto;
+    }
+
+    /**
+     * @param rolesProyecto the rolesProyecto to set
+     */
+    public void setRolesProyecto(List<RolProyecto> rolesProyecto) {
+        this.rolesProyecto = rolesProyecto;
+    }
+
+    /**
+     * @return the grupoInvestigacionInvestigador
+     */
+    public String getGrupoInvestigacionInvestigador() {
+        return grupoInvestigacionInvestigador;
+    }
+
+    /**
+     * @param grupoInvestigacionInvestigador the grupoInvestigacionInvestigador to set
+     */
+    public void setGrupoInvestigacionInvestigador(String grupoInvestigacionInvestigador) {
+        this.grupoInvestigacionInvestigador = grupoInvestigacionInvestigador;
+    }
+
+    /**
+     * @return the rolInvestigador
+     */
+    public RolProyecto getRolInvestigador() {
+        return rolInvestigador;
+    }
+
+    /**
+     * @param rolInvestigador the rolInvestigador to set
+     */
+    public void setRolInvestigador(RolProyecto rolInvestigador) {
+        this.rolInvestigador = rolInvestigador;
+    }
+
+    /**
+     * @return the modalidadesInvestigadores
+     */
+    public List<String> getModalidadesInvestigadores() {
+        return modalidadesInvestigadores;
+    }
+
+    /**
+     * @param modalidadesInvestigadores the modalidadesInvestigadores to set
+     */
+    public void setModalidadesInvestigadores(List<String> modalidadesInvestigadores) {
+        this.modalidadesInvestigadores = modalidadesInvestigadores;
+    }
+
+    /**
+     * @return the modalidadInvestigador
+     */
+    public String getModalidadInvestigador() {
+        return modalidadInvestigador;
+    }
+
+    /**
+     * @param modalidadInvestigador the modalidadInvestigador to set
+     */
+    public void setModalidadInvestigador(String modalidadInvestigador) {
+        this.modalidadInvestigador = modalidadInvestigador;
+    }
+}
+=======
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.GrupoLinea;
+import com.sigeco.ejb.entities.GrupoLineaPK;
+import com.sigeco.ejb.entities.Investigador;
+import com.sigeco.ejb.entities.LineaInvestigacion;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.RolProyecto;
+import com.sigeco.ejb.entities.TipoInvestigacion;
+
+import com.sigeco.ejb.entities.TipoProyecto;
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.exceptions.ProyectoException;
+import com.sigeco.ejb.subsistemas.GrupoInvestigacionSB;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import com.sigeco.utilities.Mensajes;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import org.primefaces.model.UploadedFile;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@RequestScoped
+public class ProyectosNB
+{
+
+    //Atributos de un proyectoNuevo
+    private GrupoInvestigacion grupoInvestigacion;
+    private LineaInvestigacion lineaInvestigacion;
+    private boolean aprobacionEtica;
+    private UploadedFile aprobacionEticaDoc;
+    private ProyectoInvestigacion proyectoNuevo;
+    
+    //Creación de equipo de investigación
+    private List<Object> equipoInvestigadores;
+    private Investigador investigadorEquipo;
+    private String grupoInvestigacionInvestigador;
+    private RolProyecto rolInvestigador;
+    private String modalidadInvestigador;
+    //Atributos para editar un proyecto
+    private ProyectoInvestigacion proyecto;
+    private int codigoProyecto;
+
+
+    //Lista de entidades
+    private List<Investigador> investigadores;
+    private List<String> modalidadesInvestigadores; 
+    private List<RolProyecto> rolesProyecto;
+    private List<GrupoInvestigacion> gruposInvestigacion;
+    private List<ProyectoInvestigacion> proyectosInvestigacion;
+    
+    private List<TipoProyecto> tiposProyecto;
+    private List<LineaInvestigacion> lineasInvestigacion;
+    private List<TipoInvestigacion> tiposInvestigacion;
+
+    //Session bean
+    @EJB
+    GrupoInvestigacionSB grupoInvestigacionSB;
+
+    @EJB
+    ProyectosSB proyectoSB;
+    
+    @ManagedProperty( value="#{authAutNB}")
+    AuthAutNB authAutNB;
+    
+    /**
+     * Creates a new instance of ProyectosNB
+     */
+    public ProyectosNB()
+    {
+
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        setModalidadesInvestigadores(Arrays.asList("Profesor Tiempo Completo","Profesor H ora Cátedra","Joven Investigador Colciencias",
+                "Joven Investigador Icesi","Estudiante en proyecto de Grado - Pregrado","Estudiante Maestría",
+                "Estudiante Doctorado","Estudiante Monitor","Estudiante de Semillero","Estudiante Asistente o Practicante",
+                "Asistente de Investigación","Colaborador Tiempo Completo","Externo"));
+        rolesProyecto = proyectoSB.getRolProyectoFacade().findAll();
+        investigadores= proyectoSB.getInvestigadoresFacade().findAll();
+        gruposInvestigacion = grupoInvestigacionSB.getGrupoInvestigacionFacade().findAll();
+        proyectosInvestigacion = proyectoSB.getProyectoFacade().findAll();
+        tiposProyecto = proyectoSB.getTipoProyectoFacade().findAll();
+        lineasInvestigacion = proyectoSB.getLineaInvestigacionFacade().findAll();
+        tiposInvestigacion = proyectoSB.getTipoInvestigacionFacade().findAll();
+        proyecto = new ProyectoInvestigacion();
+        proyectoNuevo = new ProyectoInvestigacion();
+
+    }
+
+    /**
+     * Permite crear un proyectoNuevo de investigación
+     */
+    public void crearProyecto()
+    {
+
+        //Poner aprobación ética
+        if (aprobacionEtica)
+        {
+            proyectoNuevo.setAprobacionEtica("Y");
+        } else
+        {
+            proyectoNuevo.setAprobacionEtica("N");
+        }
+
+        //Agregar documento de aprobación de ética
+        if (aprobacionEticaDoc != null)
+        {
+            File archivo = new File(aprobacionEticaDoc.getFileName());
+            
+            if (archivo.isFile())
+            {
+                proyectoNuevo.setDocEtica(archivo);
+            } else
+            {
+                proyectoNuevo.setDocEtica(null);
+            }
+        } else
+        {
+            proyectoNuevo.setDocEtica(null);
+        }
+
+        //Agregar grupo linea
+        if (grupoInvestigacion != null && lineaInvestigacion != null)
+        {
+            GrupoLineaPK grupoLineaPK = new GrupoLineaPK(grupoInvestigacion.getCodigo(), lineaInvestigacion.getCodigo());
+            GrupoLinea gLinea = new GrupoLinea(grupoLineaPK);
+            gLinea.setGrupoInvestigacion(grupoInvestigacion);
+            gLinea.setLineaInvestigacion(lineaInvestigacion);
+            proyectoNuevo.setGrupoLinea(gLinea);
+        } else
+        {
+            proyectoNuevo.setGrupoLinea(null);
+        }
+
+        //Crear proyecto de investigación
+        try
+        {
+            proyectoSB.crearProyecto(proyectoNuevo, authAutNB.getUsuarioActual());
+            proyectosInvestigacion.add(proyectoNuevo);
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Se creó el proyecto de investigación", "Se creó el proyecto de investigación");
+        } catch (ProyectoException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "¡Hubo problemas!", ex.getMessage());
+        }
+
+    }
+
+    /**
+     * Permite editar un proyectoNuevo de Investigación
+     */
+    public void editarProyecto()
+    {
+        //Poner aprobación ética
+        if (aprobacionEtica)
+        {
+            proyectoNuevo.setAprobacionEtica("Y");
+        } else
+        {
+            proyectoNuevo.setAprobacionEtica("N");
+        }
+
+        //Agregar documento de aprobación de ética
+        if (aprobacionEticaDoc != null)
+        {
+            File archivo = new File(aprobacionEticaDoc.getFileName());
+            
+            if (archivo.isFile())
+            {
+                proyectoNuevo.setDocEtica(archivo);
+            } else
+            {
+                proyectoNuevo.setDocEtica(null);
+            }
+        } else
+        {
+            proyectoNuevo.setDocEtica(null);
+        }
+
+
+        try
+        {
+            
+            proyectoSB.editarProyecto(proyecto.getCodigo(), proyecto.getTitulo(), proyecto.getResumenEjecutivo(), proyecto.getFechainicio(), proyecto.getFechafin(),
+                    new BigDecimal(proyecto.getPresupuestoEsperado()), proyecto.getAprobacionEtica());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Se editó el proyecto de investigación", proyecto.toString());
+
+        } catch (ProyectoException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo editar", "No se pudo editar");
+        }
+    }
+    
+    public List<Usuario> completarTexto(String query) {
+        List<Usuario> resultados = new ArrayList<Usuario>();
+        
+        for(int i = 0; i < getInvestigadores().size(); i++) {
+           Usuario inv = getInvestigadores().get(i).getUsuario();
+           if(inv.getNombre().contains(query)){
+                   resultados.add(inv);
+           }
+        }
+         
+        return resultados;
+    }
+    
+   
+    
+    public void agregarInvestigadorAEquipo(){
+        
+    }
+ 
+    //Getter y setters
+    public boolean isAprobacionEtica()
+    {
+        return aprobacionEtica;
+    }
+
+    public UploadedFile getAprobacionEticaDoc()
+    {
+        return aprobacionEticaDoc;
+    }
+
+    public GrupoInvestigacion getGrupoInvestigacion()
+    {
+        return grupoInvestigacion;
+    }
+
+    public List<GrupoInvestigacion> getGruposInvestigacion()
+    {
+        return gruposInvestigacion;
+    }
+
+    public List<ProyectoInvestigacion> getProyectosInvestigacion()
+    {
+        return proyectosInvestigacion;
+    }
+
+    public void setAprobacionEtica(boolean aprobacionEtica)
+    {
+        this.aprobacionEtica = aprobacionEtica;
+    }
+
+    public LineaInvestigacion getLineaInvestigacion()
+    {
+        return lineaInvestigacion;
+    }
+
+    public List<TipoProyecto> getTiposProyecto()
+    {
+        return tiposProyecto;
+    }
+
+    public List<LineaInvestigacion> getLineasInvestigacion()
+    {
+        return lineasInvestigacion;
+    }
+
+    public List<TipoInvestigacion> getTiposInvestigacion()
+    {
+        return tiposInvestigacion;
+    }
+
+    public void setAprobacionEticaDoc(UploadedFile aprobacionEticaDoc)
+    {
+        this.aprobacionEticaDoc = aprobacionEticaDoc;
+    }
+
+    public void setGrupoInvestigacion(GrupoInvestigacion grupoInvestigacion)
+    {
+        this.grupoInvestigacion = grupoInvestigacion;
+    }
+
+    public void setGruposInvestigacion(List<GrupoInvestigacion> gruposInvestigacion)
+    {
+        this.gruposInvestigacion = gruposInvestigacion;
+    }
+
+    public void setProyectosInvestigacion(List<ProyectoInvestigacion> proyectosInvestigacion)
+    {
+        this.proyectosInvestigacion = proyectosInvestigacion;
+    }
+
+    public void setTiposProyecto(List<TipoProyecto> tiposProyecto)
+    {
+        this.tiposProyecto = tiposProyecto;
+    }
+
+    public void setLineaInvestigacion(LineaInvestigacion lineaInvestigacion)
+    {
+        this.lineaInvestigacion = lineaInvestigacion;
+    }
+
+    public ProyectoInvestigacion getProyecto()
+    {
+        return proyecto;
+    }
+
+    public void setProyecto(ProyectoInvestigacion proyecto)
+    {
+        this.proyecto = proyecto;
+    }
+
+    public ProyectoInvestigacion getProyectoNuevo()
+    {
+        return proyectoNuevo;
+    }
+
+    public void setProyectoNuevo(ProyectoInvestigacion proyectoNuevo)
+    {
+        this.proyectoNuevo = proyectoNuevo;
+    }
+
+    public void onGroupsChange()
+    {
+        if (grupoInvestigacion != null)
+        {
+            lineasInvestigacion = proyectoSB.buscarLineasPorGrupo(grupoInvestigacion);
+        }
+
+    }
+
+    /**
+     * @return the investigadorEquipo
+     */
+    public Investigador getInvestigadorEquipo() {
+        return investigadorEquipo;
+    }
+
+    /**
+     * @param investigadorEquipo the investigadorEquipo to set
+     */
+    public void setInvestigadorEquipo(Investigador investigadorEquipo) {
+        this.investigadorEquipo = investigadorEquipo;
+    }
+
+    /**
+     * @return the investigadores
+     */
+    public List<Investigador> getInvestigadores() {
+        return investigadores;
+    }
+
+    /**
+     * @param investigadores the investigadores to set
+     */
+    public void setInvestigadores(List<Investigador> investigadores) {
+        this.investigadores = investigadores;
+    }
+
+    /**
+     * @return the rolesProyecto
+     */
+    public List<RolProyecto> getRolesProyecto() {
+        return rolesProyecto;
+    }
+
+    /**
+     * @param rolesProyecto the rolesProyecto to set
+     */
+    public void setRolesProyecto(List<RolProyecto> rolesProyecto) {
+        this.rolesProyecto = rolesProyecto;
+    }
+
+    /**
+     * @return the grupoInvestigacionInvestigador
+     */
+    public String getGrupoInvestigacionInvestigador() {
+        return grupoInvestigacionInvestigador;
+    }
+
+    /**
+     * @param grupoInvestigacionInvestigador the grupoInvestigacionInvestigador to set
+     */
+    public void setGrupoInvestigacionInvestigador(String grupoInvestigacionInvestigador) {
+        this.grupoInvestigacionInvestigador = grupoInvestigacionInvestigador;
+    }
+
+    /**
+     * @return the rolInvestigador
+     */
+    public RolProyecto getRolInvestigador() {
+        return rolInvestigador;
+    }
+
+    /**
+     * @param rolInvestigador the rolInvestigador to set
+     */
+    public void setRolInvestigador(RolProyecto rolInvestigador) {
+        this.rolInvestigador = rolInvestigador;
+    }
+
+    /**
+     * @return the modalidadesInvestigadores
+     */
+    public List<String> getModalidadesInvestigadores() {
+        return modalidadesInvestigadores;
+    }
+
+    /**
+     * @param modalidadesInvestigadores the modalidadesInvestigadores to set
+     */
+    public void setModalidadesInvestigadores(List<String> modalidadesInvestigadores) {
+        this.modalidadesInvestigadores = modalidadesInvestigadores;
+    }
+
+    /**
+     * @return the modalidadInvestigador
+     */
+    public String getModalidadInvestigador() {
+        return modalidadInvestigador;
+    }
+
+    /**
+     * @param modalidadInvestigador the modalidadInvestigador to set
+     */
+    public void setModalidadInvestigador(String modalidadInvestigador) {
+        this.modalidadInvestigador = modalidadInvestigador;
+    }
+
+    public List<Object> getEquipoInvestigadores() {
+        return equipoInvestigadores;
+    }
+
+    public void setEquipoInvestigadores(List<Object> equipoInvestigadores) {
+        this.equipoInvestigadores = equipoInvestigadores;
+    }
+
+    public GrupoInvestigacionSB getGrupoInvestigacionSB() {
+        return grupoInvestigacionSB;
+    }
+
+    public void setGrupoInvestigacionSB(GrupoInvestigacionSB grupoInvestigacionSB) {
+        this.grupoInvestigacionSB = grupoInvestigacionSB;
+    }
+
+    public ProyectosSB getProyectoSB() {
+        return proyectoSB;
+    }
+
+    public void setProyectoSB(ProyectosSB proyectoSB) {
+        this.proyectoSB = proyectoSB;
+    }
+
+    public AuthAutNB getAuthAutNB() {
+        return authAutNB;
+    }
+
+    public void setAuthAutNB(AuthAutNB authAutNB) {
+        this.authAutNB = authAutNB;
+    }
+
+    /**
+     * @return the codigoProyecto
+     */
+    public int getCodigoProyecto() {
+        return codigoProyecto;
+    }
+
+    /**
+     * @param codigoProyecto the codigoProyecto to set
+     */
+    public void setCodigoProyecto(int codigoProyecto) {
+        this.codigoProyecto = codigoProyecto;
+    }
+    
+    
+    
+    
+
+}
+>>>>>>> .r208

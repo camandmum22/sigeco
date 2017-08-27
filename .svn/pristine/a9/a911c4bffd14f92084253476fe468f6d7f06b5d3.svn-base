@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Convocatorias</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputText value="Convocatorias" style=" color: #666666; font-size: 35px; font-family:'Arial'"></h:outputText>
+            <br></br>
+            <br></br>
+            <p:commandButton value="Crear" styleClass="ui-priority-primary" />
+        </h:form>
+        <br></br>
+        <br></br>
+        <!--FORM DATA TABLE -->
+
+        <h:form id="formDataTable">
+
+            <p:growl id="msgsDataTable" showDetail="true"/>
+
+            <!-- Data table -->
+
+            <p:dataTable id="convocatorias" var="convocatoria" value="#{convocatoriaNB.convocatoriaSB.convocatoriaFacade.findAll()}" style="margin-bottom:20px; width:840px;">
+
+                <p:column colspan="1" style="width:60px; text-align: center;" headerText="Id">
+                    <h:outputText value="#{convocatoria.codigo}"  />
+                </p:column>
+
+                <p:column colspan="1" style="width:350px; text-align: center;" headerText="Nombre">
+                    <h:outputText value="#{convocatoria.nombre}"  />
+                </p:column>
+
+
+                <p:column headerText="Fecha Inicio" style="width:265px; text-align: center;">
+                    <h:outputText value="#{convocatoriaNB.convocatoriaSB.getFechaInicioConvocatoria(convocatoria.codigo)}"  />
+                </p:column>
+
+                <p:column headerText="Fecha Fin" style="width:265px; text-align: center;">
+                    <h:outputText value="#{convocatoriaNB.convocatoriaSB.getFechaFinalConvocatoria(convocatoria.codigo)}"  />
+                </p:column>
+
+                <p:column headerText="Opciones" style="width:220px; text-align: center;">
+                    <p:commandLink>
+                        <h:outputText value="Ver" />
+                    </p:commandLink>
+                    &nbsp;
+                    <p:link outcome="edit" value="Editar">
+                        <f:param name="convocatoriaId" value="#{convocatoria.codigo}"  />
+                    </p:link>
+                    &nbsp;
+                    <p:commandLink>
+                        <h:outputText value="Eliminar" />
+                    </p:commandLink>
+                </p:column>
+
+            </p:dataTable>
+
+        </h:form>
+    </h:body>
+</html>
+

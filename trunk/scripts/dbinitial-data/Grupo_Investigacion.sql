@@ -1,0 +1,12 @@
+﻿INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0014387	,	1,	Economía, Políticas Públicas y Métodos Cuantitativos	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0001585	,	1,	Competitividad y Mercadeo en las Organizaciones	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	 COL0012168	,	1,	Inversión, Financiación y Control	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0007426	,	3,	Informática y Telecomunicaciones (i2T)	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0039769	,	3,	Icubo	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0013254	,	3,	Leonardo	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0048339	,	2,	Nexos - Grupo Interdisciplinario de Estudios Socioculturales y Psicológicos	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0080435	,	2,	Precedente	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0093872	,	4,	Natura	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0099642	,	4,	Biomédica	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0002027	,	21, 	Espíritu Empresarial	)	;
+INSERT INTO	Grupo_Investigacion	(	Codigo	,	Relacion_grupo_facultad	,	Nombre	)	VALUES	(	COL0012201	,	81,	IRTA - Investigación en Recursos y Teorías para el Aprendizaje	)	;

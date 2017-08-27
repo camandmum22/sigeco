@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Menu_RM" directorySegmentName="seg_0" id="14994426-58F6-2192-2784-FAD225AA80A7">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 16:30:42 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>90613041-1437-787B-302A-A8DC512777AF</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>232FFDE7-A8E4-B656-355D-4B548518DB97</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9B67502D-845E-C383-E888-063DF163646C</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

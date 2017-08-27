@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="1860AD14-AED1-DBE9-4FD7-345F3F1642CB" name="Facultad_Convocatoria_Convocatoria_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>8D68CC55-3D3B-EA3F-D4CA-D042EF5DF6FB</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<containerWithKeyObject>9EB2C6E3-5954-AC93-0B2B-03DB0ACBBA5A</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>D3827A53-AA60-B72F-FC1B-B7A71ACC59D9</localFKIndex>
+<keyObject>A83EA3EF-C861-256D-FE84-6A01F398D30B</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

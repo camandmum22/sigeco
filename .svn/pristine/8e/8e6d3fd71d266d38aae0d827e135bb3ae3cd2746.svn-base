@@ -1,0 +1,133 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ *
+ * @author csacanam
+ */
+@Entity
+@Table(name = "PAGINA_XHTML")
+@XmlRootElement
+@NamedQueries(
+{
+    @NamedQuery(name = "PaginaXhtml.findAll", query = "SELECT p FROM PaginaXhtml p"),
+    @NamedQuery(name = "PaginaXhtml.findByCodigoPag", query = "SELECT p FROM PaginaXhtml p WHERE p.codigoPag = :codigoPag"),
+    @NamedQuery(name = "PaginaXhtml.findByNombrePag", query = "SELECT p FROM PaginaXhtml p WHERE p.nombrePag = :nombrePag")
+})
+public class PaginaXhtml implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    @Id
+    @SequenceGenerator(name="PAGINA_XHTML_GENERATOR", sequenceName="SQ_PAGINA_XHTML", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PAGINA_XHTML_GENERATOR")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_PAG", nullable = false)
+    private Long codigoPag;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "NOMBRE_PAG", nullable = false, length = 20)
+    private String nombrePag;
+    @JoinColumn(name = "CODIGO_MENU", referencedColumnName = "CODIGO_MENU", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Menu codigoMenu;
+
+    public PaginaXhtml()
+    {
+    }
+
+    public PaginaXhtml(Long codigoPag)
+    {
+        this.codigoPag = codigoPag;
+    }
+
+    public PaginaXhtml(Long codigoPag, String nombrePag)
+    {
+        this.codigoPag = codigoPag;
+        this.nombrePag = nombrePag;
+    }
+
+    public Long getCodigoPag()
+    {
+        return codigoPag;
+    }
+
+    public void setCodigoPag(Long codigoPag)
+    {
+        this.codigoPag = codigoPag;
+    }
+
+    public String getNombrePag()
+    {
+        return nombrePag;
+    }
+
+    public void setNombrePag(String nombrePag)
+    {
+        this.nombrePag = nombrePag;
+    }
+
+    public Menu getCodigoMenu()
+    {
+        return codigoMenu;
+    }
+
+    public void setCodigoMenu(Menu codigoMenu)
+    {
+        this.codigoMenu = codigoMenu;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoPag != null ? codigoPag.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof PaginaXhtml))
+        {
+            return false;
+        }
+        PaginaXhtml other = (PaginaXhtml) object;
+        if ((this.codigoPag == null && other.codigoPag != null) || (this.codigoPag != null && !this.codigoPag.equals(other.codigoPag)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.PaginaXhtml[ codigoPag=" + codigoPag + " ]";
+    }
+    
+}

@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Diagram class="oracle.dbtools.crest.swingui.logical.DPVLogicalSubView" name="Convocatoria" id="DB00A0DB-37AC-56FA-4303-AE8353C097D2">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-29 22:37:56 UTC</createdTime>
+<autoRoute>false</autoRoute>
+<boxInbox>true</boxInbox>
+<showLegend>false</showLegend>
+<showLabels>false</showLabels>
+<showRelAttributes>false</showRelAttributes>
+<showGrid>false</showGrid>
+<diagramColor>-1</diagramColor>
+<comment>Está subvista representa el subsistema Convocatoria</comment>
+<display>false</display>
+<notation>1</notation>
+<objectViews>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="008C36C2-2390-4360-F34F-00FE927DB3C8" otype="Entity" vid="3F8C289E-BF35-7429-8E55-67DA30459979">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="511" y="117" width="140" height="63"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="7B7C74AC-E969-7E52-679D-2E0865F064ED" otype="Entity" vid="69C960A4-6C12-000E-ACF1-CD83DC63B5C2">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="311" y="108" width="142" height="74"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="FAA77360-85EB-AA2E-A004-CCC724045A1A" otype="Entity" vid="4616AE3E-E397-B5F3-AE51-FC4F754BA158">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="122" y="105" width="110" height="83"/>
+</OView>
+</objectViews>
+<connectors>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="8D68CC55-3D3B-EA3F-D4CA-D042EF5DF6FB" otype="Relation" vid_source="69C960A4-6C12-000E-ACF1-CD83DC63B5C2" vid_target="3F8C289E-BF35-7429-8E55-67DA30459979">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="453" y="148"/>
+<point x="511" y="148"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="C3129044-C7E7-67FA-9657-6504DEBE3997" otype="Relation" vid_source="69C960A4-6C12-000E-ACF1-CD83DC63B5C2" vid_target="4616AE3E-E397-B5F3-AE51-FC4F754BA158">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="311" y="125"/>
+<point x="232" y="125"/>
+</points>
+</Connector>
+</connectors>
+</Diagram>

@@ -1,0 +1,88 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.AreaEstrategica;
+import com.sigeco.ejb.entities.Facultad;
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.subsistemas.GrupoInvestigacionSB;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class GrupoInvestigacionNB
+{
+
+    private List<Facultad> facultades;
+    
+    private List<AreaEstrategica> areasEstrategicas;
+    
+    private List<GrupoInvestigacion> gruposInvestigacion;
+    
+    @EJB
+    GrupoInvestigacionSB grupoInvestigacionSB;
+
+    /**
+     * Creates a new instance of GrupoInvestigacionNB
+     */
+    public GrupoInvestigacionNB()
+    {
+    }
+    
+    @PostConstruct
+    public void init()
+    {
+        facultades = grupoInvestigacionSB.getFacultadFacade().findAll();
+        gruposInvestigacion = grupoInvestigacionSB.getGrupoInvestigacionFacade().findAll();
+        areasEstrategicas = grupoInvestigacionSB.getAreaEstrategicaFacade().findAll();
+    }
+    
+    // Getters y setters
+    public List<AreaEstrategica> getAreasEstrategicas()
+    {
+        return areasEstrategicas;
+    }
+
+    public void setAreasEstrategicas(List<AreaEstrategica> areasEstrategicas)
+    {
+        this.areasEstrategicas = areasEstrategicas;
+    }
+    
+    
+    public List<Facultad> getFacultades()
+    {
+        return facultades;
+    }
+
+    public void setFacultades(List<Facultad> facultades)
+    {
+        this.facultades = facultades;
+    }
+
+    /**
+     * @return the gruposInvestigacion
+     */
+    public List<GrupoInvestigacion> getGruposInvestigacion() {
+        return gruposInvestigacion;
+    }
+
+    /**
+     * @param gruposInvestigacion the gruposInvestigacion to set
+     */
+    public void setGruposInvestigacion(List<GrupoInvestigacion> gruposInvestigacion) {
+        this.gruposInvestigacion = gruposInvestigacion;
+    }
+    
+    
+}

@@ -1,0 +1,68 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.sessionbean;
+
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.exceptions.UsuarioException;
+import com.sigeco.ejb.subsistemas.AuditoriaSB;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author csacanam
+ */
+@Stateless
+public class UsuarioFacade extends AbstractFacade<Usuario>
+{
+
+    @PersistenceContext(unitName = "SIGECO_EA-ejbPU")
+    private EntityManager em;
+
+    @EJB
+    AuditoriaSB auditoriaSB;
+
+    @Override
+    public EntityManager getEntityManager()
+    {
+        return em;
+    }
+
+    public UsuarioFacade()
+    {
+        super(Usuario.class);
+    }
+
+    @Override
+    public void create(Usuario usuario)
+    {
+        String info[] =
+        {
+            "Tipo Documento: " + usuario.getTipoDocumento(),
+            " Documento:" + usuario.getDocumento(), 
+            " Nombre: " + usuario.getNombre(), 
+            " Email: " + usuario.getEmail(),
+            " Teléfono:" + usuario.getTelefono()
+        };
+        auditoriaSB.registrarLog("Se creó un usuario", info);
+        super.create(usuario);
+    }
+
+    /**
+    * De una lista de strings consecutivos retorna el numero mayor
+    */
+    public Integer findMaxId()
+    {
+        List<BigDecimal> resultado = em.createQuery("SELECT CAST(usu.codigoUsuario AS DECIMAL) FROM Usuario usu").getResultList();
+        resultado.sort(null);
+        return resultado.get(resultado.size() - 1).intValue();
+    }
+}

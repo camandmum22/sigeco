@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8314FD6E-C529-F7B5-727D-7F43E72250C0" name="PRO_CON_SOL">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 23:08:37 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Convocatoria" id="15B3B05E-849F-B95C-1990-09B39A08466B">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 23:09:02 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>22D11C0F-7606-D0E7-40D7-3771D75FAD64</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>E099857A-700E-761E-4ED5-FA64413975DA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Proyecto" id="3D196AF3-21C9-8C16-B30A-652E839F1A24">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 23:09:44 UTC</createdTime>
+<comment>Código del proyecto</comment>
+<commentInRDBMS>Código del proyecto</commentInRDBMS>
+<generatorID>318CA619-97AE-2721-2B82-0C3F9E36DD91</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>4BE536AC-3374-DCEF-8B2F-F8F6873D9DDA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Cronograma" id="502FDDC3-AAFF-9EC1-CA6A-86A17F7B59D2">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 23:10:50 UTC</createdTime>
+<comment>Cronograma del PCS</comment>
+<commentInRDBMS>Cronograma del PCS</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+</Attribute>
+<Attribute name="Codigo_Solicitud" id="BE60C612-0237-9E47-CC3D-A42D10D7419A">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 23:15:50 UTC</createdTime>
+<comment>Código de la solicitud.&lt;br/&gt;N=Nuevo&lt;br/&gt;A=Adición	&lt;br/&gt;P=Prórroga&lt;br/&gt;AP=Adición y prórroga</comment>
+<commentInRDBMS>Código de la solicitud.&lt;br/&gt;N=Nuevo&lt;br/&gt;A=Adición	&lt;br/&gt;P=Prórroga&lt;br/&gt;AP=Adición y prórroga</commentInRDBMS>
+<generatorID>EF4F9848-C093-3583-40FA-767B114857B5</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>DC11C50C-AB76-5AEF-7172-B1992BBA0779</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="4A81BE9A-6E30-2759-397B-179E25EBF520" name="{entity} PK">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 23:09:02 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>15B3B05E-849F-B95C-1990-09B39A08466B</attributeRef>
+<attributeRef>3D196AF3-21C9-8C16-B30A-652E839F1A24</attributeRef>
+<attributeRef>BE60C612-0237-9E47-CC3D-A42D10D7419A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

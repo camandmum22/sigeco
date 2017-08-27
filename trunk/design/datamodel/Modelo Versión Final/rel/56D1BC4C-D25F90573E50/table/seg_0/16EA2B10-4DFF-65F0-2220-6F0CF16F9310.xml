@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="16EA2B10-4DFF-65F0-2220-6F0CF16F9310" name="PCS_Rubro">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>1B6DD887-621A-85A6-8FC5-BDC9E34631F5</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Cantidad" id="B8D51EDF-063E-44BD-D6F3-E6361A22F8D3">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Cantidad monetaria del rubro</comment>
+<commentInRDBMS>Cantidad monetaria del rubro</commentInRDBMS>
+<generatorID>D6B151BF-7040-CDB6-AB12-228750202293</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Rubro" id="8E810416-FF28-22C2-C3D3-54CF12429147">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del rubro</comment>
+<commentInRDBMS>Código del rubro</commentInRDBMS>
+<generatorID>D26CBFBF-5E37-1F00-FCFF-0C29D103DCA5</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>31548892-7777-4B7E-91DB-40407DAA1539</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F53DB905-6353-8EB0-BAAB-26CB7D26BD07" referredColumn="31548892-7777-4B7E-91DB-40407DAA1539"/>
+</associations>
+</Column>
+<Column name="Codigo_Convocatoria" id="31AAEC39-5B29-9534-3956-B5AC3D3A1D09">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>01BAB96D-6EF0-D15D-31FD-8DAD3C1373F3</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>27D71667-A697-7ECF-5228-84534D999B7A</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D0C6E454-9EB7-E8D2-F133-E56B84902829" referredColumn="27D71667-A697-7ECF-5228-84534D999B7A"/>
+</associations>
+</Column>
+<Column name="Codigo_Proyecto" id="D92B3611-28AD-D480-7278-871E39060FFC">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del proyecto</comment>
+<commentInRDBMS>Código del proyecto</commentInRDBMS>
+<generatorID>F63B0DC9-F83A-4DEF-240C-554AB549337B</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<delegate>991654E2-F341-BC2C-94D6-068E4703152E</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D0C6E454-9EB7-E8D2-F133-E56B84902829" referredColumn="991654E2-F341-BC2C-94D6-068E4703152E"/>
+</associations>
+</Column>
+<Column name="Codigo_Solicitud" id="6C404AAE-F525-3B4C-F153-997356D0A013">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la solicitud.&lt;br/&gt;N=Nuevo&lt;br/&gt;A=Adición	&lt;br/&gt;P=Prórroga&lt;br/&gt;AP=Adición y prórroga</comment>
+<commentInRDBMS>Código de la solicitud.&lt;br/&gt;N=Nuevo&lt;br/&gt;A=Adición	&lt;br/&gt;P=Prórroga&lt;br/&gt;AP=Adición y prórroga</commentInRDBMS>
+<generatorID>2D0A633D-B618-FFBC-1644-918DCAF64D92</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<delegate>B65EEACE-34B1-7287-03D3-B526F0D52845</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D0C6E454-9EB7-E8D2-F133-E56B84902829" referredColumn="B65EEACE-34B1-7287-03D3-B526F0D52845"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="696BE3B3-E7F5-80B6-55DB-7CD63FBA86C1" name="PCS_Rubro_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>E2024AC1-07FF-F7F8-2F76-DF9239D34C05</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E810416-FF28-22C2-C3D3-54CF12429147"/>
+<colUsage columnID="31AAEC39-5B29-9534-3956-B5AC3D3A1D09"/>
+<colUsage columnID="D92B3611-28AD-D480-7278-871E39060FFC"/>
+<colUsage columnID="6C404AAE-F525-3B4C-F153-997356D0A013"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C5DA5671-640C-E9BD-82D3-EDD1DF3CEA61" name="PCS_Rubro_PRO_CON_SOL_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>F607D4E3-FA15-74A0-76E6-A126BB861651</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="31AAEC39-5B29-9534-3956-B5AC3D3A1D09"/>
+<colUsage columnID="D92B3611-28AD-D480-7278-871E39060FFC"/>
+<colUsage columnID="6C404AAE-F525-3B4C-F153-997356D0A013"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="90C72F05-8F77-C5EF-8136-A6ADC0E8A869" name="PCS_Rubro_Rubro_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>51E6603C-32FD-EB12-90F6-00FE0CE9B746</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E810416-FF28-22C2-C3D3-54CF12429147"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4AF7A3CC-4457-D1DD-38C1-FFE34AF473EA" name="Rubro">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Tabla que representa los rubros existentes dentro de la Universidad, los cuales pueden ser asignados a un Proyecto.</comment>
+<generatorID>4D73DA20-388C-709F-BD8F-C4D1B47409FC</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Rubro" id="31548892-7777-4B7E-91DB-40407DAA1539">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del rubro</comment>
+<commentInRDBMS>Código del rubro</commentInRDBMS>
+<generatorID>F2C888E8-D34F-7405-69E9-E9698B4EA108</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="AA023DC3-61B8-1FE2-2BE3-5B585CB495C2">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre del rubro</comment>
+<commentInRDBMS>Nombre del rubro</commentInRDBMS>
+<generatorID>BCF49476-4A73-658F-9A56-DFFB63076703</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripcion" id="14ED51DE-EC15-29F4-DE48-DF2CF3456B93">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Descripción del rubro</comment>
+<commentInRDBMS>Descripción del rubro</commentInRDBMS>
+<generatorID>DDC2E37E-2A45-C179-9883-7E377511E1A0</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3BBC4BEB-223A-3941-4EDC-1725C410FF38" name="Rubro_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>ECD458ED-DFB3-0371-240B-EF6F03340259</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="31548892-7777-4B7E-91DB-40407DAA1539"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

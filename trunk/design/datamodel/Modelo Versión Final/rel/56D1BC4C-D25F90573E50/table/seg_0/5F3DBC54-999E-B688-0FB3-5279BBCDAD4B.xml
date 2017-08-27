@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5F3DBC54-999E-B688-0FB3-5279BBCDAD4B" name="Linea_Area">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>26117D07-8A1A-EB21-96DC-4A1383764C6D</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Linea" id="9FB8A295-382C-CB09-A6F1-9987BAC7D17E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la línea de investigación</comment>
+<commentInRDBMS>Código de la línea de investigación</commentInRDBMS>
+<generatorID>5FE7D476-71E4-82E9-C602-5CF5CCE034DA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<delegate>C3BB4BD8-05C3-EF3F-4614-F3592BD5C735</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5B7865FD-1B6C-9941-CE8F-795B4537D257" referredColumn="C3BB4BD8-05C3-EF3F-4614-F3592BD5C735"/>
+</associations>
+</Column>
+<Column name="Codigo_Area" id="6B12897C-43D4-64EA-F6FC-C7D422939627">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del área estratégica</comment>
+<commentInRDBMS>Código del área estratégica</commentInRDBMS>
+<generatorID>DBB03240-6AD3-70FF-F9B0-173353D095BA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<delegate>8429D9C6-D283-42E3-4621-36320BCD08C8</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EA1B79D6-77C8-9A8F-5064-4F063B9D9E84" referredColumn="8429D9C6-D283-42E3-4621-36320BCD08C8"/>
+</associations>
+</Column>
+<Column name="Tipo" id="7585225F-0EED-8C5B-AFC7-C1A49A91613E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Tipo de relación entre línea de investigación y área estratégica. &lt;br/&gt;P=Principal&lt;br/&gt;S=Secundaria</comment>
+<commentInRDBMS>Tipo de relación entre línea de investigación y área estratégica. &lt;br/&gt;P=Principal&lt;br/&gt;S=Secundaria</commentInRDBMS>
+<generatorID>A10476C7-1896-A132-B599-C3655195CC0E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9385ED4E-9C00-E445-1760-9FC79B303534" name="Linea_Area_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>A831CF25-D2D7-7173-2536-7DCAFAE63404</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B12897C-43D4-64EA-F6FC-C7D422939627"/>
+<colUsage columnID="9FB8A295-382C-CB09-A6F1-9987BAC7D17E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="03E557C1-C0A7-9CA8-B10A-CA2D153EB16B" name="Linea_Area_Area_Estrategica_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>E37BC3BB-D604-5449-F085-30FD14724C6B</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B12897C-43D4-64EA-F6FC-C7D422939627"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CC6B6D34-F4E8-7C66-61FD-D61B055BC66D" name="Linea_Area_Linea_Investigacion_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>E55959FC-DE6A-A9D6-2169-85EA3D66CBA9</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9FB8A295-382C-CB09-A6F1-9987BAC7D17E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

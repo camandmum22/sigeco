@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Usuarios</title>
+    </h:head>
+    <h:body>
+        <h:form>
+        <h1>Editar usuario</h1>
+        </h:form>
+        <!-- Formulario de edición de una fase -->
+        <h:form>
+            
+            <p:outputLabel value="Buscar"></p:outputLabel>
+            <p:inputText id="Buscar" value="#{usuarioNB.busquedaDoc}">
+                <p:ajax event="keyup" update="TipoDocumento,Identificacion,Nombres,Email,Telefono,OtraInstitucion,Contraseña" listener="#{usuarioNB.read()}"/>
+            </p:inputText>
+            
+            <!-- Despliegue de mensajes -->
+            <p:growl id="growl" showDetail="true" life="5000"></p:growl>
+            
+            <p:panel id="panel" header="Información" >
+                <h:panelGrid columns="2" cellpadding="5px" cellspacing="5px">
+                    
+                    <p:outputLabel for="TipoDocumento" value="Tipo de documento" />
+                    <p:selectOneMenu id="TipoDocumento" value="#{usuarioNB.usuario.tipoDocumento}" style="width:125px">
+                        <f:selectItem itemLabel="CC" itemValue="CC" />
+                        <f:selectItem itemLabel="TI" itemValue="TI" />
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel for="Identificacion" value="Identificación: " />
+                    <p:inputText  id="Identificacion" value="#{usuarioNB.usuario.documento}" required="true"></p:inputText>
+
+                    <p:outputLabel for="Nombres" value="Nombres: " />
+                    <p:inputText  id="Nombres" value="#{usuarioNB.usuario.nombre}" required="true"></p:inputText>
+                    
+                    <p:outputLabel for="Email" value="Email: " />
+                    <p:inputText  id="Email" value="#{usuarioNB.usuario.email}" required="true"></p:inputText>
+                    
+                    <p:outputLabel for="Telefono" value="Teléfono" />
+                    <p:inputText  id="Telefono" value="#{usuarioNB.usuario.telefono}" required="true"></p:inputText>
+                    
+                    <p:outputLabel for="OtraInstitucion" value="Otra Institucion: " />
+                    <p:inputText  id="OtraInstitucion" value="#{usuarioNB.usuario.otraInstitucion}"></p:inputText>
+                    
+                    <p:outputLabel for="Contraseña" value="Contraseña: " />
+                    <p:inputText type="password" id="Contraseña" value="#{usuarioNB.usuario.pass}" required="true" ></p:inputText>
+                </h:panelGrid>               
+            </p:panel>
+            <p:commandButton id="editarUsuario" icon="ui-icon-pencil" value="Editar" update="growl" actionListener="#{usuarioNB.editarUsuario()}" title="Editar usuario"></p:commandButton>
+        </h:form>
+    </h:body>
+</html>

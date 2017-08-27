@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="84CC6562-6966-7E09-4821-AE82B86B84FA" name="Pagina_Xhtml_Menu_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>20A04D23-CD95-6AFC-77FB-51B741A4BDF3</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<containerWithKeyObject>47A7685B-28D4-F866-A22F-8A52AD9102B9</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>9C1815BF-7828-40F6-BF83-6494027F571F</localFKIndex>
+<keyObject>852E1A36-10DC-149B-280B-BB59BB35C96E</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

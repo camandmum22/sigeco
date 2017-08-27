@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="RUB_PRR" directorySegmentName="seg_0" id="51E6603C-32FD-EB12-90F6-00FE0CE9B746">
+<createdBy>1143855555</createdBy>
+<createdTime>2015-03-25 22:55:10 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>ECD458ED-DFB3-0371-240B-EF6F03340259</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>4D73DA20-388C-709F-BD8F-C4D1B47409FC</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>1B6DD887-621A-85A6-8FC5-BDC9E34631F5</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

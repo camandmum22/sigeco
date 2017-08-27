@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Crear Convocatoria</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <!-- Se cargan las hojas de estilo -->
+        <h:outputStylesheet library="css" name="styles.css"  />
+
+        <h1>Crear convocatoria</h1>
+
+        <!-- Formulario de creación de proyecto de convocatoria -->
+        <h:form id="form" >
+
+            <!-- Espacio para los mensajes emergentes -->
+            <p:growl id="growl" life="2000" />
+
+            <!-- Panel de información básica -->
+            <h:panelGrid columns="2" width="100%" cellpadding="5px" cellspacing="5px">
+
+                <p:outputLabel value="Nombre:" />
+                <p:inputText value="#{convocatoriaNB.convocatoria.nombre}" required="true">
+                    <f:validateLength minimum="2" />
+                </p:inputText>
+
+            </h:panelGrid>
+
+            <p:panel id="panel" header="Fase Registro">
+
+                <h:panelGrid columns="2" width="100%" cellpadding="5px" cellspacing="5px">
+
+                    <p:outputLabel value="Fecha de inicio:" />
+                    <p:calendar value="#{convocatoriaNB.fase.fechaIni}" required="true" />
+
+                    <p:outputLabel value="Fecha de finalización:" />
+                    <p:calendar value="#{convocatoriaNB.fase.fechaFin}" required="true"/>
+
+                </h:panelGrid>
+
+            </p:panel>
+
+            <!-- Botón crear proyecto -->
+            <p:commandButton value="Crear" update="growl" actionListener="#{convocatoriaNB.crearConvocatoria()}" styleClass="ui-priority-primary" class="btnCrearProyecto"/>
+
+        </h:form>
+
+    </h:body>
+</html>
+

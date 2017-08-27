@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Asociar Investigador a grupo de investigación</title>
+    </h:head>
+    <h:body>
+        <p:growl id="messages" showDetail="true"/>
+        <p:panel id="panelInv" header="Equipo de investigadores" > 
+            <h:outputLabel value="Bienvenido #{authAutNB.usuarioActual.nombre}. Aquí puede asociar un investigador a su grupo de investigación."></h:outputLabel>
+            <p:outputLabel for="advanced" value="Investigadores:" />
+            <p:selectOneListbox id="advanced" value="#{grupoInvestigacionNB.investigadorAAsociar}" converter="themeConverter" var="t" filter="true" filterMatchMode="contains">
+                <f:selectItems value="#{grupoInvestigacionNB.investigadores}" var="investigador" itemLabel="#{investigador.nombre}" itemValue="#{investigador}" />
+
+            </p:selectOneListbox>
+
+        </p:panel>
+        <p:commandButton title="Guardar Aprobación" value="Guardar" action="#{grupoInvestigacionNB.asociarInvestigadoresAGrupoDeInvestigacion(authAutNB.usuarioActual.documento, grupoInvestigacionNB.investigadorAAsociar.documento)}"/>
+    </h:body>
+</html>
+

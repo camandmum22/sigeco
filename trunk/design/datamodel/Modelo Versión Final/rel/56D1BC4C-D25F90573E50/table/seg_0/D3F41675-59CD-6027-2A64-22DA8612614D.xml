@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D3F41675-59CD-6027-2A64-22DA8612614D" name="Convocatoria">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>7B7C74AC-E969-7E52-679D-2E0865F064ED</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Convocatoria" id="43E04223-4EA0-AD44-B883-061E1A9D00D4">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>E099857A-700E-761E-4ED5-FA64413975DA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Estado" id="6D357BF3-5BBD-9BEE-4BEE-F54BEB601CE7">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del estado</comment>
+<commentInRDBMS>Código del estado</commentInRDBMS>
+<generatorID>771D66C3-69A4-E58B-D342-203AAB933A8D</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>2822253A-6DFF-F748-8444-FC06F34DD32D</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9652E15E-90C3-1B1C-64A3-0338A7808ADE" referredColumn="2822253A-6DFF-F748-8444-FC06F34DD32D"/>
+</associations>
+</Column>
+<Column name="Nombre" id="C2944B59-D159-0622-A6EC-6656A1E9A811">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre de la convocatoria</comment>
+<commentInRDBMS>Nombre de la convocatoria</commentInRDBMS>
+<generatorID>AAAF4459-08E1-EB8E-689C-C850B5058876</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A83EA3EF-C861-256D-FE84-6A01F398D30B" name="Convocatoria_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>AA5098D2-8214-C607-8E92-58F4358B36E0</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="43E04223-4EA0-AD44-B883-061E1A9D00D4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C24FA9C6-1301-2CB3-4483-ADC1FF9EA438" name="Convocatoria_Estado_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>8215A829-0261-DFE6-E742-5185A687748B</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6D357BF3-5BBD-9BEE-4BEE-F54BEB601CE7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

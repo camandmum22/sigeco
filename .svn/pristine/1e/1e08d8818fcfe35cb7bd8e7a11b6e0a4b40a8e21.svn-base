@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Login</title>
+
+        <style>
+            .formdiv 
+            {
+                width: 500px;
+                height: 200px;
+                position: absolute;
+                top:0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form >
+            <p:growl id="msg" showDetail="true" sticky="false" />
+            <p:panelGrid columns="2" styleClass="formdiv">
+                <h:outputText value="Documento : "></h:outputText>
+                <p:inputText value="#{authAutNB.usuarioActual.documento}" required="true" requiredMessage="¡Por favor digite su documento!" >
+                    <f:validateLength minimum="1" />  
+                </p:inputText>
+                
+                <h:outputText value="Contraseña : "></h:outputText>
+                <p:password value="#{authAutNB.usuarioActual.pass}" required="true" requiredMessage="¡Por favor digite su contraseña!">
+                    <f:validateLength minimum="1" />  
+                </p:password>
+                
+                <h:outputText value="U:test P:test" ></h:outputText>
+                <p:commandButton value="autenticar" update="msg" actionListener="#{authAutNB.autenticar()}" type="submit" icon="ui-icon-check" style="margin:0"></p:commandButton>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+

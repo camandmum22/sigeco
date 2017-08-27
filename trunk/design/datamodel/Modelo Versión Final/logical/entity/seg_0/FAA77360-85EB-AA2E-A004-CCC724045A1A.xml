@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FAA77360-85EB-AA2E-A004-CCC724045A1A" name="Fase">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 12:45:55 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Fase" id="8F0204CF-9261-3A5A-999F-7BB8959B3363">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 12:45:55 UTC</createdTime>
+<comment>Código de la fase de la convocatoria</comment>
+<commentInRDBMS>Código de la fase de la convocatoria</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>B3C7B080-3E39-A393-4CDF-08DA6D9C28BC</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Nombre" id="F72F3DD2-7382-14FF-14ED-03FB50458388">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 12:45:55 UTC</createdTime>
+<comment>Nombre de la fase de la convocatoria</comment>
+<commentInRDBMS>Nombre de la fase de la convocatoria</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>CDE98320-7C56-D49A-FD23-03D11761E7ED</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Fecha_Ini" id="F0F7F450-41BB-73EE-AE06-AB307B227459">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 12:45:55 UTC</createdTime>
+<comment>Fecha de inicio de la fase de la convocatoria</comment>
+<commentInRDBMS>Fecha de inicio de la fase de la convocatoria</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>6B920B75-80A8-E0A7-BECD-75438072F3D3</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+</Attribute>
+<Attribute name="Fecha_Fin" id="1944EE0F-86A0-802F-137C-6560689251DD">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 12:45:55 UTC</createdTime>
+<comment>Fecha de finalización de la fase de la convocatoria</comment>
+<commentInRDBMS>Fecha de finalización de la fase de la convocatoria</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>5F84C6F0-9671-AF00-5CED-33431BDAE533</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+</Attribute>
+<Attribute name="Codigo_Convocatoria" id="63D5A493-BEE6-AE89-9965-13BDC9CAE1DD">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:50:11 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>C3129044-C7E7-67FA-9657-6504DEBE3997</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>E099857A-700E-761E-4ED5-FA64413975DA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="90A760DA-10F9-FC70-0457-92DDE509B3F8" name="{entity} PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 12:45:55 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8F0204CF-9261-3A5A-999F-7BB8959B3363</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

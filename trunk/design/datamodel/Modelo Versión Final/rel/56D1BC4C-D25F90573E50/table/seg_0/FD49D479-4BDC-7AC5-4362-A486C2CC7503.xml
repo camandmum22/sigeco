@@ -1,0 +1,165 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FD49D479-4BDC-7AC5-4362-A486C2CC7503" name="Entregable">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>42F11E5E-49AA-6009-C617-6FE4D5E05F85</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>ENTR</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo" id="43139C0C-4E61-1F9C-C5AD-5FD931EC004B">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del producto</comment>
+<commentInRDBMS>Código del producto</commentInRDBMS>
+<generatorID>BF8400D8-FD03-9D0F-6905-125F1E461AD0</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="B82C1044-DE98-B868-DF18-CF256CA1B5B1">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre del producto</comment>
+<commentInRDBMS>Nombre del producto</commentInRDBMS>
+<generatorID>6039F303-AFDC-79F6-C6ED-D9B8BBF443DA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FechaEstimada" id="6C851751-CB02-82B4-37E1-DA1457925C56">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Fecha estimada del producto</comment>
+<commentInRDBMS>Fecha estimada del producto</commentInRDBMS>
+<generatorID>11985639-F194-CAB4-95A8-546D9AAF8FA6</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FechaReal" id="1E31BC51-C788-C9C0-A686-84336DCE4CF9">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Fecha real del producto</comment>
+<commentInRDBMS>Fecha real del producto</commentInRDBMS>
+<generatorID>DEFB0283-F513-5E83-B88F-BF1E4543BA13</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Proyecto" id="68BF5B1C-66BB-48E5-3CF5-6C54CAE5E2B7">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del proyecto</comment>
+<commentInRDBMS>Código del proyecto</commentInRDBMS>
+<generatorID>02341039-478E-F0BF-D96B-FB1680A0251C</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<delegate>8C940BD9-4562-955E-E373-9B5124F820A0</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="65E44C77-82A9-3366-4A02-3E0425592867" referredColumn="8C940BD9-4562-955E-E373-9B5124F820A0"/>
+</associations>
+</Column>
+<Column name="Codigo_Estado" id="4C642091-BABE-33C9-A4F9-E8AEB4153425">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del estado</comment>
+<commentInRDBMS>Código del estado</commentInRDBMS>
+<generatorID>BC12FB2C-E207-CCE0-187D-AA086CCE7E84</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>2822253A-6DFF-F748-8444-FC06F34DD32D</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D73F7078-C1E4-EBE4-676F-E55584A8E233" referredColumn="2822253A-6DFF-F748-8444-FC06F34DD32D"/>
+</associations>
+</Column>
+<Column name="Codigo_Subproducto" id="606E595A-F32F-249B-8A5E-D89AD843B98A">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del subproducto</comment>
+<commentInRDBMS>Código del subproducto</commentInRDBMS>
+<generatorID>B84291B1-EBCF-B577-BFE1-BB487A046E8A</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>FEB93B3A-0553-A62C-B424-4DF6CD798EC4</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DA5093C7-6815-018B-2CE4-4EEEB76B7AFB" referredColumn="FEB93B3A-0553-A62C-B424-4DF6CD798EC4"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CBAFC40D-0D26-908C-7B23-0F2078071DAC" name="Entregable_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>B023AD0D-E056-27C1-8A9A-9AA897F941D2</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="43139C0C-4E61-1F9C-C5AD-5FD931EC004B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7437B668-CFD0-EF19-3C9F-2CFCD80BB356" name="Entregable_Subproducto_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>08ADA1C3-4DB4-BC2A-9968-B22E7DA8C964</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="606E595A-F32F-249B-8A5E-D89AD843B98A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EAAE1401-F242-DB2F-C50E-000FB174BD36" name="Entregable_Estado_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>C7F6CF7B-7C62-1AC3-60CC-FA148F070699</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4C642091-BABE-33C9-A4F9-E8AEB4153425"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="70A10EFE-8AA0-4580-AAA7-8B33C648DA81" name="Entregable_Proyecto_Investigacion_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>F640E434-71D1-BB8A-6942-E88BDB9E7A6F</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="68BF5B1C-66BB-48E5-3CF5-6C54CAE5E2B7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

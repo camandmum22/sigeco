@@ -1,0 +1,116 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author germandavidlozano
+ */
+@Entity
+@Table(name = "GRUPO_LINEA")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "GrupoLinea.findAll", query = "SELECT g FROM GrupoLinea g"),
+    @NamedQuery(name = "GrupoLinea.findByGruInvCodigo", query = "SELECT g FROM GrupoLinea g WHERE g.grupoLineaPK.gruInvCodigo = :gruInvCodigo"),
+    @NamedQuery(name = "GrupoLinea.findByLinInvCodigo", query = "SELECT g FROM GrupoLinea g WHERE g.grupoLineaPK.linInvCodigo = :linInvCodigo")})
+public class GrupoLinea implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @EmbeddedId
+    protected GrupoLineaPK grupoLineaPK;
+    @JoinColumn(name = "GRU_INV_CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private GrupoInvestigacion grupoInvestigacion;
+    @JoinColumn(name = "LIN_INV_CODIGO", referencedColumnName = "CODIGO", insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private LineaInvestigacion lineaInvestigacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grupoLinea", fetch = FetchType.LAZY)
+    private List<ProyectoInvestigacion> proyectoInvestigacionList;
+
+    public GrupoLinea() {
+    }
+
+    public GrupoLinea(GrupoLineaPK grupoLineaPK) {
+        this.grupoLineaPK = grupoLineaPK;
+    }
+
+    public GrupoLinea(String gruInvCodigo, String linInvCodigo) {
+        this.grupoLineaPK = new GrupoLineaPK(gruInvCodigo, linInvCodigo);
+    }
+
+    public GrupoLineaPK getGrupoLineaPK() {
+        return grupoLineaPK;
+    }
+
+    public void setGrupoLineaPK(GrupoLineaPK grupoLineaPK) {
+        this.grupoLineaPK = grupoLineaPK;
+    }
+
+    public GrupoInvestigacion getGrupoInvestigacion() {
+        return grupoInvestigacion;
+    }
+
+    public void setGrupoInvestigacion(GrupoInvestigacion grupoInvestigacion) {
+        this.grupoInvestigacion = grupoInvestigacion;
+    }
+
+    public LineaInvestigacion getLineaInvestigacion() {
+        return lineaInvestigacion;
+    }
+
+    public void setLineaInvestigacion(LineaInvestigacion lineaInvestigacion) {
+        this.lineaInvestigacion = lineaInvestigacion;
+    }
+
+    @XmlTransient
+    public List<ProyectoInvestigacion> getProyectoInvestigacionList() {
+        return proyectoInvestigacionList;
+    }
+
+    public void setProyectoInvestigacionList(List<ProyectoInvestigacion> proyectoInvestigacionList) {
+        this.proyectoInvestigacionList = proyectoInvestigacionList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (grupoLineaPK != null ? grupoLineaPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof GrupoLinea)) {
+            return false;
+        }
+        GrupoLinea other = (GrupoLinea) object;
+        if ((this.grupoLineaPK == null && other.grupoLineaPK != null) || (this.grupoLineaPK != null && !this.grupoLineaPK.equals(other.grupoLineaPK))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.sigeco.ejb.entities.GrupoLinea[ grupoLineaPK=" + grupoLineaPK + " ]";
+    }
+    
+}

@@ -1,0 +1,144 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author csacanam
+ */
+@Entity
+@Table(name = "ROL_PROYECTO")
+@XmlRootElement
+@NamedQueries(
+{
+    @NamedQuery(name = "RolProyecto.findAll", query = "SELECT r FROM RolProyecto r"),
+    @NamedQuery(name = "RolProyecto.findByCodigoRolpi", query = "SELECT r FROM RolProyecto r WHERE r.codigoRolpi = :codigoRolpi"),
+    @NamedQuery(name = "RolProyecto.findByNombre", query = "SELECT r FROM RolProyecto r WHERE r.nombre = :nombre")
+})
+public class RolProyecto implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 3)
+    @Column(name = "CODIGO_ROLPI", nullable = false, length = 3)
+    private String codigoRolpi;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(nullable = false, length = 30)
+    private String nombre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoRolpi", fetch = FetchType.LAZY)
+    private List<Permisos> permisosList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoRolpi", fetch = FetchType.LAZY)
+    private List<UsuarioPcs> usuarioPcsList;
+
+    public RolProyecto()
+    {
+    }
+
+    public RolProyecto(String codigoRolpi)
+    {
+        this.codigoRolpi = codigoRolpi;
+    }
+
+    public RolProyecto(String codigoRolpi, String nombre)
+    {
+        this.codigoRolpi = codigoRolpi;
+        this.nombre = nombre;
+    }
+
+    public String getCodigoRolpi()
+    {
+        return codigoRolpi;
+    }
+
+    public void setCodigoRolpi(String codigoRolpi)
+    {
+        this.codigoRolpi = codigoRolpi;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
+    }
+
+    @XmlTransient
+    public List<Permisos> getPermisosList()
+    {
+        return permisosList;
+    }
+
+    public void setPermisosList(List<Permisos> permisosList)
+    {
+        this.permisosList = permisosList;
+    }
+
+    @XmlTransient
+    public List<UsuarioPcs> getUsuarioPcsList()
+    {
+        return usuarioPcsList;
+    }
+
+    public void setUsuarioPcsList(List<UsuarioPcs> usuarioPcsList)
+    {
+        this.usuarioPcsList = usuarioPcsList;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoRolpi != null ? codigoRolpi.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof RolProyecto))
+        {
+            return false;
+        }
+        RolProyecto other = (RolProyecto) object;
+        if ((this.codigoRolpi == null && other.codigoRolpi != null) || (this.codigoRolpi != null && !this.codigoRolpi.equals(other.codigoRolpi)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.RolProyecto[ codigoRolpi=" + codigoRolpi + " ]";
+    }
+    
+}

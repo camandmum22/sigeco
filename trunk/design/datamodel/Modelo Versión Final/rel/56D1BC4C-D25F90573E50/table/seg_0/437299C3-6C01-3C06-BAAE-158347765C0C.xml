@@ -1,0 +1,104 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="437299C3-6C01-3C06-BAAE-158347765C0C" name="Fase">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>FAA77360-85EB-AA2E-A004-CCC724045A1A</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Fase" id="2D6C09E0-589D-35F5-335B-0B5AB5C612EA">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la fase de la convocatoria</comment>
+<commentInRDBMS>Código de la fase de la convocatoria</commentInRDBMS>
+<generatorID>8F0204CF-9261-3A5A-999F-7BB8959B3363</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="6C636990-61CB-D8DB-1615-0EE9AA59427B">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre de la fase de la convocatoria</comment>
+<commentInRDBMS>Nombre de la fase de la convocatoria</commentInRDBMS>
+<generatorID>F72F3DD2-7382-14FF-14ED-03FB50458388</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fecha_Ini" id="6340487E-B32A-4D7F-1464-7F3A309EF744">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Fecha de inicio de la fase de la convocatoria</comment>
+<commentInRDBMS>Fecha de inicio de la fase de la convocatoria</commentInRDBMS>
+<generatorID>F0F7F450-41BB-73EE-AE06-AB307B227459</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fecha_Fin" id="68BABB04-A9CB-2839-6D5D-BFFB798BF975">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Fecha de finalización de la fase de la convocatoria</comment>
+<commentInRDBMS>Fecha de finalización de la fase de la convocatoria</commentInRDBMS>
+<generatorID>1944EE0F-86A0-802F-137C-6560689251DD</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Convocatoria" id="04CF962E-B0E8-486B-8021-8AD5278F02B3">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>63D5A493-BEE6-AE89-9965-13BDC9CAE1DD</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>43E04223-4EA0-AD44-B883-061E1A9D00D4</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CF735878-977F-BF7B-DA0F-F47EDD4EC103" referredColumn="43E04223-4EA0-AD44-B883-061E1A9D00D4"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1B046AF4-0194-FDA7-E7E5-FE42AE1D9470" name="Fase_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>90A760DA-10F9-FC70-0457-92DDE509B3F8</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2D6C09E0-589D-35F5-335B-0B5AB5C612EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D6BFC125-F59D-4F26-D4E5-924D6EC86890" name="Fase_Convocatoria_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>C3129044-C7E7-67FA-9657-6504DEBE3997</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="04CF962E-B0E8-486B-8021-8AD5278F02B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

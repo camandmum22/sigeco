@@ -1,0 +1,148 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Rubro;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import com.sigeco.ejb.subsistemas.SolicitudesSB;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.UploadedFile;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class SolicitudesNB {
+
+    @EJB
+    private SolicitudesSB solicitudesSB;
+   
+    private long codProyecto;
+    
+    private long codConvocatoria;
+    
+    private Date fechaCulminacion;
+
+    private List<Rubro> rubros;
+    
+    private UploadedFile file;
+
+    /**
+     * Creates a new instance of SolicitudesNB
+     */
+    public SolicitudesNB() {
+    }
+
+    @PostConstruct
+    public void init() {
+        rubros = solicitudesSB.getRubroFacade().findAll();
+
+    }
+    
+     public UploadedFile getFile() {
+        return file;
+    }
+ 
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+     
+    public void upload() {
+        if(file != null) {
+            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+
+    public SolicitudesSB getSolicitudesSB() {
+        return solicitudesSB;
+    }
+
+    public List<Rubro> getRubros() {
+        return rubros;
+    }
+
+    public void setSolicitudesSB(SolicitudesSB solicitudesSB) {
+        this.solicitudesSB = solicitudesSB;
+    }
+
+    public void setRubros(List<Rubro> rubros) {
+        this.rubros = rubros;
+    }
+    
+    public void guardarSolicitud(){
+        InputStream input = null;
+        try {
+            input = file.getInputstream();
+            
+            solicitudesSB.guardarSolicitud(input,codProyecto, codConvocatoria, fechaCulminacion);
+        } catch (IOException ex) {
+            Logger.getLogger(SolicitudesNB.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                input.close();
+            } catch (IOException ex) {
+                Logger.getLogger(SolicitudesNB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    /**
+     * @return the codProyecto
+     */
+    public long getCodProyecto() {
+        return codProyecto;
+    }
+
+    /**
+     * @param codProyecto the codProyecto to set
+     */
+    public void setCodProyecto(long codProyecto) {
+        this.codProyecto = codProyecto;
+    }
+
+    /**
+     * @return the convocatoria
+     */
+    public long getCodConvocatoria() {
+        return codConvocatoria;
+    }
+
+    /**
+     * @param convocatoria the convocatoria to set
+     */
+    public void setCodConvocatoria(long convocatoria) {
+        this.codConvocatoria = convocatoria;
+    }
+
+    /**
+     * @return the fechaCulminacion
+     */
+    public Date getFechaCulminacion() {
+        return fechaCulminacion;
+    }
+
+    /**
+     * @param fechaCulminacion the fechaCulminacion to set
+     */
+    public void setFechaCulminacion(Date fechaCulminacion) {
+        this.fechaCulminacion = fechaCulminacion;
+    }
+
+}

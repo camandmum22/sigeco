@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="5A4C9AD2-59AF-E774-F4A7-BCC696B08FE4" name="Rol_Menu_Menu_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>14994426-58F6-2192-2784-FAD225AA80A7</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<containerWithKeyObject>C6AC8017-777C-B413-2C0C-1A435A59289B</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>D0D4FD39-F839-F52F-710F-49B4F941186A</localFKIndex>
+<keyObject>852E1A36-10DC-149B-280B-BB59BB35C96E</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

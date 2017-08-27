@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Solicitud Prorroga</title>
+         <f:metadata>
+             <f:viewParam name="solicitudProrroga" value="#{solicitudesNB.codProyecto}"/>
+        </f:metadata>
+    </h:head>
+    <h:body>
+        &nbsp;
+        &nbsp;
+        <h:form>
+            <h:outputText value="Solicitud Prorroga" style=" color: #666666; font-size: 35px; font-family:'Arial'"></h:outputText>
+        </h:form>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <h:form>
+        <p:outputLabel value="Id Proyecto "></p:outputLabel>
+            <p:inputText disabled="true" value="#{solicitudesNB.codProyecto}"> </p:inputText>
+        </h:form>
+        &nbsp;
+            <h:form>
+            <p:outputLabel value="Cronograma "></p:outputLabel>
+            <p:growl id="messages" showDetail="true" />
+                 <p:fileUpload value="#{solicitudesNB.file}" mode="simple"/>
+                    <p:commandButton value="Subir" ajax="false" actionListener="#{solicitudesNB.upload}" disabled="true" />
+            </h:form>
+             &nbsp;
+             <h:form>
+             <p:outputLabel for="popup" value="Nueva Fecha Culminación " />
+             <p:calendar id="popup" value="#{solicitudesNB.fechaCulminacion}" />
+            </h:form>
+            &nbsp;
+            <h:form>
+                <p:commandButton value="Terminar" actionListener="#{solicitudesNB.guardarSolicitud()}" styleClass="ui-priority-primary" class="btnCrearProrroga"/>
+            </h:form>
+            <!-- Botón Volver -->
+        <h:form> 
+            <p:button outcome="/faces/solicitudes/solicitudes.xhtml" value="Volver" >
+            </p:button>
+        </h:form>
+    </h:body>
+</html>
+

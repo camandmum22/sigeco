@@ -1,0 +1,98 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+/**
+ *
+ * @author csacanam
+ */
+@Embeddable
+public class TarifaPK implements Serializable
+{
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 8)
+    @Column(name = "CODIGO_USUARIO", nullable = false, length = 8)
+    private Long codigoUsuario;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 4)
+    @Column(name = "CODIGO_MODALIDAD", nullable = false, length = 4)
+    private String codigoModalidad;
+
+    public TarifaPK()
+    {
+    }
+
+    public TarifaPK(Long codigoUsuario, String codigoModalidad)
+    {
+        this.codigoUsuario = codigoUsuario;
+        this.codigoModalidad = codigoModalidad;
+    }
+
+    public Long getCodigoUsuario()
+    {
+        return codigoUsuario;
+    }
+
+    public void setCodigoUsuario(Long codigoUsuario)
+    {
+        this.codigoUsuario = codigoUsuario;
+    }
+
+    public String getCodigoModalidad()
+    {
+        return codigoModalidad;
+    }
+
+    public void setCodigoModalidad(String codigoModalidad)
+    {
+        this.codigoModalidad = codigoModalidad;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoUsuario != null ? codigoUsuario.hashCode() : 0);
+        hash += (codigoModalidad != null ? codigoModalidad.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof TarifaPK))
+        {
+            return false;
+        }
+        TarifaPK other = (TarifaPK) object;
+        if ((this.codigoUsuario == null && other.codigoUsuario != null) || (this.codigoUsuario != null && !this.codigoUsuario.equals(other.codigoUsuario)))
+        {
+            return false;
+        }
+        if ((this.codigoModalidad == null && other.codigoModalidad != null) || (this.codigoModalidad != null && !this.codigoModalidad.equals(other.codigoModalidad)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.TarifaPK[ codigoUsuario=" + codigoUsuario + ", codigoModalidad=" + codigoModalidad + " ]";
+    }
+    
+}

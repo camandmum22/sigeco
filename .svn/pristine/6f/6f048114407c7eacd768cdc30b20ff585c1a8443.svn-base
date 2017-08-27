@@ -1,0 +1,360 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.exceptions.UsuarioException;
+import com.sigeco.ejb.subsistemas.UsuarioSB;
+import com.sigeco.ejb.utilities.CipherAlgorithms;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import com.sigeco.utilities.Mensajes;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.UploadedFile;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class UsuarioNB
+{
+
+    private boolean editarTelefono;
+
+    private boolean editarEmail;
+
+    private boolean editarPass;
+
+    private Usuario usuario;
+
+    private String verificacion, busquedaDoc, filtro, valorUsu;
+
+    private CipherAlgorithms cipher;
+
+    private List<Usuario> listUsuarios;
+    
+    private UploadedFile archivoTarifasUsuarios;
+
+    @EJB
+    private UsuarioSB usuarioSB;
+
+    /**
+     * Creates a new instance of UsuarioNB
+     */
+    public UsuarioNB()
+    {
+        busquedaDoc = "";
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        setUsuario( new Usuario() );
+        setVerificacion( "" );
+        setEditarEmail( true );
+        setEditarTelefono( true );
+        setEditarPass( true );
+        setListUsuarios( usuarioSB.getUsuarioFacade().findAll() );
+        setFiltro( "Nombre" );
+    }
+
+    /**
+     * Método que me permite registrar un usuario.
+     */
+    public void registrarUsuario()
+    {
+        try{
+            if( !verificarContrasena() ){
+                FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_INFO, "No coincide con la contraseña", "" ) );
+            }
+            else{
+                usuario.setPass( cipher.encryptAES( usuario.getPass() ) );
+                usuarioSB.getUsuarioFacade().create( usuario );
+            }
+        }
+        catch( Exception e ){
+            e.printStackTrace();
+        }
+
+    }
+    
+    public void asociarTarifasAUsurios(){
+        
+        if ( archivoTarifasUsuarios != null){
+            try {
+                System.out.println(archivoTarifasUsuarios.getFileName());
+                usuarioSB.leerArchivoModalidadesTarifas(archivoTarifasUsuarios.getInputstream());
+            } catch (IOException ex) {
+                Logger.getLogger(UsuarioNB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public void editarUsuario()
+    {
+        try{
+            usuarioSB.editarUsuario( usuario.getTipoDocumento(), usuario.getDocumento(), usuario.getNombre(),
+                                     usuario.getEmail(), usuario.getTelefono(), usuario.getOtraInstitucion(), usuario.getPass() );
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_INFO, "Éxito", "Se editó el usuario." );
+        }
+        catch( UsuarioException ex ){
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_ERROR, "Error", ex.getMessage() );
+        }
+        catch( Exception ex ){
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_ERROR, "Error", ex.getMessage() );
+        }
+    }
+
+    public void editarUsuario( Usuario usuarioActual )
+    {
+        try{
+            usuarioSB.editarUsuario( usuarioActual.getTipoDocumento(), usuarioActual.getDocumento(), usuarioActual.getNombre(),
+                                     usuarioActual.getEmail(), usuarioActual.getTelefono(), usuarioActual.getOtraInstitucion(), usuarioActual.getPass() );
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_INFO, "Se guardaron los cambios correctamente", "Se editó el usuario." );
+        }
+        catch( UsuarioException ex ){
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_ERROR, "Error", ex.getMessage() );
+        }
+        catch( Exception ex ){
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_ERROR, "Error", ex.getMessage() );
+        }
+    }
+
+    public boolean verificarContrasena()
+    {
+        if( usuario.getPass() == null ){
+            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_INFO, "Debe llenar el campo cerificar contraseña", "" ) );
+        }
+        else if( !usuario.getPass().equals( verificacion ) ){
+            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_INFO, "No coincide con la contraseña", "" ) );
+        }
+        else{
+            return usuario.getPass() != null ? usuario.getPass().equals( verificacion ) : false;
+        }
+        return usuario.getPass() != null ? usuario.getPass().equals( verificacion ) : false;
+    }
+
+    /**
+     * Obtiene un usuario de acuerdo a un documento de usuario dado
+     * <p>
+     * @param documento - Documento del usuario a ser buscado
+     */
+    public void read()
+    {
+        List<Usuario> busqueda = usuarioSB.getUsuarioFacade().findBy( "Documento", busquedaDoc );
+        if( busqueda.size() > 0 ){
+            try{
+                setUsuario( busqueda.get( 0 ) );
+                usuario.setPass( cipher.decryptAES( usuario.getPass() ) );
+            }
+            catch( Exception ex ){
+                Logger.getLogger( UsuarioNB.class.getName() ).log( Level.SEVERE, null, ex );
+            }
+        }
+        else{
+            setUsuario( new Usuario() );
+        }
+
+    }
+
+    public void filtrarUsuarios()
+    {
+        if( valorUsu.equals( "" ) ){
+            setListUsuarios( usuarioSB.getUsuarioFacade().findAll() );
+        }
+        else{
+            if( filtro.equals( "Rol" ) ){
+                setListUsuarios( usuarioSB.getUsuarioFacade().filtrarUsuariosPorRol( valorUsu ) );
+                System.out.println( "BUSQUEDA::::::::::"+valorUsu );
+            }
+            else if( filtro.equals( "Nombre" ) ){
+                setListUsuarios( usuarioSB.getUsuarioFacade().filtrarUsuariosPorNombre( valorUsu ) );
+            }
+            else{
+                setListUsuarios( usuarioSB.getUsuarioFacade().filtrarUsuariosPorDocumento( valorUsu ) );
+            }
+        }
+    }
+
+    public UsuarioSB getUsuarioSB()
+    {
+        return usuarioSB;
+    }
+
+    public void setUsuarioSB( UsuarioSB usuarioSB )
+    {
+        this.usuarioSB = usuarioSB;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario()
+    {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario( Usuario usuario )
+    {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the verificacion
+     */
+    public String getVerificacion()
+    {
+        return verificacion;
+    }
+
+    /**
+     * @param verificacion the verificacion to set
+     */
+    public void setVerificacion( String verificacion )
+    {
+        this.verificacion = verificacion;
+    }
+
+    /**
+     * @return the busquedaDoc
+     */
+    public String getBusquedaDoc()
+    {
+        return busquedaDoc;
+    }
+
+    /**
+     * @param busquedaDoc the verificacion to set
+     */
+    public void setBusquedaDoc( String busquedaDoc )
+    {
+        this.busquedaDoc = busquedaDoc;
+    }
+
+    /**
+     * @return the editarTelefono
+     */
+    public boolean isEditarTelefono()
+    {
+        return editarTelefono;
+    }
+
+    /**
+     * @param editarTelefono the editarTelefono to set
+     */
+    public void setEditarTelefono( boolean editarTelefono )
+    {
+        this.editarTelefono = editarTelefono;
+    }
+
+    /**
+     * @return the editarEmail
+     */
+    public boolean isEditarEmail()
+    {
+        return editarEmail;
+    }
+
+    /**
+     * @param editarEmail the editarEmail to set
+     */
+    public void setEditarEmail( boolean editarEmail )
+    {
+        this.editarEmail = editarEmail;
+    }
+
+    /**
+     * @return the editarPass
+     */
+    public boolean isEditarPass()
+    {
+        return editarPass;
+    }
+
+    /**
+     * @param editarPass the editarPass to set
+     */
+    public void setEditarPass( boolean editarPass )
+    {
+        this.editarPass = editarPass;
+    }
+
+    /**
+     * @return the listUsuarios
+     */
+    public List<Usuario> getListUsuarios()
+    {
+        return listUsuarios;
+    }
+
+    /**
+     * @param listUsuarios the listUsuarios to set
+     */
+    public void setListUsuarios( List<Usuario> listUsuarios )
+    {
+        this.listUsuarios = listUsuarios;
+    }
+
+    /**
+     * @return the filtro
+     */
+    public String getFiltro()
+    {
+        return filtro;
+    }
+
+    /**
+     * @param filtro the filtro to set
+     */
+    public void setFiltro( String filtro )
+    {
+        this.filtro = filtro;
+    }
+
+    /**
+     * @return the valorUsu
+     */
+    public String getValorUsu()
+    {
+        return valorUsu;
+    }
+
+    /**
+     * @param valorUsu the valorUsu to set
+     */
+    public void setValorUsu( String valorUsu )
+    {
+        this.valorUsu = valorUsu;
+    }
+
+    /**
+     * @return the archivoTarifasUsuarios
+     */
+    public UploadedFile getArchivoTarifasUsuarios() {
+        return archivoTarifasUsuarios;
+    }
+
+    /**
+     * @param archivoTarifasUsuarios the archivoTarifasUsuarios to set
+     */
+    public void setArchivoTarifasUsuarios(UploadedFile archivoTarifasUsuarios) {
+        this.archivoTarifasUsuarios = archivoTarifasUsuarios;
+    }
+}

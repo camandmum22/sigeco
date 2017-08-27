@@ -1,0 +1,65 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.Rubro;
+import com.sigeco.ejb.sessionbean.RubroFacade;
+import com.sigeco.ejb.utilities.InputChecks;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author csacanam
+ */
+@FacesConverter("rubroConverter")
+public class RubroConverter implements Converter
+{
+
+    @EJB
+    RubroFacade rubroFacade;
+
+    public RubroConverter()
+    {
+
+    }
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value)
+    {
+        if (InputChecks.isTrimEmptyOrNull(value))
+        {
+            return null;
+        } else
+        {
+            List<Rubro> listaRubros = rubroFacade.findBy("Codigo", new Long(value));
+
+            if (listaRubros.size() > 0)
+            {
+                return listaRubros.get(0);
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value)
+    {
+        if (value == null || value.equals(""))
+        {
+            return "";
+        } else
+        {
+            return ((Rubro) value).getCodigo() + "";
+        }
+    }
+
+}

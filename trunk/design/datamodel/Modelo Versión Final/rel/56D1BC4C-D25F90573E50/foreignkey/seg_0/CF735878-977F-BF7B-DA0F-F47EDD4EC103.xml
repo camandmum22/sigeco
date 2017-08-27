@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="CF735878-977F-BF7B-DA0F-F47EDD4EC103" name="Fase_Convocatoria_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>C3129044-C7E7-67FA-9657-6504DEBE3997</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<containerWithKeyObject>437299C3-6C01-3C06-BAAE-158347765C0C</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>D6BFC125-F59D-4F26-D4E5-924D6EC86890</localFKIndex>
+<keyObject>A83EA3EF-C861-256D-FE84-6A01F398D30B</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

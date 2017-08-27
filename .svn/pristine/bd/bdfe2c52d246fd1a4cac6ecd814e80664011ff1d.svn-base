@@ -1,0 +1,155 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DC4B36AB-EF78-94EE-C38D-CA70CCB32865" name="Subproducto">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:52:44 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>SUBP</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Subproducto" id="1CDC2E08-672B-DE5E-AE17-8D3078B98D4E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-27 05:28:55 UTC</createdTime>
+<comment>Código del subproducto</comment>
+<commentInRDBMS>Código del subproducto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Categoria" id="95DDB440-5D71-AA13-273D-88DB07C8215B">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:54:36 UTC</createdTime>
+<comment>Categoría del subproducto</comment>
+<commentInRDBMS>Categoría del subproducto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Ventana_Observacion" id="D5482AB0-2EDE-B79B-4988-427606E0067C">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:54:47 UTC</createdTime>
+<comment>Ventana de observación del subproducto</comment>
+<commentInRDBMS>Ventana de observación del subproducto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="Requerimiento_Calidad" id="F2EE4838-4D4B-795D-D537-3A6648BE6285">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:55:47 UTC</createdTime>
+<comment>Requerimiento de calidad del subproducto</comment>
+<commentInRDBMS>Requerimiento de calidad del subproducto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Peso_Relativo_1" id="8428A171-E56F-DC08-79D8-43D01DD69301">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:56:05 UTC</createdTime>
+<comment>Peso relativo 1 del subproducto</comment>
+<commentInRDBMS>Peso relativo 1 del subproducto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Peso_Relativo_2" id="69620D38-CCB5-CE85-F9BA-1C5E02910E02">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:56:27 UTC</createdTime>
+<comment>Peso relativo 2 del subproducto</comment>
+<commentInRDBMS>Peso relativo 2 del subproducto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Vigencia" id="F730A6FB-49E0-2EE7-D6C5-55707BF45864">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:56:55 UTC</createdTime>
+<comment>Vigencia del subproducto</comment>
+<commentInRDBMS>Vigencia del subproducto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="Codigo_Producto" id="B4AA80A9-A0DD-2AD9-81D0-9762486F3F66">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 22:21:04 UTC</createdTime>
+<comment>Codigo del tipo de producto</comment>
+<commentInRDBMS>Codigo del tipo de producto</commentInRDBMS>
+<generatorID>9AD7E5E4-D268-882F-50AA-A07B626BF7F8</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>EE986675-50DD-EBCC-16E5-51AFD06E00D8</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3D1035F3-6AF8-8D22-BB70-9A68FE485E55" name="{entity} PK">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 21:54:29 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>1CDC2E08-672B-DE5E-AE17-8D3078B98D4E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

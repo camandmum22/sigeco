@@ -1,0 +1,67 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="248F0980-832B-FB4B-21F6-504496CF4D99" name="Clasificacion_Producto">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>CPR</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Clasificacion" id="504FBFDB-66B3-D20B-1459-E13D6A52B086">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<comment>Código de la clasificación del producto</comment>
+<commentInRDBMS>Código de la clasificación del producto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>EDD5C409-9639-4BF4-9808-D45B5836486A</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Clasificacion" id="F28C9AA7-6E11-EFC5-CBFA-871EAC5B7828">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<comment>Nombre de la clasificación del producto</comment>
+<commentInRDBMS>Nombre de la clasificación del producto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>9DC7804D-DFA6-0F32-7E21-C36D152F596C</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="AA46742E-E6C6-60D5-5C11-00A83697AD09" name="Grupo_Producto_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:30:24 UTC</createdTime>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>504FBFDB-66B3-D20B-1459-E13D6A52B086</newElementsIDs>
+<usedAttributes>
+<attributeRef>504FBFDB-66B3-D20B-1459-E13D6A52B086</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

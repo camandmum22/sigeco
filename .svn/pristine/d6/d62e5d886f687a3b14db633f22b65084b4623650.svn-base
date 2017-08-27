@@ -1,0 +1,54 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.sessionbean.ClasificacionProductoFacade;
+import com.sigeco.ejb.sessionbean.EntregableFacade;
+import com.sigeco.ejb.sessionbean.ProductoFacade;
+import com.sigeco.ejb.sessionbean.SubproductoFacade;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author csacanam
+ */
+@Stateless
+public class EntregablesSB
+{
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+    
+    @EJB
+    ClasificacionProductoFacade clasificacionProductoFacade;
+    
+    @EJB
+    SubproductoFacade subproductoFacade;
+    
+    
+    @EJB
+    ProductoFacade productoFacade;
+    @EJB
+    EntregableFacade entregableFacade;
+    
+    //Getters para el CRUD
+    public ClasificacionProductoFacade getClasificacionProductoFacade() {
+        return clasificacionProductoFacade;
+    }
+    
+     public SubproductoFacade getSubproductoFacade() {
+        return subproductoFacade;
+    }
+     
+     public ProductoFacade getProductoFacade(){
+         return productoFacade;
+     }
+     
+     public EntregableFacade getEntregableFacade(){
+         return entregableFacade;
+     }
+ 
+}

@@ -1,0 +1,148 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author germandavidlozano
+ */
+@Entity
+@Table(name = "CONVOCATORIA")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Convocatoria.findAll", query = "SELECT c FROM Convocatoria c"),
+    @NamedQuery(name = "Convocatoria.findByCodigo", query = "SELECT c FROM Convocatoria c WHERE c.codigo = :codigo"),
+    @NamedQuery(name = "Convocatoria.findByNombre", query = "SELECT c FROM Convocatoria c WHERE c.nombre = :nombre")})
+public class Convocatoria implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO")
+    private Long codigo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "NOMBRE")
+    private String nombre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "convocatoria", fetch = FetchType.LAZY)
+    private List<ProConSol> proConSolList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "convocatoria", fetch = FetchType.LAZY)
+    private List<FacultadConvocatoria> facultadConvocatoriaList;
+    @JoinColumn(name = "EST_CODIGO", referencedColumnName = "CODIGO")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Estado estCodigo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "conCodigo", fetch = FetchType.LAZY)
+    private List<Fase> faseList;
+
+    public Convocatoria() {
+    }
+
+    public Convocatoria(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public Convocatoria(Long codigo, String nombre) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @XmlTransient
+    public List<ProConSol> getProConSolList() {
+        return proConSolList;
+    }
+
+    public void setProConSolList(List<ProConSol> proConSolList) {
+        this.proConSolList = proConSolList;
+    }
+
+    @XmlTransient
+    public List<FacultadConvocatoria> getFacultadConvocatoriaList() {
+        return facultadConvocatoriaList;
+    }
+
+    public void setFacultadConvocatoriaList(List<FacultadConvocatoria> facultadConvocatoriaList) {
+        this.facultadConvocatoriaList = facultadConvocatoriaList;
+    }
+
+    public Estado getEstCodigo() {
+        return estCodigo;
+    }
+
+    public void setEstCodigo(Estado estCodigo) {
+        this.estCodigo = estCodigo;
+    }
+
+    @XmlTransient
+    public List<Fase> getFaseList() {
+        return faseList;
+    }
+
+    public void setFaseList(List<Fase> faseList) {
+        this.faseList = faseList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (codigo != null ? codigo.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Convocatoria)) {
+            return false;
+        }
+        Convocatoria other = (Convocatoria) object;
+        if ((this.codigo == null && other.codigo != null) || (this.codigo != null && !this.codigo.equals(other.codigo))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "com.sigeco.ejb.entities.Convocatoria[ codigo=" + codigo + " ]";
+    }
+    
+}

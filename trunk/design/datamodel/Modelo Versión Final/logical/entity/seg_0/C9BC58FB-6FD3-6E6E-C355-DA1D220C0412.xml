@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C9BC58FB-6FD3-6E6E-C355-DA1D220C0412" name="Estado">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:37:33 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Estado" id="9FF70A89-200E-BB56-E201-19ECB90E2522">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:37:40 UTC</createdTime>
+<comment>Código del estado</comment>
+<commentInRDBMS>Código del estado</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Nombre_Estado" id="651A939D-5D07-AF0C-8842-8B1F960ABB8E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:38:08 UTC</createdTime>
+<comment>Nombre del estado</comment>
+<commentInRDBMS>Nombre del estado</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Observacion" id="5971DA1A-4D94-907C-8FED-FF2489BAFDE0">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-29 22:01:29 UTC</createdTime>
+<comment>Observación realizada con respecto al estado.&lt;br/&gt;Estado proyecto - Suspención o cancelación</comment>
+<commentInRDBMS>Observación realizada con respecto al estado.&lt;br/&gt;Estado proyecto - Suspención o cancelación</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B73CF4C9-8A7B-A2DF-2EEF-F365F8E71103" name="{entity} PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:38:02 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>9FF70A89-200E-BB56-E201-19ECB90E2522</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

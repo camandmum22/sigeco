@@ -1,0 +1,314 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Entregable;
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.entities.Producto;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.Subproducto;
+import com.sigeco.ejb.subsistemas.EntregablesSB;
+import com.sigeco.ejb.subsistemas.EstadosSB;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class EntregablesNB
+{
+
+    private Estado estado;
+    
+    private Estado estadoSometido;
+    private Estado estadoPublicado;
+    
+    private Subproducto subproducto;
+    private Producto producto;
+    private ProyectoInvestigacion proyecto;
+    private Entregable entregable;
+    
+    private List<Subproducto> subproductos;
+    private List<Producto> productos;
+    private List<Estado> estados;
+    private List<Entregable> entregables;
+    
+    @EJB
+    private EstadosSB EstadosSB;
+    @EJB
+    private ProyectosSB ProyectosSB;
+    @EJB
+    private EntregablesSB EntregablesSB;
+
+    @PostConstruct
+    public void init()
+    {
+        setProductos(EntregablesSB.getProductoFacade().findAll());
+        
+        setEstado(new Estado());
+        setSubproducto(new Subproducto());
+        setProyecto(new ProyectoInvestigacion());
+        setEntregable(new Entregable());
+   
+        setEstadoSometido(EntregablesSB.darEstados().get(0));
+        setEstadoPublicado(EntregablesSB.darEstados().get(1));
+    }
+
+    public void create()
+    {
+        if (EntregablesSB.getEntregableFacade().findByParameters(entregable.getNombre(), entregable.getEstCodigo().getCodigo()) == null)
+        {
+            
+            getEntregable().setEstCodigo(estado);
+            getEntregable().setProInvCodigo(proyecto);
+            getEntregable().setSubpCodigo(subproducto);
+            EntregablesSB.getEntregableFacade().create(getEntregable());
+            init();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "El entregable ha sido asociado"));
+          
+        } else
+        {
+            init();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Ya existe un entregable con los parámetros especificados"));
+        }
+    }
+
+    public void delete(Entregable entregable)
+    {
+        setEntregable(entregable);
+        EntregablesSB.getEntregableFacade().remove(this.entregable);
+    }
+    
+    public void onChangeProdShowSubpr()
+    {
+        if( getProducto() != null )
+        {
+            setSubproductos(EntregablesSB.buscarSubproductosPorProducto(producto));
+        }
+    }
+    
+
+
+    /**
+     * @return the estado
+     */
+    public Estado getEstado()
+    {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(Estado estado)
+    {
+        this.estado = estado;
+    }
+
+    /**
+     * @return the subproducto
+     */
+    public Subproducto getSubproducto()
+    {
+        return subproducto;
+    }
+
+    /**
+     * @param subproducto the subproducto to set
+     */
+    public void setSubproducto(Subproducto subproducto)
+    {
+        this.subproducto = subproducto;
+    }
+
+    /**
+     * @return the proyecto
+     */
+    public ProyectoInvestigacion getProyecto()
+    {
+        return proyecto;
+    }
+
+    /**
+     * @param proyecto the proyecto to set
+     */
+    public void setProyecto(ProyectoInvestigacion proyecto)
+    {
+        this.proyecto = proyecto;
+    }
+
+    /**
+     * @return the entregable
+     */
+    public Entregable getEntregable()
+    {
+        return entregable;
+    }
+
+    /**
+     * @param entregable the entregable to set
+     */
+    public void setEntregable(Entregable entregable)
+    {
+        this.entregable = entregable;
+    }
+
+    /**
+     * @return the EstadosSB
+     */
+    public EstadosSB getEstadosSB()
+    {
+        return EstadosSB;
+    }
+
+    /**
+     * @param EstadosSB the EstadosSB to set
+     */
+    public void setEstadosSB(EstadosSB EstadosSB)
+    {
+        this.EstadosSB = EstadosSB;
+    }
+
+    /**
+     * @return the ProyectosSB
+     */
+    public ProyectosSB getProyectosSB()
+    {
+        return ProyectosSB;
+    }
+
+    /**
+     * @param ProyectosSB the ProyectosSB to set
+     */
+    public void setProyectosSB(ProyectosSB ProyectosSB)
+    {
+        this.ProyectosSB = ProyectosSB;
+    }
+
+    /**
+     * @return the EntregablesSB
+     */
+    public EntregablesSB getEntregablesSB()
+    {
+        return EntregablesSB;
+    }
+
+    /**
+     * @param EntregablesSB the EntregablesSB to set
+     */
+    public void setEntregablesSB(EntregablesSB EntregablesSB)
+    {
+        this.EntregablesSB = EntregablesSB;
+    }
+
+    /**
+     * @return the subproductos
+     */
+    public List<Subproducto> getSubproductos() {
+        return subproductos;
+    }
+
+    /**
+     * @param subproductos the subproductos to set
+     */
+    public void setSubproductos(List<Subproducto> subproductos) {
+        this.subproductos = subproductos;
+    }
+
+    /**
+     * @return the productos
+     */
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    /**
+     * @param productos the productos to set
+     */
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+    /**
+     * @return the producto
+     */
+    public Producto getProducto() {
+        return producto;
+    }
+
+    /**
+     * @param producto the producto to set
+     */
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    /**
+     * @return the estados
+     */
+    public List<Estado> getEstados() {
+        return estados;
+    }
+
+    /**
+     * @param estados the estados to set
+     */
+    public void setEstados(List<Estado> estados) {
+        this.estados = estados;
+    }
+
+    /**
+     * @return the estadoSometido
+     */
+    public Estado getEstadoSometido() {
+        return estadoSometido;
+    }
+
+    /**
+     * @param estadoSometido the estadoSometido to set
+     */
+    public void setEstadoSometido(Estado estadoSometido) {
+        this.estadoSometido = estadoSometido;
+    }
+
+    /**
+     * @return the estadoPublicado
+     */
+    public Estado getEstadoPublicado() {
+        return estadoPublicado;
+    }
+
+    /**
+     * @param estadoPublicado the estadoPublicado to set
+     */
+    public void setEstadoPublicado(Estado estadoPublicado) {
+        this.estadoPublicado = estadoPublicado;
+    }
+
+    /**
+     * @return the entregables
+     */
+    public List<Entregable> getEntregables() {
+        return entregables;
+    }
+
+    /**
+     * @param entregables the entregables to set
+     */
+    public void setEntregables(List<Entregable> entregables) {
+        this.entregables = entregables;
+    }
+
+}

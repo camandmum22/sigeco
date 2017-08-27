@@ -1,0 +1,174 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.SequenceGenerator;
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ <p>
+ @author csacanam
+ */
+@Entity
+@XmlRootElement
+@NamedQueries(
+                {
+            @NamedQuery( name = "Fase.findAll", query = "SELECT f FROM Fase f" ),
+            @NamedQuery( name = "Fase.findByCodigoFase", query = "SELECT f FROM Fase f WHERE f.codigoFase = :codigoFase" ),
+            @NamedQuery( name = "Fase.findByNombre", query = "SELECT f FROM Fase f WHERE f.nombre = :nombre" ),
+            @NamedQuery( name = "Fase.findByFechaIni", query = "SELECT f FROM Fase f WHERE f.fechaIni = :fechaIni" ),
+            @NamedQuery( name = "Fase.findByFechaFin", query = "SELECT f FROM Fase f WHERE f.fechaFin = :fechaFin" )
+        } )
+public class Fase implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @SequenceGenerator( name = "FASE_GENERATOR", sequenceName = "SQ_FASE", allocationSize = 1 )
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "FASE_GENERATOR" )
+    @Basic( optional = false )
+    @NotNull
+    @Column( name = "CODIGO_FASE", nullable = false )
+    private Long codigoFase;
+
+    @Basic( optional = false )
+    @NotNull
+    @Size( min = 1, max = 50 )
+    @Column( nullable = false, length = 50 )
+    private String nombre;
+
+    @Basic( optional = false )
+    @NotNull
+    @Column( name = "FECHA_INI", nullable = false )
+    @Temporal( TemporalType.TIMESTAMP )
+    private Date fechaIni;
+
+    @Basic( optional = false )
+    @NotNull
+    @Column( name = "FECHA_FIN", nullable = false )
+    @Temporal( TemporalType.TIMESTAMP )
+    private Date fechaFin;
+
+    @JoinColumn( name = "CODIGO_CONVOCATORIA", referencedColumnName = "CODIGO_CONVOCATORIA", nullable = false )
+    @ManyToOne( optional = false, fetch = FetchType.LAZY )
+    private Convocatoria codigoConvocatoria;
+
+    public Fase()
+    {
+    }
+
+    public Fase( Long codigoFase )
+    {
+        this.codigoFase = codigoFase;
+    }
+
+    public Fase( Long codigoFase, String nombre, Date fechaIni, Date fechaFin )
+    {
+        this.codigoFase = codigoFase;
+        this.nombre = nombre;
+        this.fechaIni = fechaIni;
+        this.fechaFin = fechaFin;
+    }
+
+    public Long getCodigoFase()
+    {
+        return codigoFase;
+    }
+
+    public void setCodigoFase( Long codigoFase )
+    {
+        this.codigoFase = codigoFase;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre( String nombre )
+    {
+        this.nombre = nombre;
+    }
+
+    public Date getFechaIni()
+    {
+        return fechaIni;
+    }
+
+    public void setFechaIni( Date fechaIni )
+    {
+        this.fechaIni = fechaIni;
+    }
+
+    public Date getFechaFin()
+    {
+        return fechaFin;
+    }
+
+    public void setFechaFin( Date fechaFin )
+    {
+        this.fechaFin = fechaFin;
+    }
+
+    public Convocatoria getCodigoConvocatoria()
+    {
+        return codigoConvocatoria;
+    }
+
+    public void setCodigoConvocatoria( Convocatoria codigoConvocatoria )
+    {
+        this.codigoConvocatoria = codigoConvocatoria;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        //SALEN ERRORES POR EL TIPO DE DATO DE CODIGOFASE
+        //hash += (codigoFase != null ? codigoFase.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals( Object object )
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if( !( object instanceof Fase ) )
+        {
+            return false;
+        }
+        Fase other = (Fase)object;
+        if( ( this.codigoFase == null && other.codigoFase != null ) || ( this.codigoFase != null && !this.codigoFase.equals( other.codigoFase ) ) )
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.Fase[ codigoFase=" + codigoFase + " ]";
+    }
+
+}

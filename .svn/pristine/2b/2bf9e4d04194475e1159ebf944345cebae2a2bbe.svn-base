@@ -1,0 +1,218 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.Rubro;
+import com.sigeco.ejb.subsistemas.SolicitudesSB;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.UploadedFile;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class SolicitudesNB
+{
+
+    @EJB
+    private SolicitudesSB solicitudesSB;
+
+    private long codConvocatoria;
+
+    private Date fechaCulminacion;
+
+    private List<Rubro> rubros;
+
+    private UploadedFile file;
+
+    private String titulo;
+
+    private ProyectoInvestigacion proyectoInvestigacion;
+
+    /**
+     * Creates a new instance of SolicitudesNB
+     */
+    public SolicitudesNB()
+    {
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        rubros = solicitudesSB.getRubroFacade().findAll();
+
+    }
+
+    public UploadedFile getFile()
+    {
+        return file;
+    }
+
+    public void setFile( UploadedFile file )
+    {
+        this.file = file;
+    }
+
+    public SolicitudesSB getSolicitudesSB()
+    {
+        return solicitudesSB;
+    }
+
+    public List<Rubro> getRubros()
+    {
+        return rubros;
+    }
+
+    public void setSolicitudesSB( SolicitudesSB solicitudesSB )
+    {
+        this.solicitudesSB = solicitudesSB;
+    }
+
+    public void setRubros( List<Rubro> rubros )
+    {
+        this.rubros = rubros;
+    }
+
+    /**
+     * Este método permite guardar una solicitu de prórroga
+     */
+    public void guardarSolicitud()
+    {
+        if( proyectoInvestigacion != null && file.getSize()>0 ){
+            InputStream input = null;
+            try{
+                input = file.getInputstream();
+                solicitudesSB.guardarSolicitud( input, proyectoInvestigacion.getCodigo(), codConvocatoria );
+                FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_INFO, "Info", "Se ha agregado una solicitud de prórroga" ) );
+            }
+            catch( IOException ex ){
+                Logger.getLogger( SolicitudesNB.class.getName() ).log( Level.SEVERE, null, ex );
+                FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_ERROR, "Error", "No se ha podido cargar el archivo" ) );
+            }
+            catch( EJBException ejb ){
+                FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_WARN, "Advertencia", "Ya existe una solicitud de Prórroga para este proyecto" ) );
+            }
+            finally{
+                try{
+                    input.close();
+                }
+                catch( IOException ex ){
+                    Logger.getLogger( SolicitudesNB.class.getName() ).log( Level.SEVERE, null, ex );
+                }
+            }
+        }
+        else{
+            FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_ERROR, "Error", "No se ha seleccionado un proyecto o no se ha cargado un archivo" ) );
+        }
+    }
+
+    /**
+     * Permite guardar una solicitud de adición para un proyecto de
+     * investigación en una convocatoria pasada
+     */
+    public void guardarSolicitudAdicion()
+    {
+        if( proyectoInvestigacion != null && file != null ){
+            InputStream input = null;
+            try{
+                input = file.getInputstream();
+                solicitudesSB.guardarSolicitudAdicion( proyectoInvestigacion.getCodigo(), input );
+                FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_INFO, "Info", "Se ha agregado una solicitud de adición con éxito" ) );
+            }
+            catch( IOException ex ){
+                Logger.getLogger( SolicitudesNB.class.getName() ).log( Level.SEVERE, null, ex );
+                FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_ERROR, "Error", "No se ha podido cargar el archivo" ) );
+            }
+            catch( EJBException ejb ){
+                FacesContext.getCurrentInstance().addMessage( null, new FacesMessage( FacesMessage.SEVERITY_WARN, "Advertencia", "Ya existe una solicitud de Adición para este proyecto" ) );
+            }
+
+            finally{
+                try{
+                    input.close();
+                }
+                catch( IOException ex ){
+                    Logger.getLogger( SolicitudesNB.class.getName() ).log( Level.SEVERE, null, ex );
+                }
+            }
+
+        }
+    }
+
+    /**
+     * @return the convocatoria
+     */
+    public long getCodConvocatoria()
+    {
+        return codConvocatoria;
+    }
+
+    /**
+     * @param convocatoria the convocatoria to set
+     */
+    public void setCodConvocatoria( long convocatoria )
+    {
+        this.codConvocatoria = convocatoria;
+    }
+
+    /**
+     * @return the fechaCulminacion
+     */
+    public Date getFechaCulminacion()
+    {
+        return fechaCulminacion;
+    }
+
+    /**
+     * @param fechaCulminacion the fechaCulminacion to set
+     */
+    public void setFechaCulminacion( Date fechaCulminacion )
+    {
+        this.fechaCulminacion = fechaCulminacion;
+    }
+
+    public String getTitulo()
+    {
+        return titulo;
+    }
+
+    public void setTitulo( String titulo )
+    {
+        this.titulo = titulo;
+    }
+
+    /**
+     * @return the proyectoInvestigacion
+     */
+    public ProyectoInvestigacion getProyectoInvestigacion()
+    {
+        return proyectoInvestigacion;
+    }
+
+    /**
+     * @param proyectoInvestigacion the proyectoInvestigacion to set
+     */
+    public void setProyectoInvestigacion( ProyectoInvestigacion proyectoInvestigacion )
+    {
+        this.proyectoInvestigacion = proyectoInvestigacion;
+    }
+
+}

@@ -1,0 +1,195 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.SequenceGenerator;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author csacanam
+ */
+@Entity
+@XmlRootElement
+@NamedQueries(
+{
+    @NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m"),
+    @NamedQuery(name = "Menu.findByCodigoMenu", query = "SELECT m FROM Menu m WHERE m.codigoMenu = :codigoMenu"),
+    @NamedQuery(name = "Menu.findByNombreMenu", query = "SELECT m FROM Menu m WHERE m.nombreMenu = :nombreMenu"),
+    @NamedQuery(name = "Menu.findByCodigoMenu1", query = "SELECT m FROM Menu m WHERE m.codigoMenu1 = :codigoMenu1")
+})
+public class Menu implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    @Id
+    @SequenceGenerator(name="MENU_GENERATOR", sequenceName="SQ_MENU", allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MENU_GENERATOR")
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_MENU", nullable = false)
+    private Long codigoMenu;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "NOMBRE_MENU", nullable = false, length = 20)
+    private String nombreMenu;
+    @Size(max = 3)
+    @Column(name = "CODIGO_MENU1", length = 3)
+    private String codigoMenu1;
+    @JoinTable(name = "ROL_MENU", joinColumns =
+    {
+        @JoinColumn(name = "CODIGO_MENU", referencedColumnName = "CODIGO_MENU", nullable = false)
+    }, inverseJoinColumns =
+    {
+        @JoinColumn(name = "CODIGO_ROL", referencedColumnName = "CODIGO_ROL", nullable = false)
+    })
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<RolSistema> rolSistemaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoMenu", fetch = FetchType.LAZY)
+    private List<PaginaXhtml> paginaXhtmlList;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "menu1", fetch = FetchType.LAZY)
+    private Menu menu;
+    @JoinColumn(name = "CODIGO_MENU", referencedColumnName = "CODIGO_MENU", nullable = false, insertable = false, updatable = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    private Menu menu1;
+
+    public Menu()
+    {
+    }
+
+    public Menu(Long codigoMenu)
+    {
+        this.codigoMenu = codigoMenu;
+    }
+
+    public Menu(Long codigoMenu, String nombreMenu)
+    {
+        this.codigoMenu = codigoMenu;
+        this.nombreMenu = nombreMenu;
+    }
+
+    public Long getCodigoMenu()
+    {
+        return codigoMenu;
+    }
+
+    public void setCodigoMenu(Long codigoMenu)
+    {
+        this.codigoMenu = codigoMenu;
+    }
+
+    public String getNombreMenu()
+    {
+        return nombreMenu;
+    }
+
+    public void setNombreMenu(String nombreMenu)
+    {
+        this.nombreMenu = nombreMenu;
+    }
+
+    public String getCodigoMenu1()
+    {
+        return codigoMenu1;
+    }
+
+    public void setCodigoMenu1(String codigoMenu1)
+    {
+        this.codigoMenu1 = codigoMenu1;
+    }
+
+    @XmlTransient
+    public List<RolSistema> getRolSistemaList()
+    {
+        return rolSistemaList;
+    }
+
+    public void setRolSistemaList(List<RolSistema> rolSistemaList)
+    {
+        this.rolSistemaList = rolSistemaList;
+    }
+
+    @XmlTransient
+    public List<PaginaXhtml> getPaginaXhtmlList()
+    {
+        return paginaXhtmlList;
+    }
+
+    public void setPaginaXhtmlList(List<PaginaXhtml> paginaXhtmlList)
+    {
+        this.paginaXhtmlList = paginaXhtmlList;
+    }
+
+    public Menu getMenu()
+    {
+        return menu;
+    }
+
+    public void setMenu(Menu menu)
+    {
+        this.menu = menu;
+    }
+
+    public Menu getMenu1()
+    {
+        return menu1;
+    }
+
+    public void setMenu1(Menu menu1)
+    {
+        this.menu1 = menu1;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoMenu != null ? codigoMenu.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Menu))
+        {
+            return false;
+        }
+        Menu other = (Menu) object;
+        if ((this.codigoMenu == null && other.codigoMenu != null) || (this.codigoMenu != null && !this.codigoMenu.equals(other.codigoMenu)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.Menu[ codigoMenu=" + codigoMenu + " ]";
+    }
+    
+}

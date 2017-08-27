@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="RP_PER" directorySegmentName="seg_0" id="EC9573C8-8B9B-A67E-7ADA-4009F1D94924">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-29 21:33:43 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>DEB914A9-28AF-D2F6-0428-D98D6BA62ECF</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DAEC3380-5832-7BD1-3C92-2AF3FA190C1F</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>A134274C-DDB9-8C0E-8129-FCA5F5E49B72</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

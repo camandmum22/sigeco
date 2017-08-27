@@ -1,0 +1,115 @@
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Menu;
+import com.sigeco.ejb.entities.PaginaXhtml;
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.sessionbean.MenuFacade;
+import com.sigeco.ejb.sessionbean.PaginaXhtmlFacade;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import org.primefaces.model.menu.DefaultMenuItem;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.DefaultSubMenu;
+import org.primefaces.model.menu.Submenu;
+
+@SessionScoped
+@ManagedBean(name = "menuNB")
+public class MenuNB {
+
+    private DefaultMenuModel estructura;
+
+    private List<Menu> modulos;
+
+    @EJB
+    private MenuFacade menuFacade;
+    
+    @EJB
+    private PaginaXhtmlFacade paginaXhtmlFacade;
+
+    @ManagedProperty("#{sessionScope.authAutNB.usuarioActual}")
+    private Usuario usuario;
+
+    public DefaultMenuModel getEstructura() {
+        return estructura;
+    }
+
+    public List<Menu> getModulos() {
+        return modulos;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    @PostConstruct
+    public void init() {
+        List<PaginaXhtml> paginas = paginaXhtmlFacade.findAll();
+        modulos = menuFacade.buscarModuloUsuario(usuario);
+        estructura = new DefaultMenuModel();
+        HashMap<String,DefaultSubMenu> hashMap = new HashMap<String,DefaultSubMenu>();
+        for (int i = 0; i < modulos.size(); i++) {
+            Menu menu = modulos.get(i);
+            DefaultSubMenu submenu = new DefaultSubMenu(menu.getNombreMenu());
+            
+            hashMap.put(menu.getCodigo().toString(), submenu);
+            if (menu.getMenCodigo() == null) {
+                estructura.addElement(submenu);
+            }
+            else{
+                DefaultSubMenu subMenuPadre = hashMap.get(menu.getMenCodigo().getCodigo().toString());
+                subMenuPadre.addElement(submenu);
+            }
+            
+            
+            List<PaginaXhtml> paginaXhtmls = menu.getPaginaXhtmlList();
+            for (int j = 0; j < paginaXhtmls.size(); j++) {
+                PaginaXhtml pagina = paginaXhtmls.get(j);
+                DefaultMenuItem menuItem = new DefaultMenuItem(pagina.getNombrePag(), null, pagina.getUrl());
+                menuItem.setTarget("contenido");
+                submenu.addElement(menuItem);
+            }
+        }
+    }
+
+    /**
+     * @param estructura the estructura to set
+     */
+    public void setEstructura(DefaultMenuModel estructura) {
+        this.estructura = estructura;
+    }
+
+    /**
+     * @param modulos the modulos to set
+     */
+    public void setModulos(List<Menu> modulos) {
+        this.modulos = modulos;
+    }
+
+    /**
+     * @return the menuFacade
+     */
+    public MenuFacade getMenuFacade() {
+        return menuFacade;
+    }
+
+    /**
+     * @param menuFacade the menuFacade to set
+     */
+    public void setMenuFacade(MenuFacade menuFacade) {
+        this.menuFacade = menuFacade;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+}

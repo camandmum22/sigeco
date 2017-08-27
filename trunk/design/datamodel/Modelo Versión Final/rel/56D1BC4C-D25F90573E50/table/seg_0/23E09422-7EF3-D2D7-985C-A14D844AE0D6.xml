@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="23E09422-7EF3-D2D7-985C-A14D844AE0D6" name="Clasificacion_Producto">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>248F0980-832B-FB4B-21F6-504496CF4D99</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>CPR</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Clasificacion" id="431146D6-E796-0CCA-0FF0-1479BE886DA4">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la clasificación del producto</comment>
+<commentInRDBMS>Código de la clasificación del producto</commentInRDBMS>
+<generatorID>504FBFDB-66B3-D20B-1459-E13D6A52B086</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Clasificacion" id="2C322033-1668-318B-8FC1-0DEB21A3A09D">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre de la clasificación del producto</comment>
+<commentInRDBMS>Nombre de la clasificación del producto</commentInRDBMS>
+<generatorID>F28C9AA7-6E11-EFC5-CBFA-871EAC5B7828</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9131EB0F-A642-BA90-107C-7ADBD13330AA" name="Clasificacion_Producto_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>AA46742E-E6C6-60D5-5C11-00A83697AD09</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="431146D6-E796-0CCA-0FF0-1479BE886DA4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.LineaInvestigacion;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author csacanam
+ */
+@FacesConverter("lineaInvestigacionConverter")
+public class LineaInvestigacionConverter implements Converter
+{
+    
+    private List<LineaInvestigacion> lineasInvestigacion = new ArrayList<>();
+    
+    @EJB
+    ProyectosSB proyectoSB;
+    
+    public LineaInvestigacionConverter()
+    {
+    }
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value)
+    {
+        if (value.trim().equals(""))
+        {
+            return null;
+        } else
+        {
+            
+            //Obtener nuevas líneas de investigación
+            lineasInvestigacion.clear();
+            lineasInvestigacion = proyectoSB.getLineaInvestigacionFacade().findAll();
+
+            //Encontrar línea de investigación y retornarlo
+            for (LineaInvestigacion lineaInv : lineasInvestigacion)
+            {
+                if (lineaInv.getCodigoLinea().equals(value))
+                {
+                    return lineaInv;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value)
+    {
+        if (value == null || value.equals(""))
+        {
+            return "";
+        } else
+        {
+            return ((LineaInvestigacion) value).getCodigoLinea();
+        }
+
+    }
+
+}

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Fases</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Editar Fase</h1>
+            <p:commandButton value="Crear" action="crear_fase" actionListener="#{convocatoriaNB.prepareCreate()}" icon="ui-icon-create" />
+        </h:form>
+
+        <h:form id="formFases">
+            <!--Despliegue de mensajes-->
+            <p:growl id="growl" showDetail="true" life="5000"/>
+
+            <!-- Table -->
+            <p:dataTable id="fasesTable" var="fase" value="#{convocatoriaNB.fases}">
+
+                <p:column style="text-align: center;" headerText="Id">
+                    <h:outputText value="#{fase.codigoFase}"  />
+                </p:column>
+
+                <p:column sortBy="#{fase.nombre}" style="text-align: center;" headerText="Nombre">
+                    <h:outputText value="#{fase.nombre}"  />
+                </p:column>
+
+
+                <p:column headerText="Fecha Inicio" style="text-align: center;">
+                    <h:outputText value="#{fase.fechaIni}"  />
+                </p:column>
+
+                <p:column headerText="Fecha de Finalización" style="text-align: center;">
+                    <h:outputText value="#{fase.fechaFin}"  />
+                </p:column>
+
+                <p:column headerText="Opciones" style="text-align: center;">
+                    <p:commandLink action="editar_fase" value="Editar" actionListener="#{convocatoriaNB.read(fase.codigoFase)}">
+                    </p:commandLink>
+                    &nbsp;
+                    <p:commandLink  value="Eliminar" actionListener="#{convocatoriaNB.eliminarFase((fase.codigoFase))}">
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

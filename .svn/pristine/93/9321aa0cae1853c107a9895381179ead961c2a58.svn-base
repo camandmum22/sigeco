@@ -1,0 +1,68 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.sessionbean.RubroFacade;
+import com.sigeco.ejb.sessionbean.SolicitudFacade;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author csacanam
+ */
+@Stateless
+public class SolicitudesSB
+{
+    @EJB
+    private SolicitudFacade solicitudFacade;
+    
+    @EJB
+    private RubroFacade rubroFacade;
+    
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+    
+    public SolicitudesSB() {
+        
+    }
+    
+ 
+
+    public RubroFacade getRubroFacade() {
+        return rubroFacade;
+    }
+
+    public void setRubroFacade(RubroFacade rubroFacade) {
+        this.rubroFacade = rubroFacade;
+    }
+    
+    public void guardarSolicitud(InputStream input) throws IOException{
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        byte[] buffer = new byte[10240];
+        for (int length = 0; (length = input.read(buffer)) > 0;) output.write(buffer, 0, length);
+        byte[] b=output.toByteArray();
+        String f="";
+    }
+
+    /**
+     * @return the solicitudFacade
+     */
+    public SolicitudFacade getSolicitudFacade() {
+        return solicitudFacade;
+    }
+
+    /**
+     * @param solicitudFacade the solicitudFacade to set
+     */
+    public void setSolicitudFacade(SolicitudFacade solicitudFacade) {
+        this.solicitudFacade = solicitudFacade;
+    }
+    
+}

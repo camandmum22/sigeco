@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Línea_GL" directorySegmentName="seg_0" id="C637433D-AFAB-CA3F-D44A-4020EF6094D4">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-20 20:02:04 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>1FDE0C4B-A02A-8449-9CEF-3C5385BFB576</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>335F9851-8F22-24B6-CB0F-8F4C4BB6EAEA</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>89CF2090-D046-5734-D99C-173BC78D4B56</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

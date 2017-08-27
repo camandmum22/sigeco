@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DE16A0C3-EEB1-E253-FDA1-036242D092A6" name="Investigador">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 13:28:06 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Grupo" id="A85C6A35-03D1-E402-58A6-DF2DB4CB4EBF">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 13:28:30 UTC</createdTime>
+<comment>Código del grupo de investigación</comment>
+<commentInRDBMS>Código del grupo de investigación</commentInRDBMS>
+<generatorID>8F162C4C-C93A-D3C6-9BA3-A3539D564302</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>B08C8DA7-81D9-DD64-29A1-96FC6D434FF4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Usuario" id="A94C1A6A-57E1-3243-F718-8D46EF6247DF">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 16:40:33 UTC</createdTime>
+<comment>Código del usuario</comment>
+<commentInRDBMS>Código del usuario</commentInRDBMS>
+<generatorID>E39F761B-D3AC-EBCA-E70C-18F24ADFD94E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>18A4D40B-D3D9-14B9-3131-BD32389FDF47</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="EsLider" id="64F39C64-B965-F759-A09F-44C6DFB99B16">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-20 04:36:00 UTC</createdTime>
+<comment>Atributo que permite conocer si el usuario del grupo de investigación, es Líder de Investigación.&lt;br/&gt;S=Sí&lt;br/&gt;N=No</comment>
+<commentInRDBMS>Atributo que permite conocer si el usuario del grupo de investigación, es Líder de Investigación.&lt;br/&gt;S=Sí&lt;br/&gt;N=No</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7AC09006-75A0-0AF1-62A8-8813DC55583D" name="{entity} PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 13:28:30 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A85C6A35-03D1-E402-58A6-DF2DB4CB4EBF</attributeRef>
+<attributeRef>A94C1A6A-57E1-3243-F718-8D46EF6247DF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

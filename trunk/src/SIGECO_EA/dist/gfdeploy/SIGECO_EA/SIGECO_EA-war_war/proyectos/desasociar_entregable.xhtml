@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html     
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Entregables Proyecto</title>
+    </h:head>
+     <h:body>
+        <h1>Desasociar entregables</h1>
+        #{entregablesNB.setProyecto(proyectosNB.proyecto)}
+
+        <!-- Formulario de creación de proyecto de investigación -->
+        <h:form id="form" >
+            <!-- Espacio para los mensajes emergentes -->
+            <p:growl id="growl" life="2000" />
+            <!-- Panel de información básica -->
+            <p:panel id="panel" header="Información general">
+
+                <table>
+                    <!--<p:outputLabel for="proyectoInv" value="Proyecto de investigación:" />-->
+                     <tr>
+                        <td><p:outputLabel value="Entregable" /></td>
+                        <td>  
+                            <h:selectOneMenu value="#{entregablesNB.entregable}">
+                                 <f:converter converterId="entregableConverter"  />
+                                 #{entregablesNB.setEntregables(entregablesNB.entregablesSB.buscarEntregablesPorProyecto(proyectosNB.proyecto))}
+                                <f:selectItems value="#{entregablesNB.entregables}" var="entregableProy" itemLabel="#{entregableProy.nombre}" itemValue="#{entregableProy}" />
+                        </h:selectOneMenu>   </td>
+                    </tr>
+                </table>
+            </p:panel>
+
+ 
+             <br></br>
+              <br></br>
+              &nbsp;
+              <p:commandButton value="Desasociar" update="growl" action="#{entregablesNB.delete(entregablesNB.entregable)}"  styleClass="ui-priority-primary" />
+
+        </h:form>
+
+    </h:body>
+</html>
+

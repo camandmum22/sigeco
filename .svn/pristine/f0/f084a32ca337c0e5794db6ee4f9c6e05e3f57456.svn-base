@@ -1,0 +1,131 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author csacanam
+ */
+@Entity
+@Table(name = "CLASIFICACION_PRODUCTO")
+@XmlRootElement
+@NamedQueries(
+{
+    @NamedQuery(name = "ClasificacionProducto.findAll", query = "SELECT c FROM ClasificacionProducto c"),
+    @NamedQuery(name = "ClasificacionProducto.findByCodigoClasificacion", query = "SELECT c FROM ClasificacionProducto c WHERE c.codigoClasificacion = :codigoClasificacion"),
+    @NamedQuery(name = "ClasificacionProducto.findByClasificacion", query = "SELECT c FROM ClasificacionProducto c WHERE c.clasificacion = :clasificacion")
+})
+public class ClasificacionProducto implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
+    @Column(name = "CODIGO_CLASIFICACION", nullable = false, length = 6)
+    private String codigoClasificacion;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(nullable = false, length = 100)
+    private String clasificacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoClasificacion", fetch = FetchType.LAZY)
+    private List<Producto> productoList;
+
+    public ClasificacionProducto()
+    {
+    }
+
+    public ClasificacionProducto(String codigoClasificacion)
+    {
+        this.codigoClasificacion = codigoClasificacion;
+    }
+
+    public ClasificacionProducto(String codigoClasificacion, String clasificacion)
+    {
+        this.codigoClasificacion = codigoClasificacion;
+        this.clasificacion = clasificacion;
+    }
+
+    public String getCodigoClasificacion()
+    {
+        return codigoClasificacion;
+    }
+
+    public void setCodigoClasificacion(String codigoClasificacion)
+    {
+        this.codigoClasificacion = codigoClasificacion;
+    }
+
+    public String getClasificacion()
+    {
+        return clasificacion;
+    }
+
+    public void setClasificacion(String clasificacion)
+    {
+        this.clasificacion = clasificacion;
+    }
+
+    @XmlTransient
+    public List<Producto> getProductoList()
+    {
+        return productoList;
+    }
+
+    public void setProductoList(List<Producto> productoList)
+    {
+        this.productoList = productoList;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoClasificacion != null ? codigoClasificacion.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ClasificacionProducto))
+        {
+            return false;
+        }
+        ClasificacionProducto other = (ClasificacionProducto) object;
+        if ((this.codigoClasificacion == null && other.codigoClasificacion != null) || (this.codigoClasificacion != null && !this.codigoClasificacion.equals(other.codigoClasificacion)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.ClasificacionProducto[ codigoClasificacion=" + codigoClasificacion + " ]";
+    }
+    
+}

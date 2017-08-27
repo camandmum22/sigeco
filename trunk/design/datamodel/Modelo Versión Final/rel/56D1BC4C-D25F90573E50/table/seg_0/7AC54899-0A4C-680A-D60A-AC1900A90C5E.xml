@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7AC54899-0A4C-680A-D60A-AC1900A90C5E" name="Grupo_Investigacion">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>870EACDB-10D1-2950-CD64-BE2592035DE1</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Grupo" id="0EAAFC5A-3F78-FF17-23A3-52882FA7502F">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del grupo de investigación</comment>
+<commentInRDBMS>Código del grupo de investigación</commentInRDBMS>
+<generatorID>B08C8DA7-81D9-DD64-29A1-96FC6D434FF4</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="91B0EAAE-0C19-2E54-19D0-F0D7B402AFC7">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre del grupo de investigación</comment>
+<commentInRDBMS>Nombre del grupo de investigación</commentInRDBMS>
+<generatorID>17942A39-4040-B58B-380B-0CA041598DDC</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Facultad" id="A32CDD61-CB48-4705-105F-2E455AD9F634">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la facultad</comment>
+<commentInRDBMS>Código de la facultad</commentInRDBMS>
+<generatorID>1A1B8DF7-20F3-17E0-3E17-8D592CB4F164</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<delegate>637AC25C-E51C-065D-F47A-0CD55DC5741E</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="157D7A57-B9D7-B084-CC1B-C28503899435" referredColumn="637AC25C-E51C-065D-F47A-0CD55DC5741E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CFC0EF8B-A6BD-504C-DD8F-26C1983F1DBE" name="Grupo_Investigacion_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>674A054A-576A-CDCD-F0FA-B6481E420C16</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0EAAFC5A-3F78-FF17-23A3-52882FA7502F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="29F0BD77-EB27-43A7-282E-B7BC191AE7C6" name="Grupo_Investigacion_Facultad_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>FEE76773-A20A-9A93-94C5-A597649B30BE</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A32CDD61-CB48-4705-105F-2E455AD9F634"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

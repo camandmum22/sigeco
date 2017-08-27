@@ -1,0 +1,68 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9B67502D-845E-C383-E888-063DF163646C" name="Rol_Menu">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 16:30:07 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Rol" id="A7D85E20-7D07-4CD2-562F-EC4D24827C52">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 16:30:32 UTC</createdTime>
+<comment>Código del rol</comment>
+<commentInRDBMS>Código del rol</commentInRDBMS>
+<generatorID>B825DD08-AAAE-E25B-60F4-53062464A506</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>F2353533-5F75-1938-5CA3-D69D72D362F1</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Menu" id="38FF106F-A608-E2A5-98A6-D3555E55DC8B">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:58:11 UTC</createdTime>
+<comment>Código del menú</comment>
+<commentInRDBMS>Código del menú</commentInRDBMS>
+<generatorID>14994426-58F6-2192-2784-FAD225AA80A7</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>5E78E95D-DB85-1494-D10B-5F902AB7550B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="54565175-162E-74FA-C0F8-CC275E1FA58C" name="{entity} PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 16:30:32 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A7D85E20-7D07-4CD2-562F-EC4D24827C52</attributeRef>
+<attributeRef>38FF106F-A608-E2A5-98A6-D3555E55DC8B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

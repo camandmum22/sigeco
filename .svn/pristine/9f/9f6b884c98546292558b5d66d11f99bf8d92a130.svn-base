@@ -1,0 +1,57 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Rubro;
+import com.sigeco.ejb.subsistemas.SolicitudesSB;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class SolicitudesNB {
+
+    @EJB
+    private SolicitudesSB solicitudesSB;
+
+    private List<Rubro> rubros;
+
+    /**
+     * Creates a new instance of SolicitudesNB
+     */
+    public SolicitudesNB() {
+    }
+
+    @PostConstruct
+    public void init() {
+        rubros = solicitudesSB.getRubroFacade().findAll();
+
+    }
+
+    public SolicitudesSB getSolicitudesSB() {
+        return solicitudesSB;
+    }
+
+    public List<Rubro> getRubros() {
+        return rubros;
+    }
+
+    public void setSolicitudesSB(SolicitudesSB solicitudesSB) {
+        this.solicitudesSB = solicitudesSB;
+    }
+
+    public void setRubros(List<Rubro> rubros) {
+        this.rubros = rubros;
+    }
+
+}

@@ -1,0 +1,133 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9A46A6C1-10FB-793D-2990-F7CDA59AC61A" name="Usuario_PCS">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-24 06:31:59 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>USP</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Dedicacion" id="24A77335-6FF2-6544-6F13-3E76DB9F7312">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-24 06:32:19 UTC</createdTime>
+<comment>La dedicación en horas al Proyecto de Investigación</comment>
+<commentInRDBMS>La dedicación en horas al Proyecto de Investigación</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="Codigo_Usuario" id="60C62DEF-AD81-0988-3001-230AD9E6C028">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-24 06:32:57 UTC</createdTime>
+<comment>Código del usuario</comment>
+<commentInRDBMS>Código del usuario</commentInRDBMS>
+<generatorID>399AE141-86E7-0E81-0D16-3EFDF0B4B687</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>18A4D40B-D3D9-14B9-3131-BD32389FDF47</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_RolPI" id="5F4FFAE7-82D7-42C0-DE2C-7C18DB644A80">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 15:00:36 UTC</createdTime>
+<comment>Código del rol en un grupo de investigación</comment>
+<commentInRDBMS>Código del rol en un grupo de investigación</commentInRDBMS>
+<generatorID>F141A11B-C7A7-35C5-95A8-3DF2A1B9A8BA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>A9076325-715D-2F49-E83D-040CA0B3938D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Convocatoria" id="4259AB7E-E32C-16DF-F57D-2B3D62A0FCE9">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-30 02:09:34 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>18465063-9BBF-2D1A-BC1B-CFCBC699C177</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>15B3B05E-849F-B95C-1990-09B39A08466B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Proyecto" id="EF0299BE-49F2-D482-9581-8646E95EE545">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-30 02:09:34 UTC</createdTime>
+<comment>Código del proyecto</comment>
+<commentInRDBMS>Código del proyecto</commentInRDBMS>
+<generatorID>18465063-9BBF-2D1A-BC1B-CFCBC699C177</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>3D196AF3-21C9-8C16-B30A-652E839F1A24</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Solicitud" id="009C476F-07E5-DC6B-1370-5698CE216353">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-30 02:09:34 UTC</createdTime>
+<comment>Código de la solicitud.&lt;br/&gt;N=Nuevo&lt;br/&gt;A=Adición	&lt;br/&gt;P=Prórroga&lt;br/&gt;AP=Adición y prórroga</comment>
+<commentInRDBMS>Código de la solicitud.&lt;br/&gt;N=Nuevo&lt;br/&gt;A=Adición	&lt;br/&gt;P=Prórroga&lt;br/&gt;AP=Adición y prórroga</commentInRDBMS>
+<generatorID>18465063-9BBF-2D1A-BC1B-CFCBC699C177</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>BE60C612-0237-9E47-CC3D-A42D10D7419A</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5549F08E-4D8E-7C75-35FA-B8C4368756A2" name="{entity} PK">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-24 06:32:57 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>60C62DEF-AD81-0988-3001-230AD9E6C028</attributeRef>
+<attributeRef>4259AB7E-E32C-16DF-F57D-2B3D62A0FCE9</attributeRef>
+<attributeRef>EF0299BE-49F2-D482-9581-8646E95EE545</attributeRef>
+<attributeRef>009C476F-07E5-DC6B-1370-5698CE216353</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9EB2C6E3-5954-AC93-0B2B-03DB0ACBBA5A" name="Facultad_Convocatoria">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>008C36C2-2390-4360-F34F-00FE927DB3C8</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Convocatoria" id="95B5D94E-5D54-C92F-707D-9D7BD2A9988F">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>039170F4-8E7C-7CBC-9421-738656AF91DD</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>43E04223-4EA0-AD44-B883-061E1A9D00D4</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1860AD14-AED1-DBE9-4FD7-345F3F1642CB" referredColumn="43E04223-4EA0-AD44-B883-061E1A9D00D4"/>
+</associations>
+</Column>
+<Column name="Codigo_Facultad" id="C5D45DC4-54CE-A100-EDEE-B351AE334753">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la facultad</comment>
+<commentInRDBMS>Código de la facultad</commentInRDBMS>
+<generatorID>F7144447-740D-1406-3DCF-79A20085892D</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<delegate>637AC25C-E51C-065D-F47A-0CD55DC5741E</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4AC7BD1F-DA2B-8122-9053-50EB9915EAB2" referredColumn="637AC25C-E51C-065D-F47A-0CD55DC5741E"/>
+</associations>
+</Column>
+<Column name="Presupuesto" id="A3B4E94D-413B-D8E6-D037-A4606D236765">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Presupuesto de la facultad en una convocatoria</comment>
+<commentInRDBMS>Presupuesto de la facultad en una convocatoria</commentInRDBMS>
+<generatorID>9EC26F59-6AD5-9CF6-A966-2D03099CFB01</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B8E500B9-B113-5A9B-8246-206C6A77CE8F" name="Facultad_Convocatoria_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>8AE73BF3-4956-14AE-A7DF-3F9CCC26F97A</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="95B5D94E-5D54-C92F-707D-9D7BD2A9988F"/>
+<colUsage columnID="C5D45DC4-54CE-A100-EDEE-B351AE334753"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D3827A53-AA60-B72F-FC1B-B7A71ACC59D9" name="Facultad_Convocatoria_Convocatoria_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>8D68CC55-3D3B-EA3F-D4CA-D042EF5DF6FB</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="95B5D94E-5D54-C92F-707D-9D7BD2A9988F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4E7DC303-A3B8-5BB2-FB81-B9BBDCBF901A" name="Facultad_Convocatoria_Facultad_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>CEB17DEB-30AC-976E-9D1F-84CF80B49763</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C5D45DC4-54CE-A100-EDEE-B351AE334753"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

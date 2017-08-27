@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="595AD261-822F-27E8-21EC-245168F2887A" name="Tipo_Proyecto">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>B38EE48E-DD02-579A-4464-590C87BE4745</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>TPR</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_TPR" id="0CF46811-F025-A20E-7CCD-BC7F58459928">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del tipo de proyecto</comment>
+<commentInRDBMS>Código del tipo de proyecto</commentInRDBMS>
+<generatorID>861B1837-3516-A535-DFC2-DDCFF9111536</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="C941629E-6FAC-6093-4E96-A7F079ADA04A">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre del tipo de proyecto</comment>
+<commentInRDBMS>Nombre del tipo de proyecto</commentInRDBMS>
+<generatorID>26E370CE-F607-932E-DB26-4AE13EB1D25A</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripcion" id="4F09DB39-1C35-7F25-D8B0-8E4529E53E3A">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Descripción del tipo de proyecto</comment>
+<commentInRDBMS>Descripción del tipo de proyecto</commentInRDBMS>
+<generatorID>86EE348A-D679-F887-DC8E-E4FFD278E462</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1A6304D3-0B97-E564-AB3D-F7599906BE9A" name="Tipo_Proyecto_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>A7635D89-39EC-DDBC-AD0F-C0915A4ECF26</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0CF46811-F025-A20E-7CCD-BC7F58459928"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

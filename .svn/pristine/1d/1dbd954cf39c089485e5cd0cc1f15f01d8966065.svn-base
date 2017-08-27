@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="56B4AB76-42C2-42DB-9A9A-1D396B18D9D6" name="Tarifa">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 22:50:59 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>TAR</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Valor" id="E4AD453A-E9B2-E650-94CB-CBF6FA482250">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 22:51:06 UTC</createdTime>
+<comment>Valor pagado al usuario</comment>
+<commentInRDBMS>Valor pagado al usuario</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+</Attribute>
+<Attribute name="Codigo_Usuario" id="AE4FD068-DDB6-AC44-43D7-5ACC72EC1725">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 22:52:31 UTC</createdTime>
+<comment>Código del usuario</comment>
+<commentInRDBMS>Código del usuario</commentInRDBMS>
+<generatorID>FCB396AA-37F8-0387-1736-647CC35BE0E6</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>18A4D40B-D3D9-14B9-3131-BD32389FDF47</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Modalidad" id="F29460DE-9250-D9DB-DEF6-5856FC7B32F9">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 22:52:43 UTC</createdTime>
+<comment>Código de la modalidad</comment>
+<commentInRDBMS>Código de la modalidad</commentInRDBMS>
+<generatorID>8F339035-B672-9585-16BD-D88CF7212789</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>843EEDCA-41B2-E1F8-5C2B-B25974F5E13E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="130F7654-A7A7-FFC1-AC06-F90C2B5ABE44" name="{entity} PK">
+<createdBy>1151951525</createdBy>
+<createdTime>2015-03-20 22:52:31 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>AE4FD068-DDB6-AC44-43D7-5ACC72EC1725</attributeRef>
+<attributeRef>F29460DE-9250-D9DB-DEF6-5856FC7B32F9</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

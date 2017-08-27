@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html     
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Asociar rubros</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h1>Asociar rubros</h1>
+        
+               <!-- Formulario de creación de proyecto de investigación -->
+        <h:form id="form" >
+            <!-- Espacio para los mensajes emergentes -->
+            <p:growl id="growl" life="2000" />
+            <!-- Panel de información básica -->
+            <p:panel id="panel" header="Información general">
+                <h:panelGrid columns="2" width="100%" cellpadding="5px" cellspacing="5px">
+                    
+                    <p:outputLabel for="proyectoInv" value="Proyecto de investigación:" />
+                    <h:selectOneMenu id="proyectoInv" required="true" >
+                        <f:selectItems  />
+                    </h:selectOneMenu>
+
+                    <p:outputLabel for="tipoRubro" value="Tipo rubro:" />
+                    <h:selectOneMenu id="tipoRubro" required="true" >
+                        <f:selectItems />
+                    </h:selectOneMenu>   
+                                        
+                    <p:outputLabel for="cantidadRubro" value="Cantidad:" />
+                    <p:inputText  id="cantidadRubro" required="true">
+                        <f:validateLength minimum="2" />
+                    </p:inputText>
+                </h:panelGrid>
+            </p:panel>
+
+            <!-- Botón crear proyecto -->
+            <p:commandButton value="Asociar" update="growl" actionListener="#{proyectosNB.crearProyecto()}" styleClass="ui-priority-primary" />
+
+        </h:form>
+               
+    </h:body>
+</html>

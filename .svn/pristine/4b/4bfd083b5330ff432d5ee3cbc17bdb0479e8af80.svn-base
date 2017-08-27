@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="TPR_PIN" directorySegmentName="seg_0" id="9A7F3CAD-D3A4-8834-671A-916C8E09334C">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 05:59:18 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>A7635D89-39EC-DDBC-AD0F-C0915A4ECF26</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>B38EE48E-DD02-579A-4464-590C87BE4745</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>1C5A1A2F-529F-405F-EC0A-B6CAD5D920AE</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

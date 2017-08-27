@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Rol_PR" directorySegmentName="seg_0" id="91803CBE-DBBF-F38C-7EBC-46CD991D8280">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 16:15:47 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>CFD45C02-76A5-20F7-B44B-17D053B812A2</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>29572208-CAF8-16C4-8AD1-1CC4F1FD7CE3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>25FCD3DE-2E5F-E5BC-94A8-E23211268A18</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

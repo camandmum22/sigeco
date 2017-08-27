@@ -1,0 +1,166 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7E206E4B-AC0A-3A6B-7DE0-79D3A7CEAEC5" name="Usuario_PCS">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>9A46A6C1-10FB-793D-2990-F7CDA59AC61A</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>USP</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Dedicacion" id="6DCA87F4-2C67-598F-7CDB-3C5E1B89784B">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>La dedicación en horas al Proyecto de Investigación</comment>
+<commentInRDBMS>La dedicación en horas al Proyecto de Investigación</commentInRDBMS>
+<generatorID>24A77335-6FF2-6544-6F13-3E76DB9F7312</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Usuario" id="B41C5AED-0AC5-5945-38CE-D5539A451445">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del usuario</comment>
+<commentInRDBMS>Código del usuario</commentInRDBMS>
+<generatorID>60C62DEF-AD81-0988-3001-230AD9E6C028</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<delegate>77FF0873-6C0E-BEE3-8AE9-677ED19C6E09</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="74175D04-4A93-7ABE-37D6-F258008CA9F5" referredColumn="77FF0873-6C0E-BEE3-8AE9-677ED19C6E09"/>
+</associations>
+</Column>
+<Column name="Codigo_RolPI" id="1B61F648-EA0D-8AEB-277E-A60E741E42E5">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del rol en un grupo de investigación</comment>
+<commentInRDBMS>Código del rol en un grupo de investigación</commentInRDBMS>
+<generatorID>5F4FFAE7-82D7-42C0-DE2C-7C18DB644A80</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<delegate>993BFA63-912C-9FBD-CEC3-ADD5893C4161</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E9FE2A8C-8D88-6214-8C66-4E2EF20FAC70" referredColumn="993BFA63-912C-9FBD-CEC3-ADD5893C4161"/>
+</associations>
+</Column>
+<Column name="Codigo_Convocatoria" id="50EEF31B-16A0-D9D9-86B3-A4644EA2745E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>4259AB7E-E32C-16DF-F57D-2B3D62A0FCE9</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>27D71667-A697-7ECF-5228-84534D999B7A</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A2D0F1F3-E150-E350-A424-2106C2D87BF8" referredColumn="27D71667-A697-7ECF-5228-84534D999B7A"/>
+</associations>
+</Column>
+<Column name="Codigo_Proyecto" id="1A2E7E73-D69D-981A-BCAB-5023C6527933">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del proyecto</comment>
+<commentInRDBMS>Código del proyecto</commentInRDBMS>
+<generatorID>EF0299BE-49F2-D482-9581-8646E95EE545</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<delegate>991654E2-F341-BC2C-94D6-068E4703152E</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A2D0F1F3-E150-E350-A424-2106C2D87BF8" referredColumn="991654E2-F341-BC2C-94D6-068E4703152E"/>
+</associations>
+</Column>
+<Column name="Codigo_Solicitud" id="33CBE236-B26B-A58A-69A0-29BFE5A6D006">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la solicitud.&lt;br/&gt;N=Nuevo&lt;br/&gt;A=Adición	&lt;br/&gt;P=Prórroga&lt;br/&gt;AP=Adición y prórroga</comment>
+<commentInRDBMS>Código de la solicitud.&lt;br/&gt;N=Nuevo&lt;br/&gt;A=Adición	&lt;br/&gt;P=Prórroga&lt;br/&gt;AP=Adición y prórroga</commentInRDBMS>
+<generatorID>009C476F-07E5-DC6B-1370-5698CE216353</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<delegate>B65EEACE-34B1-7287-03D3-B526F0D52845</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A2D0F1F3-E150-E350-A424-2106C2D87BF8" referredColumn="B65EEACE-34B1-7287-03D3-B526F0D52845"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A79F1E39-176D-5CA7-85AA-8671470412B6" name="Usuario_PCS_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>5549F08E-4D8E-7C75-35FA-B8C4368756A2</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B41C5AED-0AC5-5945-38CE-D5539A451445"/>
+<colUsage columnID="50EEF31B-16A0-D9D9-86B3-A4644EA2745E"/>
+<colUsage columnID="1A2E7E73-D69D-981A-BCAB-5023C6527933"/>
+<colUsage columnID="33CBE236-B26B-A58A-69A0-29BFE5A6D006"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ABDAFFA0-D704-E548-8902-7203C3E09E57" name="Usuario_PCS_PRO_CON_SOL_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>18465063-9BBF-2D1A-BC1B-CFCBC699C177</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="50EEF31B-16A0-D9D9-86B3-A4644EA2745E"/>
+<colUsage columnID="1A2E7E73-D69D-981A-BCAB-5023C6527933"/>
+<colUsage columnID="33CBE236-B26B-A58A-69A0-29BFE5A6D006"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B40120E3-2D14-0BD2-1E74-09F8C353E7F0" name="Usuario_PCS_Rol_Proyecto_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>F141A11B-C7A7-35C5-95A8-3DF2A1B9A8BA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1B61F648-EA0D-8AEB-277E-A60E741E42E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A5B7A023-94B2-B1E7-65E6-312283DB6475" name="Usuario_PCS_Usuario_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>399AE141-86E7-0E81-0D16-3EFDF0B4B687</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B41C5AED-0AC5-5945-38CE-D5539A451445"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

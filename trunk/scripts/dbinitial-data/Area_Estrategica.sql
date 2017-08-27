@@ -1,0 +1,10 @@
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	1	,	 Identificación y uso sostenible de la biodiversidad	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	2	,	Aprovechamiento y preservación de recursos hídricos	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	3	,	Energía y recursos naturales	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	4	,	Desarrollo de la electrónica y materiales	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	5	,	Tecnologías de información y comunicaciones (TICs)	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	6	,	Desarrollo de la investigación en ciencias de la salud	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	7	,	Biotecnología	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	8	,	Logística y diseño	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	9	,	Construcción de ciudadanía e inclusión social	,	null	)	;
+INSERT INTO	Area_Estrategica	(	Codigo	,	Nombre	,	Descripcion	)	VALUES	(	10	,	Estudios sociales colombianos	,	null	)	;

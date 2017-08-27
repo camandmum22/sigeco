@@ -1,0 +1,277 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.GrupoLinea;
+import com.sigeco.ejb.entities.GrupoLineaPK;
+import com.sigeco.ejb.entities.LineaInvestigacion;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.TipoInvestigacion;
+
+import com.sigeco.ejb.entities.TipoProyecto;
+import com.sigeco.ejb.exceptions.ProyectoException;
+import com.sigeco.ejb.subsistemas.EstadosSB;
+import com.sigeco.ejb.subsistemas.GrupoInvestigacionSB;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import com.sigeco.utilities.Mensajes;
+import com.sigeco.utilities.Validaciones;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import org.primefaces.model.UploadedFile;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@RequestScoped
+public class ProyectosNB
+{
+
+    //Atributos de un proyectoNuevo
+    private GrupoInvestigacion grupoInvestigacion;
+    private LineaInvestigacion lineaInvestigacion;
+    private boolean aprobacionEtica;
+    private UploadedFile aprobacionEticaDoc;
+    private ProyectoInvestigacion proyectoNuevo;
+
+    //Atributos para editar un proyecto
+    private ProyectoInvestigacion proyecto;
+
+    //Lista de entidades
+    private List<GrupoInvestigacion> gruposInvestigacion;
+    private List<ProyectoInvestigacion> proyectosInvestigacion;
+    private List<TipoProyecto> tiposProyecto;
+    private List<LineaInvestigacion> lineasInvestigacion;
+    private List<TipoInvestigacion> tiposInvestigacion;
+
+    //Session bean
+    @EJB
+    GrupoInvestigacionSB grupoInvestigacionSB;
+
+    @EJB
+    ProyectosSB proyectoSB;
+
+    /**
+     * Creates a new instance of ProyectosNB
+     */
+    public ProyectosNB()
+    {
+
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        gruposInvestigacion = grupoInvestigacionSB.getGrupoInvestigacionFacade().findAll();
+        proyectosInvestigacion = proyectoSB.getProyectoFacade().findAll();
+        tiposProyecto = proyectoSB.getTipoProyectoFacade().findAll();
+        lineasInvestigacion = proyectoSB.getLineaInvestigacionFacade().findAll();
+        tiposInvestigacion = proyectoSB.getTipoInvestigacionFacade().findAll();
+        proyecto = new ProyectoInvestigacion();
+        proyectoNuevo = new ProyectoInvestigacion();
+
+    }
+
+    /**
+     * Permite crear un proyectoNuevo de investigación
+     */
+    public void crearProyecto()
+    {
+
+        //Poner aprobación ética
+        if (aprobacionEtica)
+        {
+            proyectoNuevo.setAprobacionEtica("Y");
+        } else
+        {
+            proyectoNuevo.setAprobacionEtica("N");
+        }
+
+        //Agregar documento de aprobación de ética
+        if (aprobacionEticaDoc != null)
+        {
+            File archivo = new File(aprobacionEticaDoc.getFileName());
+            
+            if (archivo.isFile())
+            {
+                proyectoNuevo.setDocEtica(archivo);
+            } else
+            {
+                proyectoNuevo.setDocEtica(null);
+            }
+        } else
+        {
+            proyectoNuevo.setDocEtica(null);
+        }
+
+        //Agregar grupo linea
+        if (grupoInvestigacion != null && lineaInvestigacion != null)
+        {
+            GrupoLineaPK grupoLineaPK = new GrupoLineaPK(grupoInvestigacion.getCodigoGrupo(), lineaInvestigacion.getCodigoLinea());
+            GrupoLinea gLinea = new GrupoLinea(grupoLineaPK);
+            gLinea.setGrupoInvestigacion(grupoInvestigacion);
+            gLinea.setLineaInvestigacion(lineaInvestigacion);
+            proyectoNuevo.setGrupoLinea(gLinea);
+        } else
+        {
+            proyectoNuevo.setGrupoLinea(null);
+        }
+
+        //Crear proyecto de investigación
+        try
+        {
+            proyectoSB.crearProyecto(proyectoNuevo);
+            proyectosInvestigacion.add(proyectoNuevo);
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Se creó el proyecto de investigación", "Se creó el proyecto de investigación");
+        } catch (ProyectoException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "¡Hubo problemas!", ex.getMessage());
+        }
+
+    }
+
+    /**
+     * Permite editar un proyectoNuevo de Investigación
+     */
+    public void editarProyecto()
+    {
+
+        try
+        {
+            proyectoSB.editarProyecto(proyecto.getCodigoProyecto(), proyecto.getTitulo(), proyecto.getResumenEjecutivo(), proyecto.getFechainicio(), proyecto.getFechafin(),
+                    proyecto.getPresupuestoEsperado(), proyecto.getAprobacionEtica());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Se editó el proyecto de investigación", proyecto.toString());
+
+        } catch (ProyectoException ex)
+        {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo editar", "No se pudo editar");
+        }
+    }
+
+    //Getter y setters
+    public boolean isAprobacionEtica()
+    {
+        return aprobacionEtica;
+    }
+
+    public UploadedFile getAprobacionEticaDoc()
+    {
+        return aprobacionEticaDoc;
+    }
+
+    public GrupoInvestigacion getGrupoInvestigacion()
+    {
+        return grupoInvestigacion;
+    }
+
+    public List<GrupoInvestigacion> getGruposInvestigacion()
+    {
+        return gruposInvestigacion;
+    }
+
+    public List<ProyectoInvestigacion> getProyectosInvestigacion()
+    {
+        return proyectosInvestigacion;
+    }
+
+    public void setAprobacionEtica(boolean aprobacionEtica)
+    {
+        this.aprobacionEtica = aprobacionEtica;
+    }
+
+    public LineaInvestigacion getLineaInvestigacion()
+    {
+        return lineaInvestigacion;
+    }
+
+    public List<TipoProyecto> getTiposProyecto()
+    {
+        return tiposProyecto;
+    }
+
+    public List<LineaInvestigacion> getLineasInvestigacion()
+    {
+        return lineasInvestigacion;
+    }
+
+    public List<TipoInvestigacion> getTiposInvestigacion()
+    {
+        return tiposInvestigacion;
+    }
+
+    public void setAprobacionEticaDoc(UploadedFile aprobacionEticaDoc)
+    {
+        this.aprobacionEticaDoc = aprobacionEticaDoc;
+    }
+
+    public void setGrupoInvestigacion(GrupoInvestigacion grupoInvestigacion)
+    {
+        this.grupoInvestigacion = grupoInvestigacion;
+    }
+
+    public void setGruposInvestigacion(List<GrupoInvestigacion> gruposInvestigacion)
+    {
+        this.gruposInvestigacion = gruposInvestigacion;
+    }
+
+    public void setProyectosInvestigacion(List<ProyectoInvestigacion> proyectosInvestigacion)
+    {
+        this.proyectosInvestigacion = proyectosInvestigacion;
+    }
+
+    public void setTiposProyecto(List<TipoProyecto> tiposProyecto)
+    {
+        this.tiposProyecto = tiposProyecto;
+    }
+
+    public void setLineaInvestigacion(LineaInvestigacion lineaInvestigacion)
+    {
+        this.lineaInvestigacion = lineaInvestigacion;
+    }
+
+    public ProyectoInvestigacion getProyecto()
+    {
+        return proyecto;
+    }
+
+    public void setProyecto(ProyectoInvestigacion proyecto)
+    {
+        this.proyecto = proyecto;
+    }
+
+    public ProyectoInvestigacion getProyectoNuevo()
+    {
+        return proyectoNuevo;
+    }
+
+    public void setProyectoNuevo(ProyectoInvestigacion proyectoNuevo)
+    {
+        this.proyectoNuevo = proyectoNuevo;
+    }
+
+    public void onGroupsChange()
+    {
+        if (grupoInvestigacion != null)
+        {
+            lineasInvestigacion = proyectoSB.buscarLineasPorGrupo(grupoInvestigacion);
+        }
+
+    }
+
+}

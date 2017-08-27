@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="F_GI" directorySegmentName="seg_0" id="FEE76773-A20A-9A93-94C5-A597649B30BE">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:49:27 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>93DC936A-EC50-3E47-383D-A5148DF0FD02</sourcePk>
+<identifying>false</identifying>
+<nameOnTarget>Relación grupo facultad</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E285E787-8D21-7E89-9628-77AE08905139</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>870EACDB-10D1-2950-CD64-BE2592035DE1</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

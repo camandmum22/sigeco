@@ -1,0 +1,197 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.AreaEstrategica;
+import com.sigeco.ejb.entities.Facultad;
+import com.sigeco.ejb.entities.FacultadConvocatoria;
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.Investigador;
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.subsistemas.GrupoInvestigacionSB;
+import com.sigeco.ejb.subsistemas.UsuarioSB;
+import com.sigeco.utilities.Mensajes;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class GrupoInvestigacionNB {
+
+    private List<Facultad> facultades;
+
+    private List<AreaEstrategica> areasEstrategicas;
+
+    private List<GrupoInvestigacion> gruposInvestigacion;
+
+    private List<FacultadConvocatoria> facultadesConvocatoria;
+
+    @EJB
+    GrupoInvestigacionSB grupoInvestigacionSB;
+    @EJB
+    UsuarioSB usuarioSB;
+
+    /**
+     * Arreglo para guardar las facultades seleccionadas en la vista
+     * aprobacion_comite
+     */
+    private List<String> facultadesSeleccionadas;
+    
+    private Usuario investigadorAAsociar;
+    
+    private List<Usuario> investigadores;
+
+    /**
+     * Creates a new instance of GrupoInvestigacionNB
+     */
+    public GrupoInvestigacionNB() {
+    }
+
+    @PostConstruct
+    public void init() {
+        facultades = grupoInvestigacionSB.getFacultadFacade().findAll();
+        gruposInvestigacion = grupoInvestigacionSB.getGrupoInvestigacionFacade().findAll();
+        areasEstrategicas = grupoInvestigacionSB.getAreaEstrategicaFacade().findAll();
+        facultadesConvocatoria = grupoInvestigacionSB.getFacultadConvocatoriaFacade().findAll();
+        facultadesSeleccionadas = new ArrayList<>();
+        investigadores=usuarioSB.getInvestigadores();
+    }
+
+    /**
+     * Aprueba los presupuestos de las facultades seleccionadas
+     */
+    public void aprobarPresupuestoPorComiteInvestigacion() {
+
+        for (String codFacultad : facultadesSeleccionadas) {
+            //El arreglo es de Strings, es por eso que se debe cambiar a BigDecimal
+            BigDecimal codF = new BigDecimal(codFacultad);
+            //Se busca la facultad
+            Facultad facultad = grupoInvestigacionSB.getFacultadFacade().find(codF);
+            //Se llama al método del SessionBean
+            grupoInvestigacionSB.aprobarPresupuestoPorComiteInvestigacion(facultad, darPresupuestoFacultad(facultad));
+        }
+
+        Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Aprobación", "Se aprobaron los presupuestos correctamente");
+        facultadesSeleccionadas.clear();
+    }
+
+    /**
+     * Devuelve el presupuesto de una facultad
+     *
+     * @param facultad Facultad a calcular el presupuesto
+     * @return el presupuesto de la facultad
+     */
+    public BigInteger darPresupuestoFacultad(Facultad facultad) {
+        return grupoInvestigacionSB.calcularPresupuesto(facultad);
+    }
+
+    // Getters y setters
+    public List<AreaEstrategica> getAreasEstrategicas() {
+        return areasEstrategicas;
+    }
+
+    public void setAreasEstrategicas(List<AreaEstrategica> areasEstrategicas) {
+        this.areasEstrategicas = areasEstrategicas;
+    }
+
+    public List<Facultad> getFacultades() {
+        return facultades;
+    }
+
+    public void setFacultades(List<Facultad> facultades) {
+        this.facultades = facultades;
+    }
+
+    /**
+     * @return the gruposInvestigacion
+     */
+    public List<GrupoInvestigacion> getGruposInvestigacion() {
+        return gruposInvestigacion;
+    }
+
+    /**
+     * @param gruposInvestigacion the gruposInvestigacion to set
+     */
+    public void setGruposInvestigacion(List<GrupoInvestigacion> gruposInvestigacion) {
+        this.gruposInvestigacion = gruposInvestigacion;
+    }
+
+    /**
+     * @return the facultadesSeleccionadas
+     */
+    public List<String> getFacultadesSeleccionadas() {
+        return facultadesSeleccionadas;
+    }
+
+    /**
+     * @param facultadesSeleccionadas the facultadesSeleccionadas to set
+     */
+    public void setFacultadesSeleccionadas(List<String> facultadesSeleccionadas) {
+        this.facultadesSeleccionadas = facultadesSeleccionadas;
+    }
+
+    public void asociarInvestigadoresAGrupoDeInvestigacion(String documentoLider, String documentoInvestigador) {
+        if (documentoLider == null || documentoInvestigador == null) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error", "Debe indicar un documento del líder y el documento del investigador a asociar.");
+        } else {
+            grupoInvestigacionSB.agregarInvestigadorAGrupo(documentoLider, documentoInvestigador);
+        }
+    }
+
+    public List<FacultadConvocatoria> getFacultadesConvocatoria() {
+        return facultadesConvocatoria;
+    }
+
+    public void setFacultadesConvocatoria(List<FacultadConvocatoria> facultadesConvocatoria) {
+        this.facultadesConvocatoria = facultadesConvocatoria;
+    }
+
+    public GrupoInvestigacionSB getGrupoInvestigacionSB() {
+        return grupoInvestigacionSB;
+    }
+
+    public void setGrupoInvestigacionSB(GrupoInvestigacionSB grupoInvestigacionSB) {
+        this.grupoInvestigacionSB = grupoInvestigacionSB;
+    }
+
+    public UsuarioSB getUsuarioSB() {
+        return usuarioSB;
+    }
+
+    public void setUsuarioSB(UsuarioSB usuarioSB) {
+        this.usuarioSB = usuarioSB;
+    }
+
+    public Usuario getInvestigadorAAsociar() {
+        return investigadorAAsociar;
+    }
+
+    public void setInvestigadorAAsociar(Usuario investigadorAAsociar) {
+        this.investigadorAAsociar = investigadorAAsociar;
+    }
+    
+    
+
+    public List<Usuario> getInvestigadores() {
+        return investigadores;
+    }
+
+    public void setInvestigadores(List<Usuario> investigadores) {
+        this.investigadores = investigadores;
+    }
+
+}

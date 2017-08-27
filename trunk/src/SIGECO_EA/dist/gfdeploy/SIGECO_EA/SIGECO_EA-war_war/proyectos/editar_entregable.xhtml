@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html     
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Entregables Proyecto</title>
+    </h:head>
+     <h:body>
+        <h1>Asociar entregables</h1>
+        #{entregablesNB.init()}
+
+        <!-- Formulario de creación de proyecto de investigación -->
+        <h:form id="form" >
+            <!-- Espacio para los mensajes emergentes -->
+            <p:growl id="growl" life="2000" />
+            <!-- Panel de información básica -->
+            <p:panel id="panel" header="Información general">
+
+                <table>
+                    <!--<p:outputLabel for="proyectoInv" value="Proyecto de investigación:" />-->
+                     <tr>
+                        <td><p:outputLabel value="Proyecto " ></p:outputLabel></td>
+                        #{entregablesNB.setProyecto(proyectosNB.proyecto)}
+                        <td><p:inputText disabled="true" required="true" value="#{entregablesNB.proyecto.titulo}"> </p:inputText></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel value="Nombre " ></p:outputLabel></td>
+                        <td><p:inputText required="true" value="#{entregablesNB.entregable.nombre}" > </p:inputText></td>
+                    </tr>
+                      <tr>
+                        <td><p:outputLabel value="Estado " ></p:outputLabel></td>
+                        <td><p:selectOneRadio id="estado" value="#{entregablesNB.entregable.estCodigo}">
+                            <f:converter converterId="estadoConverter" /> 
+                            <f:selectItem itemLabel="Publicado" itemValue="#{entregablesNB.estadoPublicado}" value="#{entregablesNB.setEstado(entregablesNB.estadoPublicado)}" />
+                            <f:selectItem itemLabel="Sometido" itemValue="#{entregablesNB.estadoSometido}" value="#{entregablesNB.setEstado(entregablesNB.estadoSometido)}"  />
+                         </p:selectOneRadio>
+                        </td>                    
+                      </tr>
+                     <tr>
+                        <td><p:outputLabel value="Fecha Estimada de Entrega " ></p:outputLabel></td>
+                        <td><p:calendar value="#{entregablesNB.entregable.fechaestimada}" pattern="dd/mm/yyyy "></p:calendar></td>
+                    </tr>
+                     <tr>
+                        <td><p:outputLabel value="Fecha Real de Entrega " ></p:outputLabel></td>
+                        <td><p:calendar value="#{entregablesNB.entregable.fechareal}" pattern="dd/mm/yyyy"> </p:calendar></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel for="producto" value="Producto" /></td>
+                        <td>  <h:selectOneMenu id="producto" value="#{entregablesNB.producto}" required="true"  >
+                        <f:converter converterId="productoConverter" />
+                        <f:selectItems value="#{entregablesNB.productos}" var="productoProy" itemLabel="#{productoProy.nombre}" itemValue="#{productoProy}" />
+                        <p:ajax listener="#{entregablesNB.onChangeProdShowSubpr()}" update="subproducto" event="change"/>
+                            </h:selectOneMenu>   </td>
+                    </tr>
+
+                    <tr><td><p:outputLabel for="subproducto" value="Subproducto:" /></td>
+                        <td>  <h:selectOneMenu id="subproducto" value="#{entregablesNB.subproducto}" required="true" >
+                        <f:converter converterId="subproductoConverter" />
+                        <f:selectItems value="#{entregablesNB.subproductos}" var="subprodProy" itemLabel="#{subprodProy.categoria}" itemValue="#{subprodProy}" />
+                            </h:selectOneMenu></td>
+                    </tr>
+                 </table>
+            </p:panel>
+
+ 
+             <br></br>
+              <br></br>
+              &nbsp;
+            <p:commandButton value="Asociar" update="growl" action="#{entregablesNB.create()}"  styleClass="ui-priority-primary" />
+
+        </h:form>
+
+    </h:body>
+</html>
+

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Aprobación de presupuesto</title>
+    </h:head>
+    <h:body>        
+
+        <h1>Aprobación de presupuesto</h1>
+        <h:form id="formAprobacionComite">
+            <!--Despliegue de mensajes-->
+            <p:growl id="growl" showDetail="true" life="5000"/>
+
+            <!-- Table -->
+            <p:dataTable id="tableFacultades" var="facultad" value="#{grupoInvestigacionNB.facultades}">
+
+                <p:column style="text-align: center;" headerText="Codigo">
+                    <h:outputText value="#{facultad.codigo}"  />
+                </p:column>
+
+                <p:column sortBy="#{facultad.nombre}" style="text-align: center;" headerText="Nombre">
+                    <h:outputText value="#{facultad.nombre}"  />
+                </p:column>
+
+                <p:column headerText="Presupuesto" style="text-align: center;">
+                    <h:outputText value="#{grupoInvestigacionNB.darPresupuestoFacultad(facultad)}"  />
+                </p:column>
+
+            </p:dataTable>
+
+            <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="facultades" value="Aprobar:" />
+                <p:selectManyCheckbox id="facultades" value="#{grupoInvestigacionNB.facultadesSeleccionadas}" layout="grid" columns="2">
+                    <f:selectItems value="#{grupoInvestigacionNB.facultades}" var="facultad" itemLabel="#{facultad.nombre}" itemValue="#{facultad.codigo}"></f:selectItems>
+                </p:selectManyCheckbox>
+            </h:panelGrid>
+
+
+            <p:commandButton value="Aprobar" update="growl" action="aprobacion_comite" actionListener="#{grupoInvestigacionNB.aprobarPresupuestoPorComiteInvestigacion()}" styleClass="ui-priority-primary"/>
+
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A46A6864-CBBA-1ECE-AA19-8AAEE998D10D" name="Tipo_Investigacion">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>40C80C0D-4CFC-745D-3EA8-507DA4728BC8</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>TIN</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_TIN" id="AE8F4C5D-3BD9-A3B0-1FE4-F46C5025A8E6">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del tipo de investigación</comment>
+<commentInRDBMS>Código del tipo de investigación</commentInRDBMS>
+<generatorID>8BEA46B6-1453-D8E6-BD7D-76A6E9ECB20A</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Tipo" id="A01782B5-76B6-86B9-EDB3-C2904318E7A5">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Tipo de investigación</comment>
+<commentInRDBMS>Tipo de investigación</commentInRDBMS>
+<generatorID>30AFF63A-6294-DE1F-FFCC-01D474A0325E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripcion" id="5D657E48-443D-0750-FCEE-0C08FE786776">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Descripción del tipo de investigación</comment>
+<commentInRDBMS>Descripción del tipo de investigación</commentInRDBMS>
+<generatorID>E1FB1FCB-A1FE-6463-50B5-CF99AB2E91AC</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2A731B04-41F9-7066-6EC6-FBCD97755060" name="Tipo_Investigacion_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>E0600B00-9B71-BD13-B818-C24C89C15B13</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE8F4C5D-3BD9-A3B0-1FE4-F46C5025A8E6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

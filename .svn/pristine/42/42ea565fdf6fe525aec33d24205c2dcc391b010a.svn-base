@@ -1,0 +1,72 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.Entregable;
+import com.sigeco.ejb.subsistemas.EntregablesSB;
+import com.sigeco.ejb.utilities.InputChecks;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author ajacosta
+ */
+@FacesConverter("entregableConverter")
+public class EntregableConverter implements Converter {
+    
+    @EJB
+    EntregablesSB entregableSB;
+    
+    
+    private List<Entregable> entregables = new ArrayList<>();
+    
+    public EntregableConverter(){
+        
+    }
+    
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        if (InputChecks.isTrimEmptyOrNull(value))
+        {
+            return null;
+        } else
+        {
+            entregables.clear();
+            entregables = entregableSB.getEntregableFacade().findAll();
+
+            //Encontrar línea de investigación y retornarlo
+            for (Entregable entregable : entregables)
+            {
+                if (entregable.getCodigo().equals(value))
+                {
+                    return entregable;
+                }
+            }
+        }
+        return null;    
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+              if (value == null || value.equals(""))
+        {
+            return "";
+        } else
+        {
+            return ((Entregable) value).getCodigo() + "";
+        }
+    }
+    
+    
+    
+    
+}

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="PCS_PR" directorySegmentName="seg_0" id="F607D4E3-FA15-74A0-76E6-A126BB861651">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 23:16:11 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>4A81BE9A-6E30-2759-397B-179E25EBF520</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>8314FD6E-C529-F7B5-727D-7F43E72250C0</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>1B6DD887-621A-85A6-8FC5-BDC9E34631F5</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,574 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Convocatoria;
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.entities.Facultad;
+import com.sigeco.ejb.entities.FacultadConvocatoria;
+import com.sigeco.ejb.entities.Fase;
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.RolSistema;
+import com.sigeco.ejb.exceptions.ConvocatoriaException;
+import com.sigeco.ejb.exceptions.FaseException;
+import com.sigeco.ejb.subsistemas.ConvocatoriaSB;
+import com.sigeco.ejb.subsistemas.EstadosSB;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import com.sigeco.ejb.subsistemas.UsuarioSB;
+import com.sigeco.utilities.Mensajes;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
+
+/**
+ * <p>
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class ConvocatoriaNB {
+    
+    @EJB
+    private ConvocatoriaSB convocatoriaSB;
+
+    @EJB
+    private ProyectosSB proyectosSB;
+
+    @EJB
+    private UsuarioSB usuarioSB;
+
+    @EJB
+    private EstadosSB estadoSB;
+    
+    @ManagedProperty(value = "#{authAutNB}")
+    private AuthAutNB authAutNB;
+
+    private Convocatoria convocatoria;
+
+    private String selectedId;
+
+    private GrupoInvestigacion grupoInvestigacion;
+
+    private FacultadConvocatoria facultadConvocatoria;
+
+    private List<ProyectoInvestigacion> proyectosLider;
+    private List<ProyectoInvestigacion> proyectosDecano;
+    
+    private String estado;
+
+    //Relacionado a una fase
+    private Fase fase;
+    private List<Fase> fases;
+    private List<FacultadConvocatoria> facultadesConvocatorias;
+
+    private String nombreFase;
+    private Date fechaIniFase;
+    private Date fechaFinFase;
+    private String nombreConvocatoria;
+    
+    private boolean admin;
+
+    /**
+     * Creates a new instance of ConvocatoriaNB
+     */
+    public ConvocatoriaNB() {
+    }
+
+    @PostConstruct
+    public void init() {
+        //Inicializar fase
+        setFase(new Fase());
+
+        //Obtener codigo de la convocatoria actual
+        Long conActual = convocatoriaSB.darConvocatoriaActual().getCodigo();
+        //Buscar convocatoria 
+        Convocatoria conv = convocatoriaSB.getConvocatoriaFacade().find(conActual);
+        //Inicializar convocatoria
+        setConvocatoria(conv);
+        //Asignar las fases de la convocatoria actual
+        setFases(conv.getFaseList());
+
+        //Obtener las fases de la última convocatoria
+        setFases(convertirFases(convocatoriaSB.getConvocatoriaFacade().getUltimaConvocatoria().getFaseList()));
+        
+        GrupoInvestigacion g = usuarioSB.darGrupoDeInvestigacionLiderDeInvestigacion(getAuthAutNB().getUsuarioActual().getDocumento());
+        if (g!=null) {
+            proyectosLider = proyectosSB.darProyectosDeGrupoDeInvestigacion(g);
+        }
+        if (proyectosLider==null) {
+            proyectosLider = new ArrayList<>();
+        }
+        //convocatoriaSB.darConvocatoriaActual();
+        
+        boolean esDecano = usuarioSB.esDecano(getAuthAutNB().getUsuarioActual().getDocumento());
+        if (esDecano) {
+            Facultad f = usuarioSB.darFacultadDecano(getAuthAutNB().getUsuarioActual().getDocumento());
+            proyectosDecano = proyectosSB.darProyectosDeFacultad(f);
+        }else
+            proyectosDecano = new ArrayList<>();
+        
+        
+        for (RolSistema rol : getAuthAutNB().getUsuarioActual().getRolSistemaList()) {
+            if (rol.getNombre().equalsIgnoreCase("administrador")) {
+                setAdmin(true);
+                break;
+            }
+            setAdmin(false);
+        }
+
+    }
+
+    public void cambiarConvocatoria(Long codigo) {
+        setConvocatoria(getConvocatoriaSB().getConvocatoriaFacade().find(codigo));
+    }
+    
+
+    //------------------------------------------------------------------------//
+    //-------------Métodos relacionados con el manejo de fases----------------//
+    //------------------------------------------------------------------------//
+    /**
+     * Agrega una fase con los datos ingresados a una convocatoria
+     * correspondiente
+     */
+    
+    public void agregarFase() {
+        try {
+            convocatoriaSB.agregarFase(convocatoria.getCodigo(), fase.getNombre(), fase.getFechaIni(), fase.getFechaFin());           
+            setFases(convocatoriaSB.getConvocatoriaFacade().find(convocatoria).getFaseList());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "Se creó la fase.");
+        } catch (FaseException ex) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error en la creación de la fase", ex.getMessage());
+        }
+    }
+
+    /**
+     * Edita una fase de una convocatoria correspodiente con los nuevos datos
+     * ingresados
+     */
+    public void editarFase() {
+        try {
+            convocatoriaSB.editarFase(convocatoria.getCodigo(), fase.getCodigo(), fase.getNombre(), fase.getFechaIni(), fase.getFechaFin());
+            setFases(convocatoriaSB.getConvocatoriaFacade().find(convocatoria.getCodigo()).getFaseList());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "Se editó la fase.");
+        } catch (FaseException ex) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error en la edición de la fase", ex.getMessage());
+        }
+    }
+    
+    public void eliminarFase(Long codigoFase) {
+        try {
+            read(codigoFase);
+
+            convocatoriaSB.eliminarFase(convocatoria.getCodigo(), fase.getCodigo());
+            setFases(convocatoriaSB.getConvocatoriaFacade().find(convocatoria.getCodigo()).getFaseList());
+
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "Se eliminó la fase.");
+        } catch (FaseException | IOException e) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error en la eliminación de la fase", e.getMessage());
+        }
+    }
+
+    /**
+     * Obtiene una fase de acuerdo a un código de fase dado
+     *
+     * @param codigoFase - Código de la fase a ser buscada
+     */
+    public void read(Long codigoFase) {
+        setFase(convocatoriaSB.getFaseFacade().find(codigoFase));
+    }
+
+    /**
+     * Calcula la duración de una fase en días
+     * @param fase Fase
+     * @return duración en días de la fase
+     */
+    public long calcularDuracionFase(Fase fase) {
+        long duracion = fase.getFechaFin().getTime() - fase.getFechaIni().getTime();
+        //Convertir de milisegundos a días
+        long dur = duracion / (1000 * 60 * 60 * 24);
+        return dur;
+    }
+
+    /**
+     * Cambia los años de las fechas de inicio y finalización de la lista 
+     * pasada por parámetro, aumenta en 1 el año de cada fecha.
+     * @param fasesAnt Lista de fases a cambiar
+     * @return Lista de fases con las fechas modificadas
+     */
+    private List<Fase> convertirFases(List<Fase> fasesAnt) {
+        List<Fase> fasesNuevas = new ArrayList<>();
+        for (Fase f : fasesAnt) {
+
+            //----Cambiar la fecha de inicio de la fase
+            //Convertir de Date (fechaIni) a Calendar
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(f.getFechaIni());
+
+            //Obtener el año de la fecha y sumarle 1
+            int year = cal.get(Calendar.YEAR) + 1;
+            cal.set(Calendar.YEAR, year);
+
+            //Cambiar la fecha de inicio de la fase por la nueva fecha
+            f.setFechaIni(cal.getTime());
+
+            //----Cambiar la fecha de finalizacion de la fase
+            //Convertir de Date (fechaFin) a Calendar
+            cal.setTime(f.getFechaFin());
+
+            //Obtener el año de la fecha y sumarle 1
+            year = cal.get(Calendar.YEAR) + 1;
+            cal.set(Calendar.YEAR, year);
+
+            //Cambiar la fecha de inicio de la fase por la nueva fecha
+            f.setFechaFin(cal.getTime());
+
+            //Agregar la fase a la colección
+            fasesNuevas.add(f);
+        }
+        return fasesNuevas;
+    }
+
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    
+    /**
+     * Refresca los valores de las variables para interactuar con la vista
+     * de creación de convocatorias
+     */
+    public void refresh() {
+
+        //Asigna los valores ingresados en la vista a la fase
+        fase.setNombre(nombreFase);
+        fase.setFechaIni(fechaIniFase);
+        fase.setFechaFin(fechaFinFase);
+
+        //Agrega la fase a la lista
+        fases.add(fase);
+
+        //Borra los valores de estas variables para refrescar los campos
+        //en la vista
+        setNombreFase("");
+        setFechaIniFase(null);
+        setFechaFinFase(null);
+
+        //Asigna una nueva fase a la variable local 'fase'
+        setFase(new Fase());
+    }
+
+    /**
+     * Elimina una fase de la lista de fases. Este método se utiliza para 
+     * refrescar la vista.
+     * @param fase 
+     */
+    public void delete(Fase fase) {
+        List<Fase> lista = fases;
+        lista.remove(fase);
+        setFases(lista);
+    }
+
+    public void crearConvocatoria() {
+        try {
+            convocatoria.setNombre(nombreConvocatoria);
+            convocatoriaSB.crearConvocatoria(convocatoria.getNombre(), fases);
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "La convocatoria se creó");
+        } catch (ConvocatoriaException | FaseException ex) {
+            init();
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error en la creaciÃ³n de la convocatoria", ex.getMessage());
+        }
+    }
+
+    public void editarConvocatoria() {
+        try {
+            getConvocatoria().setEstCodigo(estadoSB.getEstadoFacade().find(Long.parseLong(estado)));
+            getConvocatoriaSB().getConvocatoriaFacade().edit(getConvocatoria());
+            //init();
+        } catch (ConstraintViolationException e) {
+            e.getConstraintViolations();
+        } catch (Exception e) {
+            //Mensaje
+        }
+    }
+
+    public void eliminarConvocatoria(Convocatoria convocatoria){
+        try{
+            convocatoriaSB.eliminarConvocatoria(convocatoria);                    
+        }catch(ConvocatoriaException | FaseException ex){
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error en eliminar la convocatoria", ex.getMessage());
+
+        }
+    }
+    
+    /**
+     * Da el listado de los proyectos del grupo de investigación al que
+     * pertenece un líder de investigación cuyo documento de usuario se
+     * especifica
+     *
+     * @param documentoUsuario- Documento del líder de investigación que quiere
+     * aprobar los proyectos del grupo al que pertenece.
+     * @return- Listado de proyectos de ese grupo de investigación.
+     */
+    public List<ProyectoInvestigacion> darListaProyectosInvestigacionFiltradosPorElLiderDeSuGrupo(String documentoUsuario) {
+
+        List<ProyectoInvestigacion> listadoDeProyectos = null;
+        if (documentoUsuario == null) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error", "El documento del usuario no debe estar vacío.");
+        } else {
+            grupoInvestigacion = usuarioSB.darGrupoDeInvestigacionLiderDeInvestigacion(documentoUsuario);
+            if (usuarioSB.darGrupoDeInvestigacionLiderDeInvestigacion(documentoUsuario) == null) {
+                Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error", "El usuario:" + documentoUsuario + "No pertenece a ningún grupo de investigación");
+            } else {
+                listadoDeProyectos = proyectosSB.darProyectosDeGrupoDeInvestigacion(grupoInvestigacion);
+            }
+        }
+        return listadoDeProyectos;
+    }
+
+    //---------------------------------------
+    //puede que sobre
+    //---------------------------------------
+    public void editarPresupuesto(BigInteger facCodigo) {
+        convocatoriaSB.editarFacultadConvocatoria(convocatoria.getCodigo(), facCodigo, facultadConvocatoria.getPresupuesto());
+        facultadConvocatoria.setPresupuesto(BigInteger.ZERO);
+        Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "Se editó la fase.");
+    }
+
+    public ConvocatoriaSB getConvocatoriaSB() {
+        return convocatoriaSB;
+    }
+
+    public void setConvocatoriaSB(ConvocatoriaSB convocatoriaSB) {
+        this.convocatoriaSB = convocatoriaSB;
+    }
+
+    public Convocatoria getConvocatoria() {
+        return convocatoria;
+    }
+
+    public void setConvocatoria(Convocatoria convocatoria) {
+        this.convocatoria = convocatoria;
+    }
+
+    public Fase getFase() {
+        return fase;
+    }
+
+    public void setFase(Fase fase) {
+        this.fase = fase;
+    }
+
+    public List<Fase> getFases() {
+        return fases;
+    }
+
+    public void setFases(List<Fase> fases) {
+        this.fases = fases;
+    }
+
+    public String getSelectedId() {
+        return selectedId;
+    }
+
+    public void setSelectedId(String selectedId) {
+        this.selectedId = selectedId;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    /**
+     * @return the facultadesConvocatorias
+     */
+    public List<FacultadConvocatoria> getFacultadesConvocatorias() {
+        return facultadesConvocatorias;
+    }
+
+    /**
+     * @param facultadesConvocatorias the facultadesConvocatorias to set
+     */
+    public void setFacultadesConvocatorias(List<FacultadConvocatoria> facultadesConvocatorias) {
+        this.facultadesConvocatorias = facultadesConvocatorias;
+    }
+
+    /**
+     * @return the nombreFase
+     */
+    public String getNombreFase() {
+        return nombreFase;
+    }
+
+    /**
+     * @param nombreFase the nombreFase to set
+     */
+    public void setNombreFase(String nombreFase) {
+        this.nombreFase = nombreFase;
+    }
+
+    /**
+     * @return the fechaIniFase
+     */
+    public Date getFechaIniFase() {
+        return fechaIniFase;
+    }
+
+    /**
+     * @param fechaIniFase the fechaIniFase to set
+     */
+    public void setFechaIniFase(Date fechaIniFase) {
+        this.fechaIniFase = fechaIniFase;
+    }
+
+    /**
+     * @return the fechaFinFase
+     */
+    public Date getFechaFinFase() {
+        return fechaFinFase;
+    }
+
+    /**
+     * @param fechaFinFase the fechaFinFase to set
+     */
+    public void setFechaFinFase(Date fechaFinFase) {
+        this.fechaFinFase = fechaFinFase;
+    }
+
+    /**
+     * @return the estadoSB
+     */
+    public EstadosSB getEstadoSB() {
+        return estadoSB;
+    }
+
+    /**
+     * @param estadoSB the estadoSB to set
+     */
+    public void setEstadoSB(EstadosSB estadoSB) {
+        this.estadoSB = estadoSB;
+    }
+
+    /**
+     * @return the nombreConvocatoria
+     */
+    public String getNombreConvocatoria() {
+        return nombreConvocatoria;
+    }
+
+    /**
+     * @param nombreConvocatoria the nombreConvocatoria to set
+     */
+    public void setNombreConvocatoria(String nombreConvocatoria) {
+        this.nombreConvocatoria = nombreConvocatoria;
+    }
+
+    /**
+     * @return the proyectosLider
+     */
+    public List<ProyectoInvestigacion> getProyectosLider() {
+        return proyectosLider;
+    }
+
+    /**
+     * @param proyectosLider the proyectosLider to set
+     */
+    public void setProyectosLider(List<ProyectoInvestigacion> proyectosLider) {
+        this.proyectosLider = proyectosLider;
+    }
+
+    public List<ProyectoInvestigacion> getProyectosDecano() {
+        return proyectosDecano;
+    }
+
+    public void setProyectosDecano(List<ProyectoInvestigacion> proyectosDecano) {
+        this.proyectosDecano = proyectosDecano;
+    }
+    
+    
+    
+    public void guardarAprobacionLider(){
+        System.out.println("guardar " + proyectosLider.size());
+        for (ProyectoInvestigacion proyecto : proyectosLider) {
+            if (proyecto.getEstCodigo().getCodigo().equals(new Long("3"))) {
+                //cambiar estado a no aprobado
+                proyecto.setEstCodigo(estadoSB.getEstadoFacade().find(new Long(12)));
+            }
+            proyectosSB.getProyectoFacade().edit(proyecto);
+        }
+    }
+    public void guardarAprobacionDecano(){
+        System.out.println("guardar " + proyectosDecano.size());
+        for (ProyectoInvestigacion proyecto : proyectosDecano) {
+            System.out.println(proyecto.getEstCodigo().getCodigo());
+            if (proyecto.getEstCodigo().getCodigo()!=null && (!proyecto.getEstCodigo().getCodigo().equals(new Long("4")) || !proyecto.getEstCodigo().getCodigo().equals(new Long("6")))) {
+                //proyectosSB.getProyectoFacade().edit(proyecto);//Edita el proyecto con el estado de aprobado por líder.
+            }
+        }
+    }
+    
+    public void cambiarEstadoProyecto(ProyectoInvestigacion proyecto, boolean esLider){
+        Long aprobado = esLider?new Long(4):new Long(5);
+        Long noAprobado = esLider?new Long(12):new Long(13);
+        Long inicial = esLider?new Long(3):new Long(4);
+        
+        Estado est = proyecto.getEstCodigo();
+        if (est.getCodigo().equals(inicial) || est.getCodigo().equals(noAprobado)) {
+            //cambiar a aprobado
+            proyecto.setEstCodigo(estadoSB.getEstadoFacade().find(aprobado));
+        }else{
+            //cambiar a no aprobado
+            proyecto.setEstCodigo(estadoSB.getEstadoFacade().find(noAprobado));
+        }
+        
+    }
+
+    /**
+     * @return the admin
+     */
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    /**
+     * @param admin the admin to set
+     */
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    /**
+     * @return the authAutNB
+     */
+    public AuthAutNB getAuthAutNB() {
+        return authAutNB;
+    }
+
+    /**
+     * @param authAutNB the authAutNB to set
+     */
+    public void setAuthAutNB(AuthAutNB authAutNB) {
+        this.authAutNB = authAutNB;
+    }
+    
+}

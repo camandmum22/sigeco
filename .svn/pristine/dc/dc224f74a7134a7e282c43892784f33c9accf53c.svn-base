@@ -1,0 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.Investigador;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import com.sigeco.ejb.utilities.InputChecks;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author Fabian
+ */
+@FacesConverter("investigadorConverter")
+public class InvestigadorConverter implements Converter {
+    
+    private List<Investigador> listaInvestigadores = new ArrayList<Investigador>();
+    
+    @EJB
+    ProyectosSB proyectoSB;
+
+    public InvestigadorConverter(){}
+    
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    
+         if( InputChecks.isTrimEmptyOrNull( value ) )
+        {
+            return null;
+        } 
+         else
+        {
+            listaInvestigadores.clear();
+            listaInvestigadores = proyectoSB.getInvestigadoresFacade().findAll();
+            String[] datos = value.split(",");
+            Long codUsu = Long.parseLong(datos[0]);
+            String codGrupoInv = datos[1];
+            
+            //Encontrar investigador y retornarlo
+            for (Investigador inv : listaInvestigadores)
+            {
+                if ( inv.getInvestigadorPK().getUsuCodigo() == codUsu && inv.getInvestigadorPK().getGruInvCodigo().equals(codGrupoInv) ) {
+                    return inv;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+        
+        if ( value != null) {
+            String codUsu = ((Investigador) value).getInvestigadorPK().getUsuCodigo()+"";
+            String codGrupoInv = ((Investigador) value).getInvestigadorPK().getGruInvCodigo();
+            return codUsu+","+codGrupoInv;
+        }
+        
+        return "";
+    }
+    
+}

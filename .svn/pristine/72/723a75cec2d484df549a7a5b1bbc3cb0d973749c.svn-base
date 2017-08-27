@@ -1,0 +1,213 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Convocatoria;
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.entities.Fase;
+import com.sigeco.ejb.exceptions.ConvocatoriaException;
+import com.sigeco.ejb.exceptions.FaseException;
+import com.sigeco.ejb.subsistemas.ConvocatoriaSB;
+import com.sigeco.utilities.Mensajes;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+/**
+ <p>
+ @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class ConvocatoriaNB
+{
+    @EJB
+    private ConvocatoriaSB convocatoriaSB;
+
+    private Convocatoria convocatoria;
+
+    private String selectedId;
+
+    private long estado;
+    
+    //Relacionado a una fase
+    private Fase fase;
+    private Long faseSearch;
+    private List<Fase> fases;
+
+    /**
+     Creates a new instance of ConvocatoriaNB
+     */
+    public ConvocatoriaNB()
+    {
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        setConvocatoria( new Convocatoria() );
+        
+        //Deben ser las fases de una convocatoria actual
+        setFase(new Fase());
+        setFaseSearch(new Long(0));
+        Integer prueba = 4;
+        setFases(convocatoriaSB.getConvocatoriaFacade().find(prueba.longValue()).getFaseList());
+    }
+
+    //------------------------------------------------------------------------//
+    //-------------Métodos relacionados con el manejo de fases----------------//
+    //------------------------------------------------------------------------//
+    
+    /**
+     * Agrega una fase con los datos ingresados a una convocatoria correspondiente
+     */
+    public void agregarFase() {
+        try {
+            Integer prueba = 4;
+            convocatoriaSB.agregarFase(prueba.longValue(), fase.getNombre(), fase.getFechaIni(), fase.getFechaFin());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "Se creó la fase.");
+        } catch (FaseException ex) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error en la creación de la fase", ex.getMessage());
+        }
+    }
+
+    /**
+     * Edita una fase de una convocatoria correspodiente con los nuevos datos ingresados
+     */
+    public void editarFase() {
+        try {
+            Integer prueba = 4;
+            convocatoriaSB.editarFase(prueba.longValue(), fase.getCodigoFase(), fase.getNombre(), fase.getFechaIni(), fase.getFechaFin());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "Se editó la fase.");
+        } catch (FaseException ex) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error en la edición de la fase", ex.getMessage());
+        }
+    }
+    
+    public void eliminarFase(){
+        try {
+            Integer prueba=4;
+            convocatoriaSB.eliminarFase(prueba.longValue(), fase.getCodigoFase());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Éxito", "Se eliminó la fase.");
+        } catch (Exception e) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "Error en la eliminación de la fase", e.getMessage());
+        }
+    }
+
+    /**
+     * Obtiene una fase de acuerdo a un código de fase dado
+     * @param codigoFase - Código de la fase a ser buscada
+     */
+    public void read(Long codigoFase) {
+        setFase(convocatoriaSB.getFaseFacade().find(codigoFase));
+    }
+
+    /**
+     * Prepara la creación de una fase cambiando el valor de la variable Fase
+     */
+    public void prepareCreate() {
+        setFase(new Fase());
+    }
+    
+    //------------------------------------------------------------------------//
+    //------------------------------------------------------------------------//
+    
+    public void crearConvocatoria()
+    {
+        try
+        {
+            getFase().setNombre( "Registro" );
+            getConvocatoriaSB().crearConvocatoria( getConvocatoria().getNombre(), getFase() );
+        }
+        catch( ConvocatoriaException ex )
+        {
+            Mensajes.mostrarMensaje( FacesMessage.SEVERITY_ERROR, "Error en la creaciÃ³n de la fase", ex.getMessage() );
+        }
+    }
+
+    public void editarConvocatoria()
+    {
+        try
+        {
+            getConvocatoria().setCodigoEstado( new Estado( getEstado() ) );
+            getConvocatoriaSB().getConvocatoriaFacade().edit( getConvocatoria() );
+            init();
+        }
+        catch( Exception e )
+        {
+            //Mensaje
+        }
+    }
+
+    public ConvocatoriaSB getConvocatoriaSB()
+    {
+        return convocatoriaSB;
+    }
+
+    public void setConvocatoriaSB( ConvocatoriaSB convocatoriaSB )
+    {
+        this.convocatoriaSB = convocatoriaSB;
+    }
+
+    public Convocatoria getConvocatoria()
+    {
+        return convocatoria;
+    }
+
+    public void setConvocatoria( Convocatoria convocatoria )
+    {
+        this.convocatoria = convocatoria;
+    }
+
+    public Fase getFase()
+    {
+        return fase;
+    }
+
+    public void setFase( Fase fase )
+    {
+        this.fase = fase;
+    }
+
+    public Long getFaseSearch(){
+        return this.faseSearch;
+    }
+    
+    public void setFaseSearch(Long faseSearch){
+        this.faseSearch = faseSearch;
+    }
+    
+    public List<Fase> getFases(){
+        return fases;
+    }
+    
+    public void setFases(List<Fase> fases){
+        this.fases = fases;
+    }
+    
+    public String getSelectedId()
+    {
+        return selectedId;
+    }
+
+    public void setSelectedId( String selectedId )
+    {
+        this.selectedId = selectedId;
+    }
+
+    public long getEstado()
+    {
+        return estado;
+    }
+
+    public void setEstado( long estado )
+    {
+        this.estado = estado;
+    }
+}

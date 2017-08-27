@@ -1,0 +1,67 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6DD726E6-08F7-48D3-E15E-85FA9F415F96" name="Area_Estrategica">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Tabla que representa el conjunto de áreas estratégicas a las que un proyecto puede apuntar.</comment>
+<generatorID>9DC9629F-8DC0-30E0-AA08-519175E9285F</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Area" id="8429D9C6-D283-42E3-4621-36320BCD08C8">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del área estratégica</comment>
+<commentInRDBMS>Código del área estratégica</commentInRDBMS>
+<generatorID>CA4157C4-4A7F-4F4E-ACFF-5D604348B3C3</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="184E81DB-F64D-602E-CB64-2376EDBCAA9A">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre del área estratégica</comment>
+<commentInRDBMS>Nombre del área estratégica</commentInRDBMS>
+<generatorID>6416A92D-1058-1AC1-6F00-16B65053A3D7</generatorID>
+<notes>El nombre del área estratégica</notes>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Descripcion" id="8CCF65AC-7F25-5372-CA45-A1B0A0DE1370">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Descripción del área estratégica</comment>
+<commentInRDBMS>Descripción del área estratégica</commentInRDBMS>
+<generatorID>6E233F9C-0030-51FD-15B1-AB12A89B1C1E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F3E413FD-F204-16F3-AB42-D0BF21F6A6A5" name="Area_Estrategica_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>BE24B991-CFEC-B54C-CFCC-910206611155</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8429D9C6-D283-42E3-4621-36320BCD08C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

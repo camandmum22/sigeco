@@ -1,0 +1,91 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.Modalidad;
+import com.sigeco.ejb.entities.RolProyecto;
+import com.sigeco.ejb.entities.Usuario;
+import java.io.Serializable;
+/**
+ *
+ * @author Fabian
+ */
+public class InvestigadorEquipo implements Serializable{
+    
+    private Usuario investigador;
+    
+    private GrupoInvestigacion grupoInvestigacion;
+    
+    private RolProyecto rol;
+    
+    private Modalidad modalidad;
+    
+    public InvestigadorEquipo(){}
+    
+    public InvestigadorEquipo ( Usuario inv , GrupoInvestigacion gi , RolProyecto rl , Modalidad mod){
+        this.investigador = inv;
+        this.grupoInvestigacion = gi;
+        this.rol = rl;
+        this.modalidad = mod;
+    }
+
+    /**
+     * @return the investigador
+     */
+    public Usuario getInvestigador() {
+        return investigador;
+    }
+
+    /**
+     * @param investigador the investigador to set
+     */
+    public void setInvestigador(Usuario investigador) {
+        this.investigador = investigador;
+    }
+
+    /**
+     * @return the grupoInvestigacion
+     */
+    public GrupoInvestigacion getGrupoInvestigacion() {
+        return grupoInvestigacion;
+    }
+
+    /**
+     * @param grupoInvestigacion the grupoInvestigacion to set
+     */
+    public void setGrupoInvestigacion(GrupoInvestigacion grupoInvestigacion) {
+        this.grupoInvestigacion = grupoInvestigacion;
+    }
+
+    /**
+     * @return the rol
+     */
+    public RolProyecto getRol() {
+        return rol;
+    }
+
+    /**
+     * @param rol the rol to set
+     */
+    public void setRol(RolProyecto rol) {
+        this.rol = rol;
+    }
+
+    /**
+     * @return the modalidad
+     */
+    public Modalidad getModalidad() {
+        return modalidad;
+    }
+
+    /**
+     * @param modalidad the modalidad to set
+     */
+    public void setModalidad(Modalidad modalidad) {
+        this.modalidad = modalidad;
+    }
+}

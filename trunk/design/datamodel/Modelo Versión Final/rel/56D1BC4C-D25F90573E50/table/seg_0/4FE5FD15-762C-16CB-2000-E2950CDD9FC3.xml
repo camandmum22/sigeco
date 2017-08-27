@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4FE5FD15-762C-16CB-2000-E2950CDD9FC3" name="Permisos_Rol">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>25FCD3DE-2E5F-E5BC-94A8-E23211268A18</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Rol" id="CE3FE175-DBEF-8C84-9569-0C0CB7679F6E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del rol</comment>
+<commentInRDBMS>Código del rol</commentInRDBMS>
+<generatorID>085096AA-0BFC-C0FB-3BDF-265C886CDBD4</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>DD8300D2-6501-2873-9FFF-A3EFBBDD648E</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D9B961C7-8451-758C-5CD8-41417371EA8B" referredColumn="DD8300D2-6501-2873-9FFF-A3EFBBDD648E"/>
+</associations>
+</Column>
+<Column name="Url" id="CC303EC4-44A4-797D-25A5-EACCC2E2DCAF">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Permisos de un rol</comment>
+<commentInRDBMS>Permisos de un rol</commentInRDBMS>
+<generatorID>13A6CF7B-E739-D57E-6EB1-B33BC7B85398</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<delegate>7A4B89A0-6B3D-F8A1-1937-C6E60E3EC79D</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1116701B-2529-C4C9-56DA-5D831D201B9C" referredColumn="7A4B89A0-6B3D-F8A1-1937-C6E60E3EC79D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="583C0BA8-392A-A71C-D3DB-652CB96C2752" name="Permisos_Rol_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>3A4F3DB1-F7C0-A64A-65F3-58E0A3908C47</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CE3FE175-DBEF-8C84-9569-0C0CB7679F6E"/>
+<colUsage columnID="CC303EC4-44A4-797D-25A5-EACCC2E2DCAF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B33484A5-A252-A17A-2454-34DE1CBCD771" name="Permisos_Rol_Permisos_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>DF3049A2-D580-7829-D42B-2078E90BF8A7</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CC303EC4-44A4-797D-25A5-EACCC2E2DCAF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E9C81E89-1F7C-4165-4073-E9C9B4B6CB1C" name="Permisos_Rol_Rol_Sistema_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>91803CBE-DBBF-F38C-7EBC-46CD991D8280</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CE3FE175-DBEF-8C84-9569-0C0CB7679F6E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

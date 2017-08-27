@@ -1,0 +1,380 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.entities.GrupoInvestigacion;
+import com.sigeco.ejb.entities.GrupoLinea;
+import com.sigeco.ejb.entities.GrupoLineaPK;
+import com.sigeco.ejb.entities.LineaInvestigacion;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.TipoInvestigacion;
+import com.sigeco.ejb.entities.Rubro;
+
+import com.sigeco.ejb.entities.TipoProyecto;
+import com.sigeco.ejb.exceptions.ProyectoException;
+import com.sigeco.ejb.exceptions.RubroException;
+import com.sigeco.ejb.subsistemas.GrupoInvestigacionSB;
+import com.sigeco.ejb.subsistemas.PresupuestoSB;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import com.sigeco.utilities.Mensajes;
+import com.sigeco.utilities.Validaciones;
+import java.io.File;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import org.primefaces.model.UploadedFile;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@RequestScoped
+public class ProyectosNB
+{
+
+    //Atributos de un proyectoNuevo
+    private String titulo;
+    private GrupoInvestigacion grupoInvestigacion;
+    private Date fechaInicio;
+    private Date fechaFin;
+    private BigDecimal presupuestoEsperado;
+    private boolean aprobacionEtica;
+    private UploadedFile aprobacionEticaDoc;
+    private String resumenEjecutivo;
+    private GrupoLinea grupoLinea;
+    private LineaInvestigacion lineaInvestigacion;
+    private TipoInvestigacion tipoInvestigacion;
+    private TipoProyecto tipoProyecto;
+    
+    private ProyectoInvestigacion proyecto;
+
+
+    //Lista de entidades
+    private List<GrupoInvestigacion> gruposInvestigacion;
+    private List<GrupoLinea> gruposLinea;
+    private List<ProyectoInvestigacion> proyectosInvestigacion;
+
+    private List<TipoProyecto> tiposProyecto;
+    private List<LineaInvestigacion> lineasInvestigacion;
+    private List<TipoInvestigacion> tiposInvestigacion;
+
+    @EJB
+    GrupoInvestigacionSB grupoInvestigacionSB;
+
+    @EJB
+    ProyectosSB proyectoSB;
+
+    
+    /**
+     * Creates a new instance of ProyectosNB
+     */
+    public ProyectosNB()
+    {
+
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        gruposInvestigacion = grupoInvestigacionSB.getGrupoInvestigacionFacade().findAll();
+        proyectosInvestigacion = proyectoSB.getProyectoFacade().findAll();
+        tiposProyecto = proyectoSB.getTipoProyectoFacade().findAll();
+        lineasInvestigacion = proyectoSB.getLineaInvestigacionFacade().findAll();
+        tiposInvestigacion = proyectoSB.getTipoInvestigacionFacade().findAll();
+        gruposLinea = grupoInvestigacionSB.getGrupoLineaFacade().findAll();
+        proyecto = new ProyectoInvestigacion();
+
+    }
+
+    /**
+     * Permite crear un proyectoNuevo de investigación
+     */
+    public void crearProyecto()
+    {
+
+        if (!Validaciones.esVacio(titulo) && !Validaciones.esVacio(resumenEjecutivo))
+        {
+            //Crear proyectoNuevo con información base
+            ProyectoInvestigacion proyectoNuevo = new ProyectoInvestigacion();
+            proyectoNuevo.setTitulo(titulo);
+            proyectoNuevo.setResumenEjecutivo(resumenEjecutivo);
+            proyectoNuevo.setFechainicio(fechaInicio);
+            proyectoNuevo.setFechafin(fechaFin);
+            proyectoNuevo.setPresupuestoEsperado(presupuestoEsperado);
+            
+            if(aprobacionEtica)
+            {
+                proyectoNuevo.setAprobacionEtica("Y");
+            }
+            else
+            {
+                proyectoNuevo.setAprobacionEtica("N");
+            }
+            
+            //Agregar documento de aprobación de ética
+            if (aprobacionEtica == true && aprobacionEticaDoc!=null)
+            {
+                File archivo = new File(aprobacionEticaDoc.getFileName());
+                
+                if(archivo.isFile())
+                {
+                   proyectoNuevo.setDocEtica(archivo); 
+                }
+            }
+            
+            //Agregar tipo de proyectoNuevo
+            if(tipoProyecto!=null)
+                proyectoNuevo.setCodigoTpr(tipoProyecto);
+            
+            //Agregar tipo de investigación
+            if(tipoInvestigacion!=null)
+                proyectoNuevo.setCodigoTin(tipoInvestigacion);
+            
+            //Agregar grupo linea
+            if (grupoInvestigacion!=null && lineaInvestigacion!=null)
+            {
+                GrupoLineaPK grupoLineaPK = new GrupoLineaPK(grupoInvestigacion.getCodigoGrupo(), lineaInvestigacion.getCodigoLinea());
+                GrupoLinea gLinea = new GrupoLinea(grupoLineaPK); 
+                gLinea.setGrupoInvestigacion(grupoInvestigacion);
+                gLinea.setLineaInvestigacion(lineaInvestigacion);
+                proyectoNuevo.setGrupoLinea(gLinea);
+
+                //Si no existe el proyectoNuevo actualmente
+                if (!proyectosInvestigacion.contains(proyectoNuevo))
+                {
+                    //Poner en estado registrado
+                    Long numero = (long) 3;
+                    proyectoNuevo.setCodigoEstado(new Estado(numero));
+                    proyectoSB.getProyectoFacade().create(proyectoNuevo);
+                    proyectosInvestigacion.add(proyectoNuevo);
+
+                    Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Se creó el proyecto de investigación", proyectoNuevo.toString());
+
+                } //Ya existe el proyectoNuevo
+                else
+                {
+                    Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo crear", "Ya existe un proyecto con ese código");
+
+                }
+            } //Hay campos vacíos
+            else
+            {
+                Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo crear", "No debes dejar campos vacíos");
+
+            }
+        }
+    }
+    
+     /** 
+     * Permite editar un proyectoNuevo de Investigación
+     */ 
+    public void editarProyecto() 
+    { 
+        
+        try {
+            proyectoSB.editarProyecto(proyecto.getCodigoProyecto(), proyecto.getTitulo(),proyecto.getResumenEjecutivo(),proyecto.getFechainicio(),proyecto.getFechafin(),
+            proyecto.getPresupuestoEsperado(),proyecto.getAprobacionEtica());
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_INFO, "Se editó el proyecto de investigación", proyecto.toString());
+            
+            
+            
+        } catch (ProyectoException ex) {
+            Mensajes.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "No se pudo editar", ex.getMessage());
+        }
+    }
+    
+   
+
+    
+
+    //Getter y setters
+    public boolean isAprobacionEtica()
+    {
+        return aprobacionEtica;
+    }
+
+    public UploadedFile getAprobacionEticaDoc()
+    {
+        return aprobacionEticaDoc;
+    }
+
+    public Date getFechaFin()
+    {
+        return fechaFin;
+    }
+
+    public Date getFechaInicio()
+    {
+        return fechaInicio;
+    }
+
+    public GrupoInvestigacion getGrupoInvestigacion()
+    {
+        return grupoInvestigacion;
+    }
+
+    public List<GrupoInvestigacion> getGruposInvestigacion()
+    {
+        return gruposInvestigacion;
+    }
+
+    public BigDecimal getPresupuestoEsperado()
+    {
+        return presupuestoEsperado;
+    }
+
+    public String getTitulo()
+    {
+        return titulo;
+    }
+
+    public String getResumenEjecutivo()
+    {
+        return resumenEjecutivo;
+    }
+
+    public List<ProyectoInvestigacion> getProyectosInvestigacion()
+    {
+        return proyectosInvestigacion;
+    }
+
+    public void setAprobacionEtica(boolean aprobacionEtica)
+    {
+        this.aprobacionEtica = aprobacionEtica;
+    }
+
+    public LineaInvestigacion getLineaInvestigacion()
+    {
+        return lineaInvestigacion;
+    }
+
+    public TipoProyecto getTipoProyecto()
+    {
+        return tipoProyecto;
+    }
+
+    public TipoInvestigacion getTipoInvestigacion()
+    {
+        return tipoInvestigacion;
+    }
+
+    public List<TipoProyecto> getTiposProyecto()
+    {
+        return tiposProyecto;
+    }
+
+    public List<LineaInvestigacion> getLineasInvestigacion()
+    {
+        return lineasInvestigacion;
+    }
+
+    public List<TipoInvestigacion> getTiposInvestigacion()
+    {
+        return tiposInvestigacion;
+    }
+
+    public List<GrupoLinea> getGruposLinea()
+    {
+        return gruposLinea;
+    }
+
+    public GrupoLinea getGrupoLinea()
+    {
+        return grupoLinea;
+    }
+
+    public void setAprobacionEticaDoc(UploadedFile aprobacionEticaDoc)
+    {
+        this.aprobacionEticaDoc = aprobacionEticaDoc;
+    }
+
+    public void setFechaFin(Date fechaFin)
+    {
+        this.fechaFin = fechaFin;
+    }
+
+    public void setFechaInicio(Date fechaInicio)
+    {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setGrupoInvestigacion(GrupoInvestigacion grupoInvestigacion)
+    {
+        this.grupoInvestigacion = grupoInvestigacion;
+    }
+
+    public void setGruposInvestigacion(List<GrupoInvestigacion> gruposInvestigacion)
+    {
+        this.gruposInvestigacion = gruposInvestigacion;
+    }
+
+    public void setPresupuestoEsperado(BigDecimal presupuestoEsperado)
+    {
+        this.presupuestoEsperado = presupuestoEsperado;
+    }
+
+    public void setTitulo(String titulo)
+    {
+        this.titulo = titulo;
+    }
+
+    public void setResumenEjecutivo(String resumenEjecutivo)
+    {
+        this.resumenEjecutivo = resumenEjecutivo;
+    }
+
+    public void setProyectosInvestigacion(List<ProyectoInvestigacion> proyectosInvestigacion)
+    {
+        this.proyectosInvestigacion = proyectosInvestigacion;
+    }
+
+    public void setTiposProyecto(List<TipoProyecto> tiposProyecto)
+    {
+        this.tiposProyecto = tiposProyecto;
+    }
+
+    public void setGrupoLinea(GrupoLinea grupoLinea)
+    {
+        this.grupoLinea = grupoLinea;
+    }
+
+    public void setLineaInvestigacion(LineaInvestigacion lineaInvestigacion)
+    {
+        this.lineaInvestigacion = lineaInvestigacion;
+    }
+
+    public void setTipoInvestigacion(TipoInvestigacion tipoInvestigacion)
+    {
+        this.tipoInvestigacion = tipoInvestigacion;
+    }
+
+   
+
+    public void setTipoProyecto(TipoProyecto tipoProyecto)
+    {
+        this.tipoProyecto = tipoProyecto;
+    }
+
+    public ProyectoInvestigacion getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(ProyectoInvestigacion proyecto) {
+        this.proyecto = proyecto;
+    }
+    
+    
+    
+    
+
+}

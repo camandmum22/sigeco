@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B38EE48E-DD02-579A-4464-590C87BE4745" name="Tipo_Proyecto">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 05:57:10 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>TPR</shortName>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_TPR" id="861B1837-3516-A535-DFC2-DDCFF9111536">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 05:57:26 UTC</createdTime>
+<comment>Código del tipo de proyecto</comment>
+<commentInRDBMS>Código del tipo de proyecto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Nombre" id="26E370CE-F607-932E-DB26-4AE13EB1D25A">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 05:57:33 UTC</createdTime>
+<comment>Nombre del tipo de proyecto</comment>
+<commentInRDBMS>Nombre del tipo de proyecto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Descripcion" id="86EE348A-D679-F887-DC8E-E4FFD278E462">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 05:57:35 UTC</createdTime>
+<comment>Descripción del tipo de proyecto</comment>
+<commentInRDBMS>Descripción del tipo de proyecto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A7635D89-39EC-DDBC-AD0F-C0915A4ECF26" name="{entity} PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 05:57:56 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>861B1837-3516-A535-DFC2-DDCFF9111536</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

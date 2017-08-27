@@ -1,0 +1,144 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author csacanam
+ */
+@Entity
+@XmlRootElement
+@NamedQueries(
+{
+    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
+    @NamedQuery(name = "Producto.findByCodigoProducto", query = "SELECT p FROM Producto p WHERE p.codigoProducto = :codigoProducto"),
+    @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre")
+})
+public class Producto implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 6)
+    @Column(name = "CODIGO_PRODUCTO", nullable = false, length = 6)
+    private String codigoProducto;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(nullable = false, length = 100)
+    private String nombre;
+    @JoinColumn(name = "CODIGO_CLASIFICACION", referencedColumnName = "CODIGO_CLASIFICACION", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private ClasificacionProducto codigoClasificacion;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoProducto", fetch = FetchType.LAZY)
+    private List<Subproducto> subproductoList;
+
+    public Producto()
+    {
+    }
+
+    public Producto(String codigoProducto)
+    {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public Producto(String codigoProducto, String nombre)
+    {
+        this.codigoProducto = codigoProducto;
+        this.nombre = nombre;
+    }
+
+    public String getCodigoProducto()
+    {
+        return codigoProducto;
+    }
+
+    public void setCodigoProducto(String codigoProducto)
+    {
+        this.codigoProducto = codigoProducto;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
+    }
+
+    public ClasificacionProducto getCodigoClasificacion()
+    {
+        return codigoClasificacion;
+    }
+
+    public void setCodigoClasificacion(ClasificacionProducto codigoClasificacion)
+    {
+        this.codigoClasificacion = codigoClasificacion;
+    }
+
+    @XmlTransient
+    public List<Subproducto> getSubproductoList()
+    {
+        return subproductoList;
+    }
+
+    public void setSubproductoList(List<Subproducto> subproductoList)
+    {
+        this.subproductoList = subproductoList;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoProducto != null ? codigoProducto.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Producto))
+        {
+            return false;
+        }
+        Producto other = (Producto) object;
+        if ((this.codigoProducto == null && other.codigoProducto != null) || (this.codigoProducto != null && !this.codigoProducto.equals(other.codigoProducto)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.Producto[ codigoProducto=" + codigoProducto + " ]";
+    }
+    
+}

@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="008C36C2-2390-4360-F34F-00FE927DB3C8" name="Facultad_Convocatoria">
+<createdBy>1107074044</createdBy>
+<createdTime>2015-03-27 21:50:29 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Convocatoria" id="039170F4-8E7C-7CBC-9421-738656AF91DD">
+<createdBy>1107074044</createdBy>
+<createdTime>2015-03-27 21:50:59 UTC</createdTime>
+<comment>Código de la convocatoria</comment>
+<commentInRDBMS>Código de la convocatoria</commentInRDBMS>
+<generatorID>8D68CC55-3D3B-EA3F-D4CA-D042EF5DF6FB</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>E099857A-700E-761E-4ED5-FA64413975DA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Facultad" id="F7144447-740D-1406-3DCF-79A20085892D">
+<createdBy>1107074044</createdBy>
+<createdTime>2015-03-27 21:51:13 UTC</createdTime>
+<comment>Código de la facultad</comment>
+<commentInRDBMS>Código de la facultad</commentInRDBMS>
+<generatorID>CEB17DEB-30AC-976E-9D1F-84CF80B49763</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>555BABEC-C9A8-9C80-B87B-383AC02119F5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Presupuesto" id="9EC26F59-6AD5-9CF6-A966-2D03099CFB01">
+<createdBy>1107074044</createdBy>
+<createdTime>2015-03-27 21:52:49 UTC</createdTime>
+<comment>Presupuesto de la facultad en una convocatoria</comment>
+<commentInRDBMS>Presupuesto de la facultad en una convocatoria</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8AE73BF3-4956-14AE-A7DF-3F9CCC26F97A" name="{entity} PK">
+<createdBy>1107074044</createdBy>
+<createdTime>2015-03-27 21:50:59 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>039170F4-8E7C-7CBC-9421-738656AF91DD</attributeRef>
+<attributeRef>F7144447-740D-1406-3DCF-79A20085892D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,255 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ <p>
+ @author Christian
+ */
+@Entity
+@Table( name = "USUARIO" )
+@XmlRootElement
+@NamedQueries( 
+{
+    @NamedQuery( name = "Usuario.findAll", query = "SELECT u FROM Usuario u" ),
+    @NamedQuery( name = "Usuario.findByCodigoUsuario", query = "SELECT u FROM Usuario u WHERE u.codigoUsuario = :codigoUsuario" ),
+    @NamedQuery( name = "Usuario.findByTipoDocumento", query = "SELECT u FROM Usuario u WHERE u.tipoDocumento = :tipoDocumento" ),
+    @NamedQuery( name = "Usuario.findByDocumento", query = "SELECT u FROM Usuario u WHERE u.documento = :documento" ),
+    @NamedQuery( name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre" ),
+    @NamedQuery( name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email" ),
+    @NamedQuery( name = "Usuario.findByTelefono", query = "SELECT u FROM Usuario u WHERE u.telefono = :telefono" ),
+    @NamedQuery( name = "Usuario.findByOtraInstitucion", query = "SELECT u FROM Usuario u WHERE u.otraInstitucion = :otraInstitucion" ),
+    @NamedQuery( name = "Usuario.findByContrase\u00f1a", query = "SELECT u FROM Usuario u WHERE u.contrase\u00f1a = :contrase\u00f1a" ),
+    @NamedQuery( name = "Usuario.findByEsdecano", query = "SELECT u FROM Usuario u WHERE u.esdecano = :esdecano" )
+} )
+public class Usuario implements Serializable
+{
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @Basic( optional = false )
+    @NotNull
+    @Column( name = "CODIGO_USUARIO" )
+    private Long codigoUsuario;
+
+    @Basic( optional = false )
+    @NotNull
+    @Size( min = 1, max = 2 )
+    @Column( name = "TIPO_DOCUMENTO" )
+    private String tipoDocumento;
+
+    @Basic( optional = false )
+    @NotNull
+    @Size( min = 1, max = 15 )
+    private String documento;
+
+    @Basic( optional = false )
+    @NotNull
+    @Size( min = 1, max = 100 )
+    private String nombre;
+
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size( max = 20 )
+    private String email;
+
+    @Size( max = 15 )
+    private String telefono;
+
+    @Size( max = 50 )
+    @Column( name = "OTRA_INSTITUCION" )
+    private String otraInstitucion;
+
+    @Basic( optional = false )
+    @NotNull
+    @Size( min = 1, max = 50 )
+    private String contraseña;
+
+    @Size( max = 1 )
+    private String esdecano;
+
+    @JoinColumn( name = "CODIGO_ESTADO", referencedColumnName = "CODIGO_ESTADO" )
+    @ManyToOne( optional = false, fetch = FetchType.LAZY )
+    private Estado codigoEstado;
+
+    @JoinColumn( name = "CODIGO_FACULTAD", referencedColumnName = "CODIGO_FACULTAD" )
+    @ManyToOne( fetch = FetchType.LAZY )
+    private Facultad codigoFacultad;
+
+    public Usuario()
+    {
+    }
+
+    public Usuario( Long codigoUsuario )
+    {
+        this.codigoUsuario = codigoUsuario;
+    }
+
+    public Usuario( Long codigoUsuario, String tipoDocumento, String documento, String nombre, String contraseña )
+    {
+        this.codigoUsuario = codigoUsuario;
+        this.tipoDocumento = tipoDocumento;
+        this.documento = documento;
+        this.nombre = nombre;
+        this.contraseña = contraseña;
+    }
+
+    public Long getCodigoUsuario()
+    {
+        return codigoUsuario;
+    }
+
+    public void setCodigoUsuario( Long codigoUsuario )
+    {
+        this.codigoUsuario = codigoUsuario;
+    }
+
+    public String getTipoDocumento()
+    {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento( String tipoDocumento )
+    {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public String getDocumento()
+    {
+        return documento;
+    }
+
+    public void setDocumento( String documento )
+    {
+        this.documento = documento;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre( String nombre )
+    {
+        this.nombre = nombre;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail( String email )
+    {
+        this.email = email;
+    }
+
+    public String getTelefono()
+    {
+        return telefono;
+    }
+
+    public void setTelefono( String telefono )
+    {
+        this.telefono = telefono;
+    }
+
+    public String getOtraInstitucion()
+    {
+        return otraInstitucion;
+    }
+
+    public void setOtraInstitucion( String otraInstitucion )
+    {
+        this.otraInstitucion = otraInstitucion;
+    }
+
+    public String getContraseña()
+    {
+        return contraseña;
+    }
+
+    public void setContraseña( String contraseña )
+    {
+        this.contraseña = contraseña;
+    }
+
+    public String getEsdecano()
+    {
+        return esdecano;
+    }
+
+    public void setEsdecano( String esdecano )
+    {
+        this.esdecano = esdecano;
+    }
+
+    public Estado getCodigoEstado()
+    {
+        return codigoEstado;
+    }
+
+    public void setCodigoEstado( Estado codigoEstado )
+    {
+        this.codigoEstado = codigoEstado;
+    }
+
+    public Facultad getCodigoFacultad()
+    {
+        return codigoFacultad;
+    }
+
+    public void setCodigoFacultad( Facultad codigoFacultad )
+    {
+        this.codigoFacultad = codigoFacultad;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += ( codigoUsuario != null ? codigoUsuario.hashCode() : 0 );
+        return hash;
+    }
+
+    @Override
+    public boolean equals( Object object )
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if( !( object instanceof Usuario ) )
+        {
+            return false;
+        }
+        Usuario other = (Usuario)object;
+        if( ( this.codigoUsuario == null && other.codigoUsuario != null ) || ( this.codigoUsuario != null && !this.codigoUsuario.equals( other.codigoUsuario ) ) )
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.Usuario[ codigoUsuario=" + codigoUsuario + " ]";
+    }
+    
+}

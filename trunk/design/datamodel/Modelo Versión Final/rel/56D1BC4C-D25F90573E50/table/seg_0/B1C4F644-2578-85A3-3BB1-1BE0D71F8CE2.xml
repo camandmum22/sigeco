@@ -1,0 +1,319 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B1C4F644-2578-85A3-3BB1-1BE0D71F8CE2" name="Proyecto_Investigacion">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>1C5A1A2F-529F-405F-EC0A-B6CAD5D920AE</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Proyecto" id="8C940BD9-4562-955E-E373-9B5124F820A0">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del proyecto</comment>
+<commentInRDBMS>Código del proyecto</commentInRDBMS>
+<generatorID>4BE536AC-3374-DCEF-8B2F-F8F6873D9DDA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Titulo" id="B7E73183-5217-A438-3B09-F405A857C48F">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Título del proyecto</comment>
+<commentInRDBMS>Título del proyecto</commentInRDBMS>
+<generatorID>E47F4A66-70B5-381E-09E8-9F9A92AC532B</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Resumen_Ejecutivo" id="E2CB246C-2AD7-A4D9-5297-D879571C7166">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Resumen ejecutivo del proyecto</comment>
+<commentInRDBMS>Resumen ejecutivo del proyecto</commentInRDBMS>
+<generatorID>1F1C7DAB-F1E0-BB55-625C-451DDE8EA76F</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FechaInicio" id="E9E2900D-BA01-4985-5DC7-88E5EFEED90E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Fecha de inicio del proyecto</comment>
+<commentInRDBMS>Fecha de inicio del proyecto</commentInRDBMS>
+<generatorID>FBD49ABE-656B-09B9-531C-69854C2E3CA2</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FechaFin" id="1AA391CA-EFBC-7BBC-009A-5D78320FB05F">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Fecha de finalización del proyecto</comment>
+<commentInRDBMS>Fecha de finalización del proyecto</commentInRDBMS>
+<generatorID>060973CF-2745-DA22-9C68-98ED71ABFD10</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Resultados" id="9C9F705A-9C93-AD5C-9CA5-9EE61543F6A3">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Resultados esperados por el proyecto</comment>
+<commentInRDBMS>Resultados esperados por el proyecto</commentInRDBMS>
+<generatorID>F7BF7295-25DA-93EC-81EC-B4A8AE6633DE</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Problema" id="D763D2E6-CC98-2E2C-3DB4-C633514E935C">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Problema que resolverá el proyecto de investigación</comment>
+<commentInRDBMS>Problema que resolverá el proyecto de investigación</commentInRDBMS>
+<generatorID>BD9A4AE6-7D25-4979-1426-A20BEE152672</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Grupo" id="5D623C02-F752-2F8C-B835-B64FB348DCF1">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del grupo de investigación</comment>
+<commentInRDBMS>Código del grupo de investigación</commentInRDBMS>
+<generatorID>AF9E7B2F-5457-749E-CC17-142E89483841</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+<delegate>C3137418-EEA1-6AA1-993E-134D9981D010</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E90D5DF0-D7E2-C244-88F8-E6BA68E25CF2" referredColumn="C3137418-EEA1-6AA1-993E-134D9981D010"/>
+</associations>
+</Column>
+<Column name="Codigo_Linea" id="DC86ED5A-3D83-4C5A-4F75-00FBB836ECF9">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la línea de investigación</comment>
+<commentInRDBMS>Código de la línea de investigación</commentInRDBMS>
+<generatorID>B2F7F1EA-C64B-9C2E-FC37-C731A2A8C58E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+<delegate>D65E3821-8CE9-FBB4-4FE3-9E1954012659</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E90D5DF0-D7E2-C244-88F8-E6BA68E25CF2" referredColumn="D65E3821-8CE9-FBB4-4FE3-9E1954012659"/>
+</associations>
+</Column>
+<Column name="Codigo_Estado1" id="73045BDD-583F-DFAF-9E07-445238559B2E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del estado</comment>
+<commentInRDBMS>Código del estado</commentInRDBMS>
+<generatorID>0212A5B1-CE9B-6992-0AD0-CCE52373ADE7</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>2822253A-6DFF-F748-8444-FC06F34DD32D</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="34E26C6A-DB2E-C382-8A61-0F70F6BFE2AF" referredColumn="2822253A-6DFF-F748-8444-FC06F34DD32D"/>
+</associations>
+</Column>
+<Column name="Presupuesto_Esperado" id="7B781CD2-DBB0-3EE3-AED7-B5DD1965F70E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Presupuesto global del proyecto</comment>
+<commentInRDBMS>Presupuesto global del proyecto</commentInRDBMS>
+<generatorID>8C62FF28-4F50-3225-1F9A-E5ADAF486A98</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Aprobacion_Etica" id="01A0BCB7-E23F-A16D-1A39-8C4B5546B0B6">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Indica si el proyecto necesita aprobación del comité de ética&lt;br/&gt;S=Sí&lt;br/&gt;N=No</comment>
+<commentInRDBMS>Indica si el proyecto necesita aprobación del comité de ética&lt;br/&gt;S=Sí&lt;br/&gt;N=No</commentInRDBMS>
+<generatorID>36DC2DFA-2823-D3E2-9AFB-4E64E2B18EEA</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_TIN" id="B00AF448-F8A5-158F-E098-962F6F9A8BA7">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del tipo de investigación</comment>
+<commentInRDBMS>Código del tipo de investigación</commentInRDBMS>
+<generatorID>EDA9628E-887C-10C5-9FBB-3A651ECDD030</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<delegate>AE8F4C5D-3BD9-A3B0-1FE4-F46C5025A8E6</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="38BD64E4-436B-126A-64B8-D1D621E331F9" referredColumn="AE8F4C5D-3BD9-A3B0-1FE4-F46C5025A8E6"/>
+</associations>
+</Column>
+<Column name="Codigo_TPR" id="76F571CD-622F-00E7-A67E-7505D08D427F">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del tipo de proyecto</comment>
+<commentInRDBMS>Código del tipo de proyecto</commentInRDBMS>
+<generatorID>997B79AC-D3EE-74EB-18B1-3D3F5ACE5FB2</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+<delegate>0CF46811-F025-A20E-7CCD-BC7F58459928</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="31B7D901-DB91-DE08-54AA-90ABF0DAB3BD" referredColumn="0CF46811-F025-A20E-7CCD-BC7F58459928"/>
+</associations>
+</Column>
+<Column name="Cenco" id="DCF0C820-7470-62D9-CFD9-AE7669498D86">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del Cenco asignado al proyecto</comment>
+<commentInRDBMS>Código del Cenco asignado al proyecto</commentInRDBMS>
+<generatorID>7012B9C9-8A9E-507F-6AAC-E858A24C30A7</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Presupuesto_Asignado" id="D556273E-4315-711F-62EA-529EFBF32455">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Presupuesto asignado por el decano</comment>
+<commentInRDBMS>Presupuesto asignado por el decano</commentInRDBMS>
+<generatorID>49101E1C-E1C0-A031-94A0-429E3A1175F0</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Doc_Etica" id="5171ED44-E1B2-67D8-2DDC-4D64B08231CB">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Documento PDF de aprobación de ética</comment>
+<commentInRDBMS>Documento PDF de aprobación de ética</commentInRDBMS>
+<generatorID>F78E1586-9947-8F7F-C42A-33B6D842FD57</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FCEE296A-7AB9-0318-8772-FB1A32A59969" name="Proyecto_Investigacion_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>9C51110B-164F-8FFD-B1BB-F43F6CAE2624</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8C940BD9-4562-955E-E373-9B5124F820A0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0226274A-3225-052A-4FE6-1258003610FF" name="Proyecto_Investigacion_Estado_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>33BE5D1B-4752-C871-8E1B-90409F32D936</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="73045BDD-583F-DFAF-9E07-445238559B2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="99A59D4A-869D-B853-9B5C-2FE1AD5F25A2" name="Proyecto_Investigacion_Grupo_Linea_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>DCC2A94C-8FE3-4F2E-442A-4FBCA3A15D7C</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D623C02-F752-2F8C-B835-B64FB348DCF1"/>
+<colUsage columnID="DC86ED5A-3D83-4C5A-4F75-00FBB836ECF9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="995C93A3-8081-0BD7-2D4B-CDCB79B9E204" name="Proyecto_Investigacion_Tipo_Investigacion_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>B7E5B290-C93C-E79B-9D7D-9F6336003604</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B00AF448-F8A5-158F-E098-962F6F9A8BA7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6B9C7B53-B2AC-6F65-AA38-67B4AECC7267" name="Proyecto_Investigacion_Tipo_Proyecto_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>9A7F3CAD-D3A4-8834-671A-916C8E09334C</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="76F571CD-622F-00E7-A67E-7505D08D427F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

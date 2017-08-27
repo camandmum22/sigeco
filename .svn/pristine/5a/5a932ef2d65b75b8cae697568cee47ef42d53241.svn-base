@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="D9B961C7-8451-758C-5CD8-41417371EA8B" name="Permisos_Rol_Rol_Sistema_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>91803CBE-DBBF-F38C-7EBC-46CD991D8280</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<containerWithKeyObject>4FE5FD15-762C-16CB-2000-E2950CDD9FC3</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>E9C81E89-1F7C-4165-4073-E9C9B4B6CB1C</localFKIndex>
+<keyObject>684D4D4D-D9B9-C1D8-9B34-88162675A622</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

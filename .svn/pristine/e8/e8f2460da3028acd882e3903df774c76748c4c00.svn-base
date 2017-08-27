@@ -1,0 +1,98 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+/**
+ *
+ * @author csacanam
+ */
+@Embeddable
+public class GrupoLineaPK implements Serializable
+{
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "CODIGO_GRUPO", nullable = false, length = 10)
+    private String codigoGrupo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 5)
+    @Column(name = "CODIGO_LINEA", nullable = false, length = 5)
+    private String codigoLinea;
+
+    public GrupoLineaPK()
+    {
+    }
+
+    public GrupoLineaPK(String codigoGrupo, String codigoLinea)
+    {
+        this.codigoGrupo = codigoGrupo;
+        this.codigoLinea = codigoLinea;
+    }
+
+    public String getCodigoGrupo()
+    {
+        return codigoGrupo;
+    }
+
+    public void setCodigoGrupo(String codigoGrupo)
+    {
+        this.codigoGrupo = codigoGrupo;
+    }
+
+    public String getCodigoLinea()
+    {
+        return codigoLinea;
+    }
+
+    public void setCodigoLinea(String codigoLinea)
+    {
+        this.codigoLinea = codigoLinea;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoGrupo != null ? codigoGrupo.hashCode() : 0);
+        hash += (codigoLinea != null ? codigoLinea.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof GrupoLineaPK))
+        {
+            return false;
+        }
+        GrupoLineaPK other = (GrupoLineaPK) object;
+        if ((this.codigoGrupo == null && other.codigoGrupo != null) || (this.codigoGrupo != null && !this.codigoGrupo.equals(other.codigoGrupo)))
+        {
+            return false;
+        }
+        if ((this.codigoLinea == null && other.codigoLinea != null) || (this.codigoLinea != null && !this.codigoLinea.equals(other.codigoLinea)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.GrupoLineaPK[ codigoGrupo=" + codigoGrupo + ", codigoLinea=" + codigoLinea + " ]";
+    }
+    
+}

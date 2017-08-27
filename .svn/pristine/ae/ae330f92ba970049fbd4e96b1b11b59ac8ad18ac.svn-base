@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Grupo_GL" directorySegmentName="seg_0" id="3BEE0DB5-358C-A8F4-7F7B-A697ADBDFEA3">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-20 20:01:48 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="06061A17-62CC-F07F-B8A3-A99B5AB8EFE2" value="true"/>
+</engineerTo>
+<sourcePk>674A054A-576A-CDCD-F0FA-B6481E420C16</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>870EACDB-10D1-2950-CD64-BE2592035DE1</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>89CF2090-D046-5734-D99C-173BC78D4B56</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <!--FORM DATA TABLE -->
+        <h:form>
+            <h1>Usuarios</h1>
+            <p:outputLabel for="filtro" value="Filtro:" />
+            <p:selectOneRadio id="filtro" value="#{usuarioNB.filtro}">
+                <f:selectItem itemLabel="Nombre" itemValue="Nombre" />
+                <f:selectItem itemLabel="Documento" itemValue="Documento" />
+                <f:selectItem itemLabel="Rol" itemValue="Rol" />
+            </p:selectOneRadio>
+            <br/>
+            <p:outputLabel value="Filtrar"></p:outputLabel>
+            <p:inputText id="Buscar" value="#{usuarioNB.valorUsu}"/>
+            <p:commandButton id="Filtrar" value="Filtrar usuarios" actionListener="#{usuarioNB.filtrarUsuarios()}" action="usuarios.xhtml" ajax="false"/>
+        </h:form>
+        <br></br>
+        <h:form id="formDataTable">
+
+            <p:growl id="msgsDataTable" showDetail="true"/>
+
+            <!-- Data table -->
+
+            <p:dataTable id="points" var="usuario" value="#{usuarioNB.listUsuarios}" style="margin-bottom:20px">
+
+                <p:column headerText="Documento">
+                    <h:outputText value="#{usuario.documento}"  />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{usuario.nombre}"  />
+                </p:column>
+
+                <p:column headerText="Facultad">
+                    <h:outputText value="#{usuario.facultad.nombre}"  />
+                </p:column>
+
+                <p:column headerText="Email">
+                    <h:outputText value="#{usuario.email}"  />
+                </p:column>
+
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{usuario.telefono}"  />
+                </p:column>
+
+                <p:column headerText="Rol">
+                    <p:dataList value="#{usuario.rolSistemaList}" var="rol" type="ordered">
+                        #{rol.nombre}
+                    </p:dataList>
+                </p:column>
+
+            </p:dataTable>
+
+        </h:form>
+    </h:body>
+</html>
+

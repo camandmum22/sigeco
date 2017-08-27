@@ -1,0 +1,164 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import java.math.BigInteger;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ *
+ * @author csacanam
+ */
+@Entity
+@Table(name = "USUARIO_PCS")
+@XmlRootElement
+@NamedQueries(
+{
+    @NamedQuery(name = "UsuarioPcs.findAll", query = "SELECT u FROM UsuarioPcs u"),
+    @NamedQuery(name = "UsuarioPcs.findByDedicacion", query = "SELECT u FROM UsuarioPcs u WHERE u.dedicacion = :dedicacion"),
+    @NamedQuery(name = "UsuarioPcs.findByCodigoUsuario", query = "SELECT u FROM UsuarioPcs u WHERE u.usuarioPcsPK.codigoUsuario = :codigoUsuario"),
+    @NamedQuery(name = "UsuarioPcs.findByCodigoConvocatoria", query = "SELECT u FROM UsuarioPcs u WHERE u.usuarioPcsPK.codigoConvocatoria = :codigoConvocatoria"),
+    @NamedQuery(name = "UsuarioPcs.findByCodigoProyecto1", query = "SELECT u FROM UsuarioPcs u WHERE u.usuarioPcsPK.codigoProyecto1 = :codigoProyecto1"),
+    @NamedQuery(name = "UsuarioPcs.findByCodigoSolicitud", query = "SELECT u FROM UsuarioPcs u WHERE u.usuarioPcsPK.codigoSolicitud = :codigoSolicitud")
+})
+public class UsuarioPcs implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+    @EmbeddedId
+    protected UsuarioPcsPK usuarioPcsPK;
+    @Basic(optional = false)
+    @NotNull
+    @Column(nullable = false)
+    private BigInteger dedicacion;
+    @JoinColumns(
+    {
+        @JoinColumn(name = "CODIGO_CONVOCATORIA", referencedColumnName = "CODIGO_CONVOCATORIA", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "CODIGO_PROYECTO1", referencedColumnName = "CODIGO_PROYECTO", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "CODIGO_SOLICITUD", referencedColumnName = "CODIGO_SOLICITUD", nullable = false, insertable = false, updatable = false)
+    })
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private ProConSol proConSol;
+    @JoinColumn(name = "CODIGO_ROLPI", referencedColumnName = "CODIGO_ROLPI", nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private RolProyecto codigoRolpi;
+    @JoinColumn(name = "CODIGO_USUARIO", referencedColumnName = "CODIGO_USUARIO", nullable = false, insertable = false, updatable = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Usuario usuario;
+
+    public UsuarioPcs()
+    {
+    }
+
+    public UsuarioPcs(UsuarioPcsPK usuarioPcsPK)
+    {
+        this.usuarioPcsPK = usuarioPcsPK;
+    }
+
+    public UsuarioPcs(UsuarioPcsPK usuarioPcsPK, BigInteger dedicacion)
+    {
+        this.usuarioPcsPK = usuarioPcsPK;
+        this.dedicacion = dedicacion;
+    }
+
+    public UsuarioPcs(Long codigoUsuario, Long codigoConvocatoria, Long codigoProyecto1, Long codigoSolicitud)
+    {
+        this.usuarioPcsPK = new UsuarioPcsPK(codigoUsuario, codigoConvocatoria, codigoProyecto1, codigoSolicitud);
+    }
+
+    public UsuarioPcsPK getUsuarioPcsPK()
+    {
+        return usuarioPcsPK;
+    }
+
+    public void setUsuarioPcsPK(UsuarioPcsPK usuarioPcsPK)
+    {
+        this.usuarioPcsPK = usuarioPcsPK;
+    }
+
+    public BigInteger getDedicacion()
+    {
+        return dedicacion;
+    }
+
+    public void setDedicacion(BigInteger dedicacion)
+    {
+        this.dedicacion = dedicacion;
+    }
+
+    public ProConSol getProConSol()
+    {
+        return proConSol;
+    }
+
+    public void setProConSol(ProConSol proConSol)
+    {
+        this.proConSol = proConSol;
+    }
+
+    public RolProyecto getCodigoRolpi()
+    {
+        return codigoRolpi;
+    }
+
+    public void setCodigoRolpi(RolProyecto codigoRolpi)
+    {
+        this.codigoRolpi = codigoRolpi;
+    }
+
+    public Usuario getUsuario()
+    {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario)
+    {
+        this.usuario = usuario;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (usuarioPcsPK != null ? usuarioPcsPK.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof UsuarioPcs))
+        {
+            return false;
+        }
+        UsuarioPcs other = (UsuarioPcs) object;
+        if ((this.usuarioPcsPK == null && other.usuarioPcsPK != null) || (this.usuarioPcsPK != null && !this.usuarioPcsPK.equals(other.usuarioPcsPK)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.UsuarioPcs[ usuarioPcsPK=" + usuarioPcsPK + " ]";
+    }
+    
+}

@@ -1,0 +1,130 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Usuario;
+import com.sigeco.ejb.subsistemas.UsuarioSB;
+import com.sigeco.ejb.utilities.CipherAlgorithms;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class UsuarioNB
+{
+
+    private Usuario usuario;
+    private String verificacion;
+    private CipherAlgorithms cipher;
+
+    @EJB
+    private UsuarioSB usuarioSB;
+    
+   
+    
+
+    /**
+     * Creates a new instance of UsuarioNB
+     */
+    public UsuarioNB()
+    {
+    }
+
+    @PostConstruct
+    public void init()
+    {
+        setUsuario(new Usuario());
+        setVerificacion("");
+    }
+
+    /**
+     * Método que me permite registrar un usuario.
+     */
+    public void registrarUsuario()
+    {
+        try
+        {
+            if (!verificarContrasena())
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No coincide con la contraseña", ""));
+            } else
+            {
+                usuario.setContraseña(cipher.encryptAES(usuario.getContraseña()));
+                usuarioSB.getUsuarioFacade().create(usuario);
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
+
+    public boolean verificarContrasena()
+    {
+        if (usuario.getContraseña() == null)
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Debe llenar el campo cerificar contraseña", ""));
+        } else if (!usuario.getContraseña().equals(verificacion))
+        {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No coincide con la contraseña", ""));
+        } else
+        {
+            return usuario.getContraseña() != null ? usuario.getContraseña().equals(verificacion) : false;
+        }
+        return usuario.getContraseña() != null ? usuario.getContraseña().equals(verificacion) : false;
+    }
+
+    public UsuarioSB getUsuarioSB()
+    {
+        return usuarioSB;
+    }
+
+    public void setUsuarioSB(UsuarioSB usuarioSB)
+    {
+        this.usuarioSB = usuarioSB;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario()
+    {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario)
+    {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the verificacion
+     */
+    public String getVerificacion()
+    {
+        return verificacion;
+    }
+
+    /**
+     * @param verificacion the verificacion to set
+     */
+    public void setVerificacion(String verificacion)
+    {
+        this.verificacion = verificacion;
+    }
+
+}

@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.namedbeans.AuthAutNB;
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * <p>
+ * @author Christian
+ */
+@WebFilter( filterName = "AuthFilter", urlPatterns =
+    {
+        "/faces/*"
+} )
+public class AuthFilter implements Filter
+{
+    @Override
+    public void init( FilterConfig filterConfig ) throws ServletException
+    {
+    }
+
+    @Override
+    public void doFilter( ServletRequest request, ServletResponse response, FilterChain chain ) throws IOException, ServletException
+    {
+        HttpServletRequest hRequest = (HttpServletRequest)request;
+        HttpServletResponse hResponse = (HttpServletResponse)response;
+
+        String pagina = "/faces" + hRequest.getPathInfo();
+
+        if( pagina.endsWith( ".xhtml" ) )//Solo filtra las peticiones a las paginas .xhtml
+        {
+            AuthAutNB authAutNB = (AuthAutNB)hRequest.getSession().getAttribute( "authAutNB" );
+
+            if( authAutNB != null )
+            {
+                if( authAutNB.isLogged() )
+                {
+                    if( pagina.equals( AuthAutNB.AUTH_PATH ) )
+                    {
+                        hResponse.sendRedirect( hRequest.getContextPath() + AuthAutNB.HOME_PATH );
+                    }
+                }
+                else if( !pagina.equals( AuthAutNB.AUTH_PATH ) )
+                {
+                    hResponse.sendRedirect( hRequest.getContextPath() + AuthAutNB.AUTH_PATH );
+                }
+            }
+            else if( !pagina.equals( AuthAutNB.AUTH_PATH ) )
+            {
+                hResponse.sendRedirect( hRequest.getContextPath() + AuthAutNB.AUTH_PATH );
+            }
+        }
+
+        chain.doFilter( request, response );
+    }
+
+    @Override
+    public void destroy()
+    {
+    }
+}

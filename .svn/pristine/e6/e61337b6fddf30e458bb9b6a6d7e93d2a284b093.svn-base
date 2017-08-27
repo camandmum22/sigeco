@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Area_LA" directorySegmentName="seg_0" id="E37BC3BB-D604-5449-F085-30FD14724C6B">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 05:38:26 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>BE24B991-CFEC-B54C-CFCC-910206611155</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>9DC9629F-8DC0-30E0-AA08-519175E9285F</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>26117D07-8A1A-EB21-96DC-4A1383764C6D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

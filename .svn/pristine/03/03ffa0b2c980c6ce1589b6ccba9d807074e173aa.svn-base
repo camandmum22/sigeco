@@ -1,0 +1,158 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.entities.Convocatoria;
+import com.sigeco.ejb.entities.ProConSol;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.Solicitud;
+import com.sigeco.ejb.sessionbean.ConvocatoriaFacade;
+import com.sigeco.ejb.sessionbean.EstadoFacade;
+import com.sigeco.ejb.sessionbean.ProConSolFacade;
+import com.sigeco.ejb.sessionbean.ProyectoInvestigacionFacade;
+import com.sigeco.ejb.sessionbean.RubroFacade;
+import com.sigeco.ejb.sessionbean.SolicitudFacade;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author csacanam
+ */
+@Stateless
+public class SolicitudesSB
+{
+    //Solcitud de proyecto nuevo (PN) 
+    public final static String SOLICITUD_REGISTRO = "PN";
+    
+    @EJB
+    private SolicitudFacade solicitudFacade;
+    
+    @EJB
+    private RubroFacade rubroFacade;
+    
+    @EJB
+    private ProyectoInvestigacionFacade proyectoInvestigacionFacade;
+    
+    @EJB
+    private ConvocatoriaFacade convocatoriaFacade;
+    
+    @EJB
+    private EstadoFacade estadoFacade;
+    
+    @EJB
+    private ProConSolFacade proConSolFacade;
+    
+    @EJB
+    ConvocatoriaSB convocatoriaSB;
+    
+    
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+    
+    public SolicitudesSB() {
+        
+    }
+    
+ 
+
+    public RubroFacade getRubroFacade() {
+        return rubroFacade;
+    }
+
+    public void setRubroFacade(RubroFacade rubroFacade) {
+        this.rubroFacade = rubroFacade;
+    }
+    
+    public void guardarSolicitud(InputStream input, long codigoProyecto, long codigoConvocatoria, Date fechaCulminacion) throws IOException{
+        ProyectoInvestigacion p=proyectoInvestigacionFacade.find(codigoProyecto);
+        Convocatoria c= convocatoriaSB.darConvocatoriaProyecto(codigoProyecto);
+        ProConSol pcs= new ProConSol();
+        pcs.setConvocatoria(c);
+        pcs.setProyectoInvestigacion(p);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        byte[] buffer = new byte[10240];
+        for (int length = 0; (length = input.read(buffer)) > 0;) output.write(buffer, 0, length);
+        byte[] b=output.toByteArray();
+        pcs.setCronograma(b);
+        //proConSolFacade.create(pcs);
+    }
+    
+    
+    /**
+     * Permite guardar una solicitud de adición para un proyecto de una convocatoria pasada dado los siguientes parámetros:
+     * @param codProyecto es el código del proyecto 
+     * @param codConv es el código de la convocatoria
+     * @param input 
+     */
+    /**
+    public void guardarSolicitud(long codProyecto, long codConv, InputStream input){
+        
+    }
+    */
+    
+
+    /**
+     * @return the solicitudFacade
+     */
+    public SolicitudFacade getSolicitudFacade() {
+        return solicitudFacade;
+    }
+
+    /**
+     * @param solicitudFacade the solicitudFacade to set
+     */
+    public void setSolicitudFacade(SolicitudFacade solicitudFacade) {
+        this.solicitudFacade = solicitudFacade;
+    }
+
+    /**
+     * @return the proyectoInvestigacionFacade
+     */
+    public ProyectoInvestigacionFacade getProyectoInvestigacionFacade() {
+        return proyectoInvestigacionFacade;
+    }
+
+    /**
+     * @param proyectoInvestigacionFacade the proyectoInvestigacionFacade to set
+     */
+    public void setProyectoInvestigacionFacade(ProyectoInvestigacionFacade proyectoInvestigacionFacade) {
+        this.proyectoInvestigacionFacade = proyectoInvestigacionFacade;
+    }
+
+    /**
+     * @return the convocatoriaFacade
+     */
+    public ConvocatoriaFacade getConvocatoriaFacade() {
+        return convocatoriaFacade;
+    }
+
+    /**
+     * @param convocatoriaFacade the convocatoriaFacade to set
+     */
+    public void setConvocatoriaFacade(ConvocatoriaFacade convocatoriaFacade) {
+        this.convocatoriaFacade = convocatoriaFacade;
+    }
+
+    /**
+     * @return the estadoFacade
+     */
+    public EstadoFacade getEstadoFacade() {
+        return estadoFacade;
+    }
+
+    /**
+     * @param estadoFacade the estadoFacade to set
+     */
+    public void setEstadoFacade(EstadoFacade estadoFacade) {
+        this.estadoFacade = estadoFacade;
+    }
+    
+}

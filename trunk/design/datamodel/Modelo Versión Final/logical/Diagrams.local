@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.logical.LogicalDesign>
+   <object objectType="main_view" objectID="D3E581C8-FD83-95AD-45AE-9260D67D4CB9" name="Logical" visible="true"/>
+   <object objectType="sub_view" objectID="6A7A97BA-D603-EE37-C338-B6BE39A8B9E5" name="Auth_Aut" visible="false"/>
+   <object objectType="sub_view" objectID="DB00A0DB-37AC-56FA-4303-AE8353C097D2" name="Convocatoria" visible="false"/>
+   <object objectType="sub_view" objectID="DBFD4C36-A605-0272-8B09-D356428D8801" name="Entregable" visible="false"/>
+   <object objectType="sub_view" objectID="D147A18D-35BA-B0DC-8FC8-4F5A49EC84D9" name="Estado" visible="false"/>
+   <object objectType="sub_view" objectID="BCD7CD5A-DEDC-1DCB-D43E-ADFF23C89A18" name="Facultad" visible="false"/>
+   <object objectType="sub_view" objectID="53343628-8DB1-5075-4BAF-CBEBDD60562A" name="Notificacion" visible="false"/>
+   <object objectType="sub_view" objectID="F540165B-6146-9473-2F2F-1BDFAC46D9BD" name="Proyecto" visible="false"/>
+   <object objectType="sub_view" objectID="DAEF231F-02D1-B87F-7AD2-8C74D3F56104" name="Solicitud" visible="false"/>
+   <object objectType="sub_view" objectID="67F6CC76-C998-26EC-ED1A-DEED69513202" name="Usuario" visible="false"/>
+</oracle.dbtools.crest.model.design.logical.LogicalDesign>

@@ -1,0 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.TipoProyecto;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author csacanam
+ */
+@FacesConverter("tipoProyectoConverter")
+public class TipoProyectoConverter implements Converter
+{
+    
+    private List<TipoProyecto> tiposProyecto = new ArrayList<>();
+    
+    @EJB
+    ProyectosSB proyectoSB;
+    
+    public TipoProyectoConverter()
+    {
+    }
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value)
+    {
+        if (Validaciones.esVacio(value))
+        {
+            return null;
+        } else
+        {
+            //Obtener nuevos tipos de proyecto
+            tiposProyecto.clear();
+            tiposProyecto = proyectoSB.getTipoProyectoFacade().findAll();
+
+            //Encontrar tipo de proyecto y retornarlo
+            for (TipoProyecto tipoProy : tiposProyecto)
+            {
+                if (tipoProy.getCodigoTpr().equals(new Long(value)))
+                {
+                    return tipoProy;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value)
+    {
+        if (null == value)
+        {
+            return "";
+        } else
+        {
+            String ejemplo = String.valueOf(((TipoProyecto) value).getCodigoTpr().longValue());
+            return ejemplo;
+        }
+
+    }
+
+}

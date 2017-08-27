@@ -1,0 +1,53 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AE72B26D-2E93-C82F-5CE9-6774EEA6AD81" name="Modalidad">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>6404CE34-4B1E-9DD1-CFD1-9D59BF9BDC7C</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>MOD</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Codigo_Modalidad" id="E0FE8EE3-E704-26E1-BA44-0A4F503F4A39">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la modalidad</comment>
+<commentInRDBMS>Código de la modalidad</commentInRDBMS>
+<generatorID>843EEDCA-41B2-E1F8-5C2B-B25974F5E13E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre" id="4DF7C471-5B96-D28A-E82D-E09E7A402AF0">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Nombre de la modalidad</comment>
+<commentInRDBMS>Nombre de la modalidad</commentInRDBMS>
+<generatorID>2617DE5C-A744-F585-78C1-6A8BB1929329</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="431763E1-F788-2700-57B7-DE938FD9DDC3" name="Modalidad_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>B410DA96-F428-DCBE-6BA5-6BDA819C70E0</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E0FE8EE3-E704-26E1-BA44-0A4F503F4A39"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

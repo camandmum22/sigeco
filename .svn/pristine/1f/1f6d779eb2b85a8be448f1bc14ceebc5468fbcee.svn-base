@@ -1,0 +1,149 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.subsistemas;
+
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.Rubro;
+import com.sigeco.ejb.exceptions.ProyectoException;
+import com.sigeco.ejb.exceptions.RubroException;
+import com.sigeco.ejb.sessionbean.LineaInvestigacionFacade;
+import com.sigeco.ejb.sessionbean.ProyectoInvestigacionFacade;
+import com.sigeco.ejb.sessionbean.RolProyectoFacade;
+import com.sigeco.ejb.sessionbean.RubroFacade;
+import com.sigeco.ejb.sessionbean.TipoInvestigacionFacade;
+import com.sigeco.ejb.sessionbean.TipoProyectoFacade;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author csacanam
+ */
+@Stateless
+public class ProyectosSB
+{
+
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+    @EJB
+    private TipoInvestigacionFacade tipoInvestigacionFacade;
+
+    @EJB
+    private RolProyectoFacade rolProyectoFacade;
+
+    @EJB
+    private ProyectoInvestigacionFacade proyectoFacade;
+
+    @EJB
+    private TipoProyectoFacade tipoProyectoFacade;
+
+    ProyectoInvestigacion proyecto;
+
+    @EJB
+    private LineaInvestigacionFacade lineaInvestigacionFacade;
+
+    /**
+     * Método que permite editar un proyecto con la información básica
+     *
+     * @param codigo
+     * @param titulo
+     * @param resumenEjecutivo
+     * @param fechaInicio
+     * @param fechaFin
+     * @param aprobacionEtica
+     * @throws ProyectoException
+     */
+    public void editarProyecto(long codigo, String titulo, String resumenEjecutivo, Date fechaInicio, Date fechaFin, BigDecimal presupuestoEsperado, String aprobacionEtica) throws ProyectoException
+    {
+
+        if (titulo == null || resumenEjecutivo == null || fechaInicio == null || fechaFin == null || presupuestoEsperado == null)
+        {
+            throw new ProyectoException("El proyecto debe tener estos datos completos.");
+        } else
+        {
+            proyecto = proyectoFacade.find(codigo);
+            if (proyecto != null)
+            {
+                proyecto.setTitulo(titulo);
+                proyecto.setResumenEjecutivo(resumenEjecutivo);
+                proyecto.setPresupuestoEsperado(presupuestoEsperado);
+                proyecto.setFechainicio(fechaInicio);
+                proyecto.setFechafin(fechaFin);
+
+                proyectoFacade.edit(proyecto);
+            } else
+            {
+                throw new ProyectoException("No existe proyecto de investigación con ese código");
+            }
+        }
+    }
+    
+    /**
+     * Devuleve el objeto ProyectoInvestigacion asociado a un codigo, si no existe
+     * ningun proyecto asociado a ese codigo devulve null
+     * <p>
+     * @param codigo El codigo del ProyectoInvestigacion
+     * @return El proyecto o null si no es valido o el proyecto no existe
+     */
+    //No estoy seguro si uso bien el findBy en la forma 2
+    public ProyectoInvestigacion darProyectoConCodigo(String codigo){
+        ProyectoInvestigacion p = null;
+        if(codigo!= null && !codigo.trim().equals("")){
+            p = proyectoFacade.find(codigo);
+        }
+        return p;
+    }
+
+    //Getters y setters
+    public ProyectoInvestigacionFacade getProyectoFacade()
+    {
+        return proyectoFacade;
+    }
+
+    public TipoInvestigacionFacade getTipoInvestigacionFacade()
+    {
+        return tipoInvestigacionFacade;
+    }
+
+    public RolProyectoFacade getRolProyectoFacade()
+    {
+        return rolProyectoFacade;
+    }
+
+    public TipoProyectoFacade getTipoProyectoFacade()
+    {
+        return tipoProyectoFacade;
+    }
+
+    public LineaInvestigacionFacade getLineaInvestigacionFacade()
+    {
+        return lineaInvestigacionFacade;
+    }
+
+    public void setTipoInvestigacionFacade(TipoInvestigacionFacade tipoInvestigacionFacade)
+    {
+        this.tipoInvestigacionFacade = tipoInvestigacionFacade;
+    }
+
+    public void setRolProyectoFacade(RolProyectoFacade rolProyectoFacade)
+    {
+        this.rolProyectoFacade = rolProyectoFacade;
+    }
+
+    public void setProyectoFacade(ProyectoInvestigacionFacade proyectoFacade)
+    {
+        this.proyectoFacade = proyectoFacade;
+    }
+
+    public void setTipoProyectoFacade(TipoProyectoFacade tipoProyectoFacade)
+    {
+        this.tipoProyectoFacade = tipoProyectoFacade;
+    }
+
+}

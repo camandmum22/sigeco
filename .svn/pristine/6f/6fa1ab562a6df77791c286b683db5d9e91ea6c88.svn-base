@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Crear Convocatoria</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <!-- Se cargan las hojas de estilo -->
+        <h:outputStylesheet library="css" name="styles.css"  />
+
+        <h1>Crear convocatoria</h1>
+
+        <!-- Formulario de creación de proyecto de convocatoria -->
+        <h:form id="form" >
+
+            <!-- Espacio para los mensajes emergentes -->
+            <p:growl id="growl" life="2000" />
+
+            <!-- Panel donde se ingresa el nombre de la convocatoria-->
+            <h:form>           
+                <p:panel header="Información">
+                    <h:panelGrid columns="2" cellpadding="5px" cellspacing="5px">
+                        <p:outputLabel for="txtNombreConv" id="lblNombreConv" value="Nombre: "></p:outputLabel>                   
+                        <p:inputText id="txtNombreConv" value="#{convocatoriaNB.convocatoria.nombre}" tabindex="1" title="Ingrese el nombre de la convocatoria"></p:inputText>              
+                    </h:panelGrid>               
+                </p:panel>
+            </h:form>
+
+
+            <!-- Panel de fases -->
+            <p:dataTable id="fasesTable" var="lafase" value="#{convocatoriaNB.fasesUltimaConvocatoria}">
+                <p:column sortBy="#{lafase.nombre}" style="text-align: center;" headerText="Nombre">
+                    <h:outputText value="#{lafase.nombre}"  />
+                </p:column>
+
+
+                <p:column headerText="Fecha Inicio" style="text-align: center;">
+                    <h:outputText value="#{lafase.fechaIni}"  />
+                </p:column>
+
+                <p:column headerText="Fecha de Finalización" style="text-align: center;">
+                    <h:outputText value="#{lafase.fechaFin}"  />
+                </p:column>
+
+                <p:column headerText="Duración" style="text-align: center;">
+                    <h:outputText value="#{convocatoriaNB.calcularDuracionFase(lafase)}"  />
+                </p:column>   
+            </p:dataTable> 
+        </h:form>
+
+        <!--Panel de agregar fase-->
+        <h:form>           
+            <p:panel id="panel" header="Información" toggleable="true"  toggleSpeed="500" closeSpeed="500" style="margin-bottom:20px">
+                <h:panelGrid columns="2" cellpadding="5px" cellspacing="5px">
+
+                    <p:outputLabel for="nombreTxt" id="nombreLbl" value="Nombre:"></p:outputLabel>                   
+                    <p:inputText id="nombreTxt" value="#{convocatoriaNB.fase.nombre}" tabindex="1" title="Ingrese el nombre de la fase"></p:inputText>
+
+                    <p:outputLabel for="fechaIniCal" id="fechaIniLbl" value="Fecha de inicio:"></p:outputLabel>
+                    <p:calendar id="fechaIniCal" value="#{convocatoriaNB.fase.fechaIni}" tabindex="2" title="Seleccione una fecha de inicio"></p:calendar>
+
+                    <p:outputLabel for="fechaFinCal" id="fechaFinLbl" value="Fecha de finalización:"></p:outputLabel>
+                    <p:calendar id="fechaFinCal" value="#{convocatoriaNB.fase.fechaFin}" tabindex="3" title="Seleccione una fecha de finalización"></p:calendar>
+                </h:panelGrid>               
+            </p:panel>
+            <p:commandButton id="crearFase" value="Crear" actionListener="#{convocatoriaNB.prepareCreateConvocatoria()}" action="crearconvocatoria" tabindex="4" title="Crear fase"></p:commandButton>
+        </h:form>
+        <h:form>
+            <p:commandButton id="agregarFase" value="Terminar" actionListener="#{convocatoriaNB.crearConvocatoria()}" action="convocatorias" tabindex="4" title="Crear fase"></p:commandButton>
+        </h:form>
+    </h:body>
+</html>
+

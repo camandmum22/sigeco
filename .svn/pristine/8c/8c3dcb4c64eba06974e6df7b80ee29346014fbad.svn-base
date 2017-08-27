@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7E975DD7-4A16-823C-4848-1EE9137670C9" name="Tarifa">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>56B4AB76-42C2-42DB-9A9A-1D396B18D9D6</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<abbreviation>TAR</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Valor" id="CE8CC444-76B5-1EC5-252E-BAD21C9502E3">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Valor pagado al usuario</comment>
+<commentInRDBMS>Valor pagado al usuario</commentInRDBMS>
+<generatorID>E4AD453A-E9B2-E650-94CB-CBF6FA482250</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Codigo_Usuario" id="36F82188-C62D-A079-B8E7-D55C32114496">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código del usuario</comment>
+<commentInRDBMS>Código del usuario</commentInRDBMS>
+<generatorID>AE4FD068-DDB6-AC44-43D7-5ACC72EC1725</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+<delegate>77FF0873-6C0E-BEE3-8AE9-677ED19C6E09</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7495D418-C3B2-CAF6-94FA-7EC293EF3ACE" referredColumn="77FF0873-6C0E-BEE3-8AE9-677ED19C6E09"/>
+</associations>
+</Column>
+<Column name="Codigo_Modalidad" id="CDB0DF48-B89C-F7F4-BBFD-75D448897E81">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<comment>Código de la modalidad</comment>
+<commentInRDBMS>Código de la modalidad</commentInRDBMS>
+<generatorID>F29460DE-9250-D9DB-DEF6-5856FC7B32F9</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+<delegate>E0FE8EE3-E704-26E1-BA44-0A4F503F4A39</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5E76E18D-ECBC-5D59-9C10-52D5060D0C16" referredColumn="E0FE8EE3-E704-26E1-BA44-0A4F503F4A39"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7534B660-211A-89BA-20A8-3E6C50DDAC68" name="Tarifa_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>130F7654-A7A7-FFC1-AC06-F90C2B5ABE44</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="36F82188-C62D-A079-B8E7-D55C32114496"/>
+<colUsage columnID="CDB0DF48-B89C-F7F4-BBFD-75D448897E81"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F3FAF8FC-BDCA-D060-C36F-932EDE777633" name="Tarifa_Modalidad_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>8F339035-B672-9585-16BD-D88CF7212789</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CDB0DF48-B89C-F7F4-BBFD-75D448897E81"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7F5DC8A2-5C1A-7CDF-D00F-9678ACD5369B" name="Tarifa_Usuario_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>FCB396AA-37F8-0387-1736-647CC35BE0E6</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="36F82188-C62D-A079-B8E7-D55C32114496"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

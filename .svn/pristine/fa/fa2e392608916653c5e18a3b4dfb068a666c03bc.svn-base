@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Aprobación de proyectos</title>
+    </h:head>
+    <h:body>        
+
+        <h:form id="formAprobacionComite">
+            <!--Despliegue de mensajes-->
+            <p:growl id="growl" showDetail="true" life="5000"/>
+
+            <!-- Table -->
+            <p:dataTable id="tableProyectos" var="proyecto" value="#{proyectosNB.darProyectosAprobadosDecano()}">
+
+                <p:column style="text-align: center;" headerText="Codigo">
+                    <h:outputText value="#{proyecto.codigo}"  />
+                </p:column>
+
+                <p:column sortBy="#{proyecto.titulo}" style="text-align: center;" headerText="Titulo">
+                    <h:outputText value="#{proyecto.titulo}"  />
+                </p:column>
+
+                <p:column headerText="Fecha Inicio" style="text-align: center;">
+                    <h:outputText value="#{proyecto.fechainicio}"  />
+                </p:column>
+
+                <p:column headerText="Fecha de Finalización" style="text-align: center;">
+                    <h:outputText value="#{proyecto.fechafin}"  />
+                </p:column>
+
+                <p:column headerText="Aprobar" style="text-align: center;">                                      
+                    <p:selectBooleanCheckbox value="#{proyectosNB.aprobadoComite}"></p:selectBooleanCheckbox>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

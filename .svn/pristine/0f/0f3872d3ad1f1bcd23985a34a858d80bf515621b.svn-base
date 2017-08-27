@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="SOL_EST" directorySegmentName="seg_0" id="AFC44764-202A-1578-5A85-0F93B5B185C0">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-29 17:25:11 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>B73CF4C9-8A7B-A2DF-2EEF-F365F8E71103</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C9BC58FB-6FD3-6E6E-C355-DA1D220C0412</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>057AF9B2-79D3-09FD-CF05-3B76122CB6E1</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

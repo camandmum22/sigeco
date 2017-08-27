@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7495D418-C3B2-CAF6-94FA-7EC293EF3ACE" name="Tarifa_Usuario_FK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-04-13 03:39:17 UTC</createdTime>
+<generatorID>FCB396AA-37F8-0387-1736-647CC35BE0E6</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<containerWithKeyObject>7E975DD7-4A16-823C-4848-1EE9137670C9</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>7F5DC8A2-5C1A-7CDF-D00F-9678ACD5369B</localFKIndex>
+<keyObject>89D99232-6F7A-F90F-10A4-9F12C6823C25</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

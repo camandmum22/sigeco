@@ -1,0 +1,116 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+/**
+ *
+ * @author csacanam
+ */
+@Embeddable
+public class ProConSolPK implements Serializable
+{
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_CONVOCATORIA", nullable = false)
+    private Long codigoConvocatoria;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_PROYECTO", nullable = false)
+    private Long codigoProyecto;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_SOLICITUD", nullable = false)
+    private Long codigoSolicitud;
+    
+    public ProConSolPK()
+    {
+    }
+
+    public ProConSolPK(Long codigoConvocatoria, Long codigoProyecto, Long codigoSolicitud)
+    {
+        this.codigoConvocatoria = codigoConvocatoria;
+        this.codigoProyecto = codigoProyecto;
+        this.codigoSolicitud = codigoSolicitud;
+    }
+
+    public Long getCodigoConvocatoria()
+    {
+        return codigoConvocatoria;
+    }
+
+    public void setCodigoConvocatoria(Long codigoConvocatoria)
+    {
+        this.codigoConvocatoria = codigoConvocatoria;
+    }
+
+    public Long getCodigoProyecto()
+    {
+        return codigoProyecto;
+    }
+
+    public void setCodigoProyecto(Long codigoProyecto)
+    {
+        this.codigoProyecto = codigoProyecto;
+    }
+
+    public Long getCodigoSolicitud()
+    {
+        return codigoSolicitud;
+    }
+
+    public void setCodigoSolicitud(Long codigoSolicitud)
+    {
+        this.codigoSolicitud = codigoSolicitud;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoConvocatoria != null ? codigoConvocatoria.hashCode() : 0);
+        hash += (codigoProyecto != null ? codigoProyecto.hashCode() : 0);
+        hash += (codigoSolicitud != null ? codigoSolicitud.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ProConSolPK))
+        {
+            return false;
+        }
+        ProConSolPK other = (ProConSolPK) object;
+        if ((this.codigoConvocatoria == null && other.codigoConvocatoria != null) || (this.codigoConvocatoria != null && !this.codigoConvocatoria.equals(other.codigoConvocatoria)))
+        {
+            return false;
+        }
+        if ((this.codigoProyecto == null && other.codigoProyecto != null) || (this.codigoProyecto != null && !this.codigoProyecto.equals(other.codigoProyecto)))
+        {
+            return false;
+        }
+        if ((this.codigoSolicitud == null && other.codigoSolicitud != null) || (this.codigoSolicitud != null && !this.codigoSolicitud.equals(other.codigoSolicitud)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.ProConSolPK[ codigoConvocatoria=" + codigoConvocatoria + ", codigoProyecto=" + codigoProyecto + ", codigoSolicitud=" + codigoSolicitud + " ]";
+    }
+    
+}

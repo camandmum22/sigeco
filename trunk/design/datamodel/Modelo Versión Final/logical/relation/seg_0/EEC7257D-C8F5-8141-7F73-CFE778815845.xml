@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="CPR_PRO" directorySegmentName="seg_0" id="EEC7257D-C8F5-8141-7F73-CFE778815845">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-27 05:27:00 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>AA46742E-E6C6-60D5-5C11-00A83697AD09</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>248F0980-832B-FB4B-21F6-504496CF4D99</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>166E77B6-A618-7984-9964-64ED27CFF0DF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

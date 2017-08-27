@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Detalles Convocatoria</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="styles.css"  />
+        <h1 class="title">Detalles de convocatoria</h1>
+
+        
+        
+        <h:form id="form" >
+
+            <p:growl id="growl" life="2000" />
+            <p:separator  />
+
+            <p:panel id="panel_nombreConv" header="Información" class="panel_Agregar">
+                <h:panelGrid columns="2" cellpadding="5px" cellspacing="5px">
+                    <p:outputLabel value="Id: "></p:outputLabel>
+                    <p:outputLabel value="#{convocatoriaNB.convocatoria.codigo}"> </p:outputLabel>
+
+                    <p:outputLabel value="Nombre: "></p:outputLabel>
+                    <p:inputText value="#{convocatoriaNB.convocatoria.nombre}"  disabled="#{not convocatoriaNB.admin}"> </p:inputText>
+
+                    <p:outputLabel value="Estado: " rendered="#{convocatoriaNB.admin}"></p:outputLabel>
+                    <p:selectOneMenu id="Estado" value="#{convocatoriaNB.estado}" style="width:125px" rendered="#{convocatoriaNB.admin}">
+                        <f:selectItem itemLabel="Activa" itemValue="1" />n
+                        <f:selectItem itemLabel="Inactiva" itemValue="2" />
+                    </p:selectOneMenu>
+                </h:panelGrid>
+            </p:panel>
+
+            <p:separator  />
+
+            <p:panel  id="panel_Fases" header="Fases base de una convocatoria" class="panel_Fases">
+                <p:dataTable id="fasesTable"  var="lafase" value="#{convocatoriaNB.convocatoria.faseList}">
+
+                    <p:column sortBy="#{lafase.nombre}" style="text-align: center;" headerText="Nombre">
+                        <h:outputText value="#{lafase.nombre}"  />
+                    </p:column>
+
+
+                    <p:column headerText="Fecha Inicio" style="text-align: center;">
+                        <h:outputText value="#{lafase.fechaIni}"  />
+                    </p:column>
+
+                    <p:column headerText="Fecha de Finalización" style="text-align: center;">
+                        <h:outputText value="#{lafase.fechaFin}"  />
+                    </p:column>
+
+                    <p:column headerText="Duración" style="text-align: center;">
+                        <h:outputText value="#{convocatoriaNB.calcularDuracionFase(lafase)}"  />
+                    </p:column>
+
+                    <p:column headerText="Opciones" style="text-align: center;" rendered="#{convocatoriaNB.admin}">
+                        <p:commandLink action="editar_fase" value="Editar" actionListener="#{convocatoriaNB.read(lafase.codigo)}">
+                        </p:commandLink>
+                        &nbsp;
+                        <p:commandLink  value="Eliminar" actionListener="#{convocatoriaNB.eliminarFase((lafase.codigo))}">
+                            <p:confirm header="Confirmación" message="¿Desea eliminar esta fase?" icon="ui-icon-alert" />
+                        </p:commandLink>
+
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                            <p:commandButton action="fases" value="Sí" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                        </p:confirmDialog>
+
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:commandButton value="Crear" action="crear_fase" rendered="#{convocatoriaNB.admin}"/>
+
+            </p:panel>
+
+            <p:panel id="panel_Presupuestos" header="Presupuestos de las facultades para esta convocatoria" class="panel_Fases" rendered="#{convocatoriaNB.admin}">
+                <p:dataTable id="facultadConvocatoria" var="facultadConvocatoria" value="#{convocatoriaNB.convocatoria.facultadConvocatoriaList}" style="margin-bottom:20px; width:840px;">
+
+                    <p:column colspan="1" style="width:280px; text-align: center;" headerText="Facultad">
+                        <p:outputLabel value="#{facultadConvocatoria.facultad.nombre}"  />
+                    </p:column>
+
+                    <p:column colspan="1" style="width:150px; text-align: center;" headerText="Presupuesto">
+                        <p:outputLabel id="prefix" value="$#{facultadConvocatoria.presupuesto}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:commandButton value="Editar" action="editar_presupuestos"/>
+
+            </p:panel>
+
+            <p:separator/>
+
+            <p:outputPanel class="horizontallyAligned" rendered="#{convocatoriaNB.admin}">
+                <p:commandButton action="convocatorias" actionListener="#{convocatoriaNB.editarConvocatoria()}" value="Guardar" ></p:commandButton>
+                &nbsp;
+                <p:button outcome="convocatorias.xhtml" value="Volver" />
+            </p:outputPanel>
+        </h:form>
+
+    </h:body>
+</html>
+

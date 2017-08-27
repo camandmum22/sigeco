@@ -1,0 +1,298 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1C5A1A2F-529F-405F-EC0A-B6CAD5D920AE" name="Proyecto_Investigacion">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:58:18 UTC</createdTime>
+<generatorID>24F42D78-EC40-8A53-38F0-CC3BA79921B7</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Proyecto" id="4BE536AC-3374-DCEF-8B2F-F8F6873D9DDA">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:58:18 UTC</createdTime>
+<comment>Código del proyecto</comment>
+<commentInRDBMS>Código del proyecto</commentInRDBMS>
+<generatorID>9608D7D8-4A58-5D6A-ED62-43187E00D7A1</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Titulo" id="E47F4A66-70B5-381E-09E8-9F9A92AC532B">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:58:18 UTC</createdTime>
+<comment>Título del proyecto</comment>
+<commentInRDBMS>Título del proyecto</commentInRDBMS>
+<generatorID>75C28ED2-5CC0-E03E-2891-720FC167665D</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Resumen_Ejecutivo" id="1F1C7DAB-F1E0-BB55-625C-451DDE8EA76F">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 05:51:16 UTC</createdTime>
+<comment>Resumen ejecutivo del proyecto</comment>
+<commentInRDBMS>Resumen ejecutivo del proyecto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="FechaInicio" id="FBD49ABE-656B-09B9-531C-69854C2E3CA2">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:58:18 UTC</createdTime>
+<comment>Fecha de inicio del proyecto</comment>
+<commentInRDBMS>Fecha de inicio del proyecto</commentInRDBMS>
+<generatorID>94DB1D2A-EB99-E20D-A778-33203A68B1A2</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="FechaFin" id="060973CF-2745-DA22-9C68-98ED71ABFD10">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:58:18 UTC</createdTime>
+<comment>Fecha de finalización del proyecto</comment>
+<commentInRDBMS>Fecha de finalización del proyecto</commentInRDBMS>
+<generatorID>6999AE2C-D9FA-D880-CEA0-B53BB613ECFE</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="Resultados" id="F7BF7295-25DA-93EC-81EC-B4A8AE6633DE">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 05:52:03 UTC</createdTime>
+<comment>Resultados esperados por el proyecto</comment>
+<commentInRDBMS>Resultados esperados por el proyecto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Problema" id="BD9A4AE6-7D25-4979-1426-A20BEE152672">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 13:25:05 UTC</createdTime>
+<comment>Problema que resolverá el proyecto de investigación</comment>
+<commentInRDBMS>Problema que resolverá el proyecto de investigación</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Grupo" id="AF9E7B2F-5457-749E-CC17-142E89483841">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:51:07 UTC</createdTime>
+<comment>Código del grupo de investigación</comment>
+<commentInRDBMS>Código del grupo de investigación</commentInRDBMS>
+<generatorID>DCC2A94C-8FE3-4F2E-442A-4FBCA3A15D7C</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>848B40C7-88AD-2445-08F1-2243CD9FDA6F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>6 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Linea" id="B2F7F1EA-C64B-9C2E-FC37-C731A2A8C58E">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-18 04:51:07 UTC</createdTime>
+<comment>Código de la línea de investigación</comment>
+<commentInRDBMS>Código de la línea de investigación</commentInRDBMS>
+<generatorID>DCC2A94C-8FE3-4F2E-442A-4FBCA3A15D7C</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>B2A369C5-1840-10E3-7600-FE6C9D0D9BDE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>5 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Estado1" id="0212A5B1-CE9B-6992-0AD0-CCE52373ADE7">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-20 04:48:50 UTC</createdTime>
+<comment>Código del estado</comment>
+<commentInRDBMS>Código del estado</commentInRDBMS>
+<generatorID>33BE5D1B-4752-C871-8E1B-90409F32D936</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>9FF70A89-200E-BB56-E201-19ECB90E2522</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Presupuesto_Esperado" id="8C62FF28-4F50-3225-1F9A-E5ADAF486A98">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 04:47:22 UTC</createdTime>
+<comment>Presupuesto global del proyecto</comment>
+<commentInRDBMS>Presupuesto global del proyecto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Aprobacion_Etica" id="36DC2DFA-2823-D3E2-9AFB-4E64E2B18EEA">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 04:52:42 UTC</createdTime>
+<comment>Indica si el proyecto necesita aprobación del comité de ética&lt;br/&gt;S=Sí&lt;br/&gt;N=No</comment>
+<commentInRDBMS>Indica si el proyecto necesita aprobación del comité de ética&lt;br/&gt;S=Sí&lt;br/&gt;N=No</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_TIN" id="EDA9628E-887C-10C5-9FBB-3A651ECDD030">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 05:53:43 UTC</createdTime>
+<comment>Código del tipo de investigación</comment>
+<commentInRDBMS>Código del tipo de investigación</commentInRDBMS>
+<generatorID>B7E5B290-C93C-E79B-9D7D-9F6336003604</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>8BEA46B6-1453-D8E6-BD7D-76A6E9ECB20A</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_TPR" id="997B79AC-D3EE-74EB-18B1-3D3F5ACE5FB2">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-25 05:59:18 UTC</createdTime>
+<comment>Código del tipo de proyecto</comment>
+<commentInRDBMS>Código del tipo de proyecto</commentInRDBMS>
+<generatorID>9A7F3CAD-D3A4-8834-671A-916C8E09334C</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>861B1837-3516-A535-DFC2-DDCFF9111536</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>3 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Cenco" id="7012B9C9-8A9E-507F-6AAC-E858A24C30A7">
+<createdBy>1143855555</createdBy>
+<createdTime>2015-03-25 22:58:46 UTC</createdTime>
+<comment>Código del Cenco asignado al proyecto</comment>
+<commentInRDBMS>Código del Cenco asignado al proyecto</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Presupuesto_Asignado" id="49101E1C-E1C0-A031-94A0-429E3A1175F0">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 18:06:15 UTC</createdTime>
+<comment>Presupuesto asignado por el decano</comment>
+<commentInRDBMS>Presupuesto asignado por el decano</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT020</logicalDatatype>
+<dataTypePrecision>8</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+</Attribute>
+<Attribute name="Doc_Etica" id="F78E1586-9947-8F7F-C42A-33B6D842FD57">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 20:15:19 UTC</createdTime>
+<comment>Documento PDF de aprobación de ética</comment>
+<commentInRDBMS>Documento PDF de aprobación de ética</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9C51110B-164F-8FFD-B1BB-F43F6CAE2624" name="Proyecto Investigacion PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:58:18 UTC</createdTime>
+<generatorID>87B470F1-3DC0-11F1-C966-19456B33C67E</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4BE536AC-3374-DCEF-8B2F-F8F6873D9DDA</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

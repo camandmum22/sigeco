@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<DomainFile class="oracle.dbtools.crest.model.design.DomainFileWrapper" fileName="ScriptTablaTipoProyectos_Domains">
+   <domains>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="NUMERIC_0_0_0" id="36D05FC8-E5F1-CB8D-B823-66C563A04852">
+         <createdBy>Primo</createdBy>
+         <createdTime>2015-02-25 04:42:34 UTC</createdTime>
+         <generatorID>Generado por el Usuario</generatorID>
+         <ownerDesignName>Modelo Versión Final</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <fileName>ScriptTablaTipoProyectos_Domains</fileName>
+         <logicalDatatype>LOGDT019</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_500 CHAR" id="66F77067-C085-7931-C70C-4D8C31166168">
+         <createdBy>Primo</createdBy>
+         <createdTime>2015-02-25 04:42:34 UTC</createdTime>
+         <generatorID>Generado por el Usuario</generatorID>
+         <ownerDesignName>Modelo Versión Final</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypePrecision>0</dataTypePrecision>
+         <dataTypeScale>0</dataTypeScale>
+         <dataTypeSize>500 CHAR</dataTypeSize>
+         <fileName>ScriptTablaTipoProyectos_Domains</fileName>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="Date_0_0_0" id="7094161C-0D5A-66E1-1AB0-FFBAA58B0EF3">
+         <createdBy>Primo</createdBy>
+         <createdTime>2015-02-25 04:42:34 UTC</createdTime>
+         <generatorID>Generado por el Usuario</generatorID>
+         <ownerDesignName>Modelo Versión Final</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <fileName>ScriptTablaTipoProyectos_Domains</fileName>
+         <logicalDatatype>LOGDT007</logicalDatatype>
+      </Domain>
+      <Domain class="oracle.dbtools.crest.model.design.Domain" name="VARCHAR_0_0_100 CHAR" id="AF801DB0-20AC-EFAE-9DBC-CB8B77A6782B">
+         <createdBy>Primo</createdBy>
+         <createdTime>2015-02-25 04:42:34 UTC</createdTime>
+         <generatorID>Generado por el Usuario</generatorID>
+         <ownerDesignName>Modelo Versión Final</ownerDesignName>
+         <avTSortOrder>0</avTSortOrder>
+         <dataTypePrecision>0</dataTypePrecision>
+         <dataTypeScale>0</dataTypeScale>
+         <dataTypeSize>100 CHAR</dataTypeSize>
+         <fileName>ScriptTablaTipoProyectos_Domains</fileName>
+         <logicalDatatype>LOGDT024</logicalDatatype>
+      </Domain>
+   </domains>
+</DomainFile>

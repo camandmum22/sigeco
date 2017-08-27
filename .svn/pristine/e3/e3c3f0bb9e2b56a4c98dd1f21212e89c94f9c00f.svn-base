@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Permisos_PR" directorySegmentName="seg_0" id="DF3049A2-D580-7829-D42B-2078E90BF8A7">
+<createdBy>Primo</createdBy>
+<createdTime>2015-03-06 16:16:00 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="33A6343D-CC4B-BE72-0DE6-32A629CBD736" value="true"/>
+</engineerTo>
+<sourcePk>D497755B-2863-46E8-9893-1B0E08515952</sourcePk>
+<identifying>true</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A134274C-DDB9-8C0E-8129-FCA5F5E49B72</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>25FCD3DE-2E5F-E5BC-94A8-E23211268A18</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

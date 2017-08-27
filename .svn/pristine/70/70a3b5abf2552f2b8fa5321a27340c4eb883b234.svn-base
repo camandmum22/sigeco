@@ -1,0 +1,180 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2B29A907-C6B7-CE0E-885C-5445DA86E42C" name="Usuario">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:11:22 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Usuario" id="18A4D40B-D3D9-14B9-3131-BD32389FDF47">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:11:22 UTC</createdTime>
+<comment>Código del usuario</comment>
+<commentInRDBMS>Código del usuario</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>6413E8E6-AC35-4C24-73F8-20BD80C3ED55</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Tipo_Documento" id="0CB91E84-0F66-0D2C-B114-316E6646130B">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 05:24:26 UTC</createdTime>
+<comment>Tipo de documento de indentificación</comment>
+<commentInRDBMS>Tipo de documento de indentificación</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Documento" id="D84B4D94-9670-2F53-1584-BCA63F6A58C9">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:11:22 UTC</createdTime>
+<comment>Número del documento de identidad</comment>
+<commentInRDBMS>Número del documento de identidad</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>3A215B55-7592-8117-37F4-96D06F77790C</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Nombre" id="8C6DA17F-AD69-E397-2441-B6B2B7ED5812">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:11:22 UTC</createdTime>
+<comment>Nombre completo del usuario</comment>
+<commentInRDBMS>Nombre completo del usuario</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>1211D383-0012-0A93-9313-5E35EBB6E1B6</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Email" id="9AB3BCC2-4041-6C24-24FE-62D5EFE82627">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:11:22 UTC</createdTime>
+<comment>Correo electrónico del usuario</comment>
+<commentInRDBMS>Correo electrónico del usuario</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>EE8EABF5-E189-347A-F085-59BBCDF6765C</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Telefono" id="50F00CA2-17C3-695A-8A39-81D8D85824E2">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:11:22 UTC</createdTime>
+<comment>Teléfono del usuario</comment>
+<commentInRDBMS>Teléfono del usuario</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>FE824A9F-F55F-C457-B61B-8BC7D4BD223D</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Otra_Institucion" id="BD5A6B73-A63C-D3E7-ABFB-F0E800F23F00">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-20 04:43:47 UTC</createdTime>
+<comment>Indica a que otra institución pertenece el investigador en caso de pertenecer a una diferente</comment>
+<commentInRDBMS>Indica a que otra institución pertenece el investigador en caso de pertenecer a una diferente</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Codigo_Estado" id="29709D4F-6FE9-4CFC-C2A4-C217B9F9FF13">
+<createdBy>Alvaro</createdBy>
+<createdTime>2015-03-20 04:50:53 UTC</createdTime>
+<comment>Código del estado</comment>
+<commentInRDBMS>Código del estado</commentInRDBMS>
+<generatorID>7D5918B4-DBAC-83D8-2E03-8810617D607D</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<referedAttribute>9FF70A89-200E-BB56-E201-19ECB90E2522</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Contraseña" id="B0AAE8CD-DE1D-138A-999D-C4DE483296BB">
+<createdBy>WMC</createdBy>
+<createdTime>2015-03-28 15:32:19 UTC</createdTime>
+<comment>Contraseña para el login</comment>
+<commentInRDBMS>Contraseña para el login</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="AB1AAABC-0938-C5E1-7ABD-237C03F1893F" name="Usuario_PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:11:22 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>18A4D40B-D3D9-14B9-3131-BD32389FDF47</newElementsIDs>
+<usedAttributes>
+<attributeRef>18A4D40B-D3D9-14B9-3131-BD32389FDF47</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

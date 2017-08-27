@@ -1,0 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.Subproducto;
+import com.sigeco.ejb.sessionbean.SubproductoFacade;
+import com.sigeco.ejb.utilities.InputChecks;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author ajacosta
+ */
+@FacesConverter("subproductoConverter")
+public class SubproductoConverter implements Converter{
+    
+    @EJB
+    SubproductoFacade subproductoFacade;    
+    
+    private List<Subproducto> subproductos = new ArrayList<>();
+    
+    public SubproductoConverter(){
+        
+    }
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        if (InputChecks.isTrimEmptyOrNull(value))
+        {
+            return null;
+        } else
+        {
+            subproductos = subproductoFacade.findBy("Codigo", new Long(value));
+
+            if (subproductos.size() > 0)
+            {
+                return subproductos.get(0);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+         if (value == null || value.equals(""))
+        {
+            return "";
+        } else
+        {
+            return ((Subproducto) value).getCodigo() + "";
+        }    
+    }   
+}

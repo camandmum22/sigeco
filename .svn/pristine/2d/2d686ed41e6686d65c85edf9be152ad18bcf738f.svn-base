@@ -1,0 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.utilities;
+
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.sessionbean.EstadoFacade;
+import com.sigeco.ejb.utilities.InputChecks;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+/**
+ *
+ * @author ajacosta
+ */
+@FacesConverter("estadoConverter")
+public class EstadoConverter implements Converter {
+    
+    @EJB
+    EstadoFacade estadoFacade;
+    
+    public EstadoConverter()
+    {
+        
+    } 
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+         if (InputChecks.isTrimEmptyOrNull(value))
+        {
+            return null;
+        } else
+        {
+            List<Estado> listaEstados = estadoFacade.findBy("Codigo", new Long(value));
+
+            if (listaEstados.size() > 0)
+            {
+                return listaEstados.get(0);
+            }
+        }
+
+        return null;    
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+             if (value == null || value.equals(""))
+        {
+            return "";
+        } else
+        {
+            return ((Estado) value).getCodigo() + "";
+        }  
+    }
+    
+}

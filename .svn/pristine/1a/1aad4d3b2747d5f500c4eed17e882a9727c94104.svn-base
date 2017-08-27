@@ -1,0 +1,207 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.namedbeans;
+
+import com.sigeco.ejb.entities.Entregable;
+import com.sigeco.ejb.entities.Estado;
+import com.sigeco.ejb.entities.ProyectoInvestigacion;
+import com.sigeco.ejb.entities.Subproducto;
+import com.sigeco.ejb.subsistemas.EntregablesSB;
+import com.sigeco.ejb.subsistemas.EstadosSB;
+import com.sigeco.ejb.subsistemas.ProyectosSB;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author csacanam
+ */
+@ManagedBean
+@SessionScoped
+public class EntregablesNB
+{
+
+    private Estado estado;
+    private Subproducto subproducto;
+    private ProyectoInvestigacion proyecto;
+    private Entregable entregable;
+    @EJB
+    private EstadosSB EstadosSB;
+    @EJB
+    private ProyectosSB ProyectosSB;
+    @EJB
+    private EntregablesSB EntregablesSB;
+
+    @PostConstruct
+    public void init()
+    {
+        setEstado(new Estado());
+        setSubproducto(new Subproducto());
+        setProyecto(new ProyectoInvestigacion());
+        setEntregable(new Entregable());
+    }
+
+    public String create()
+    {
+        if (EntregablesSB.getEntregableFacade().findByParameters(entregable.getNombre(), entregable.getCodigoProyecto().getCodigoProyecto()) == null)
+        {
+            getEntregable().setCodigoEstado(estado);
+            getEntregable().setCodigoProyecto(proyecto);
+            getEntregable().setCodigoSubproducto(subproducto);
+            EntregablesSB.getEntregableFacade().create(getEntregable());
+            init();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "El entregable ha sido asociado"));
+            return "/faces/login/menu.xhtml";
+        } else
+        {
+            init();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, null, "Ya existe un entregable con los parámetros especificados"));
+        }
+        return "";
+    }
+
+    public String delete()
+    {
+        Entregable e = EntregablesSB.getEntregableFacade().find(entregable.getCodigo());
+        if (e != null)
+        {
+            if (e.getCodigoEstado() == entregable.getCodigoEstado() && e.getCodigoProyecto().equals(entregable.getCodigoProyecto()) && e.getCodigoSubproducto().equals(entregable.getCodigoSubproducto()) && e.getNombre().equals(entregable.getNombre()) && e.getFechaestimada().equals(entregable.getFechaestimada()) && e.getFechareal().equals(entregable.getFechareal()))
+            {
+                EntregablesSB.getEntregableFacade().remove(getEntregable());
+                init();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "El entregable fue desasociado"));
+                return "/faces/login/menu.xhtml";
+            } else
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Seleccione el entregable a desasociar"));
+                return "";
+            }
+        } else
+        {
+            init();
+            //Esto no debería pasar porque se toma el entregable de una lista, por lo tanto siempre va a existir.
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, null, "ERROR FATAL: No existe un entregable con el Id especificado"));
+            return "";
+        }
+    }
+
+    /**
+     * @return the estado
+     */
+    public Estado getEstado()
+    {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(Estado estado)
+    {
+        this.estado = estado;
+    }
+
+    /**
+     * @return the subproducto
+     */
+    public Subproducto getSubproducto()
+    {
+        return subproducto;
+    }
+
+    /**
+     * @param subproducto the subproducto to set
+     */
+    public void setSubproducto(Subproducto subproducto)
+    {
+        this.subproducto = subproducto;
+    }
+
+    /**
+     * @return the proyecto
+     */
+    public ProyectoInvestigacion getProyecto()
+    {
+        return proyecto;
+    }
+
+    /**
+     * @param proyecto the proyecto to set
+     */
+    public void setProyecto(ProyectoInvestigacion proyecto)
+    {
+        this.proyecto = proyecto;
+    }
+
+    /**
+     * @return the entregable
+     */
+    public Entregable getEntregable()
+    {
+        return entregable;
+    }
+
+    /**
+     * @param entregable the entregable to set
+     */
+    public void setEntregable(Entregable entregable)
+    {
+        this.entregable = entregable;
+    }
+
+    /**
+     * @return the EstadosSB
+     */
+    public EstadosSB getEstadosSB()
+    {
+        return EstadosSB;
+    }
+
+    /**
+     * @param EstadosSB the EstadosSB to set
+     */
+    public void setEstadosSB(EstadosSB EstadosSB)
+    {
+        this.EstadosSB = EstadosSB;
+    }
+
+    /**
+     * @return the ProyectosSB
+     */
+    public ProyectosSB getProyectosSB()
+    {
+        return ProyectosSB;
+    }
+
+    /**
+     * @param ProyectosSB the ProyectosSB to set
+     */
+    public void setProyectosSB(ProyectosSB ProyectosSB)
+    {
+        this.ProyectosSB = ProyectosSB;
+    }
+
+    /**
+     * @return the EntregablesSB
+     */
+    public EntregablesSB getEntregablesSB()
+    {
+        return EntregablesSB;
+    }
+
+    /**
+     * @param EntregablesSB the EntregablesSB to set
+     */
+    public void setEntregablesSB(EntregablesSB EntregablesSB)
+    {
+        this.EntregablesSB = EntregablesSB;
+    }
+
+}

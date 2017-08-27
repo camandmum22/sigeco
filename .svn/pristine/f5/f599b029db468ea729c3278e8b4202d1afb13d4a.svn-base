@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html    
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Crear Convocatoria</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+
+    <h:body>
+        <!-- Se cargan las hojas de estilo -->
+        <h:outputStylesheet library="css" name="styles.css"  />
+
+        <h1 class="title">Crear convocatoria</h1>
+
+        <!-- Formulario de creación de UNA convocatoria -->
+        <h:form id="form" >
+            <p:panel style="text-align: center">    
+                <!-- Espacio para los mensajes emergentes -->
+                <p:growl id="growl" life="5000" />
+                <p:separator  />
+
+                <!-- Panel donde se ingresa el nombre de la convocatoria-->
+                <p:panel id="panel_nombreConv" header="Información" class="panel_Agregar">
+                    <h:panelGrid columns="2" cellpadding="5px" cellspacing="5px">
+                        <p:outputLabel for="txt_NombreConv" id="lbl_NombreConv" value="Nombre: " />                 
+                        <p:inputText id="txt_NombreConv" value="#{convocatoriaNB.nombreConvocatoria}" size="40" tabindex="1">
+                            <p:watermark for="txt_NombreConv" value="Ingrese el nombre de la convocatoria" />
+                        </p:inputText> 
+                    </h:panelGrid>
+                </p:panel>
+
+                <p:separator  />
+
+
+                <!-- Panel donde se muestran las fases -->
+                <p:panel  id="panel_Fases" header="Fases base de una convocatoria" class="panel_Fases">
+                    <p:dataTable id="table_Fases" var="fase" value="#{convocatoriaNB.fases}">
+
+                        <p:column sortBy="#{fase.nombre}" style="text-align: center;" headerText="Nombre">
+                            <h:outputText value="#{fase.nombre}"  />
+                        </p:column>
+
+                        <p:column headerText="Fecha Inicio" style="text-align: center;">
+                            <h:outputText value="#{fase.fechaIni}"  />
+                        </p:column>
+
+                        <p:column headerText="Fecha de Finalización" style="text-align: center;">
+                            <h:outputText value="#{fase.fechaFin}"  />
+                        </p:column>
+
+                        <p:column headerText="Duración" style="text-align: center;">
+                            <h:outputText value="#{convocatoriaNB.calcularDuracionFase(fase)}"  />
+                        </p:column>   
+
+                        <p:column headerText="Opciones">
+                            <p:commandLink value="Eliminar" update=":form:panel_Fases" process=":form:panel_Fases" actionListener="#{convocatoriaNB.delete(fase)}" />                       
+                        </p:column>
+                    </p:dataTable>                
+                </p:panel>
+
+                <!--Panel de agregar fase-->
+                <p:panel id="panel_Agregar" header="Añadir fase" class="panel_Agregar" >
+                    <h:panelGrid columns="2" cellpadding="5px" cellspacing="5px">
+
+                        <p:outputLabel for="txt_Nombre" id="lbl_Nombre" value="Nombre:" />                  
+                        <p:inputText id="txt_Nombre" value="#{convocatoriaNB.nombreFase}" size="30" tabindex="2">
+                            <p:watermark for="txt_Nombre" value="Nombre" />
+                        </p:inputText>
+
+                        <p:outputLabel for="cal_FechaIni" id="lbl_FechaIni" value="Fecha de inicio:"/>
+                        <p:calendar id="cal_FechaIni" value="#{convocatoriaNB.fechaIniFase}" size="30" tabindex="3">
+                            <p:watermark for="cal_FechaIni" value="Fecha de inicio" />
+                        </p:calendar>
+
+                        <p:outputLabel for="cal_FechaFin" id="lbl_FechaFin" value="Fecha de finalización:"/>
+                        <p:calendar id="cal_FechaFin" value="#{convocatoriaNB.fechaFinFase}" size="30" tabindex="4">
+                            <p:watermark for="cal_FechaFin" value="Fecha de finalización" />
+                        </p:calendar>
+
+                        <p:commandButton id="btn_crearFase" value="Añadir fase" update="growl panel_Fases panel_Agregar @parent" actionListener="#{convocatoriaNB.refresh()}" tabindex="5" />
+                        <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+                    </h:panelGrid>               
+                </p:panel>
+
+
+                <p:separator/>
+
+                <p:commandButton id="btn_crearConvocatoria" value="Guardar" actionListener="#{convocatoriaNB.crearConvocatoria()}" update="growl" action="convocatorias" tabindex="6" title="Guardar cambios" />
+                <p:commandButton id="btn_Cancelar" value="Cancelar" action="convocatorias" tabindex="7" title="Cancelar"/>
+            </p:panel>
+        </h:form>
+
+    </h:body>
+
+</html>
+

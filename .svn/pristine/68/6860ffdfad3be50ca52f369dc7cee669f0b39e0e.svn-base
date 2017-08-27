@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	<h:head>
+		<base target="_top"/>
+                <title>SIGECO</title>
+	</h:head>
+	
+	<h:body>
+            <h:form>
+                <p:panel header="Bienvenido #{authAutNB.usuarioActual.nombre} a la Plataforma de Gestion de Proyectos de Investigacion." >
+                    <table style="width: 100%">
+                        <tr>
+                            <td align="left">
+                                <p:menubar style="width:100%;  font-size:11px;"  model="#{menuNB.estructura}" id="menu" rendered="#{not empty menuNB.modulos}"/>
+                            </td>
+                            <td align="right">
+                                 <p:commandButton id="logout" action="#{authAutNB.cerrarSesion()}" value="Salir" icon="ui-icon-power"></p:commandButton>
+                            </td>
+                        </tr>
+                    </table>
+                </p:panel>
+            </h:form>
+	</h:body>
+</html>

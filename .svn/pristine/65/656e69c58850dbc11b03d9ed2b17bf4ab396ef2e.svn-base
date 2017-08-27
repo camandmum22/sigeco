@@ -1,0 +1,136 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.sigeco.ejb.entities;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+/**
+ *
+ * @author csacanam
+ */
+@Embeddable
+public class PcsRubroPK implements Serializable
+{
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_RUBRO", nullable = false)
+    private Long codigoRubro;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_CONVOCATORIA", nullable = false)
+    private Long codigoConvocatoria;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_PROYECTO", nullable = false)
+    private Long codigoProyecto;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "CODIGO_SOLICITUD", nullable = false)
+    private Long codigoSolicitud;
+
+    public PcsRubroPK()
+    {
+    }
+
+    public PcsRubroPK(Long codigoRubro, Long codigoConvocatoria, Long codigoProyecto, Long codigoSolicitud)
+    {
+        this.codigoRubro = codigoRubro;
+        this.codigoConvocatoria = codigoConvocatoria;
+        this.codigoProyecto = codigoProyecto;
+        this.codigoSolicitud = codigoSolicitud;
+    }
+
+    public Long getCodigoRubro()
+    {
+        return codigoRubro;
+    }
+
+    public void setCodigoRubro(Long codigoRubro)
+    {
+        this.codigoRubro = codigoRubro;
+    }
+
+    public Long getCodigoConvocatoria()
+    {
+        return codigoConvocatoria;
+    }
+
+    public void setCodigoConvocatoria(Long codigoConvocatoria)
+    {
+        this.codigoConvocatoria = codigoConvocatoria;
+    }
+
+    public Long getCodigoProyecto()
+    {
+        return codigoProyecto;
+    }
+
+    public void setCodigoProyecto(Long codigoProyecto)
+    {
+        this.codigoProyecto = codigoProyecto;
+    }
+
+    public Long getCodigoSolicitud()
+    {
+        return codigoSolicitud;
+    }
+
+    public void setCodigoSolicitud(Long codigoSolicitud)
+    {
+        this.codigoSolicitud = codigoSolicitud;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (codigoRubro != null ? codigoRubro.hashCode() : 0);
+        hash += (codigoConvocatoria != null ? codigoConvocatoria.hashCode() : 0);
+        hash += (codigoProyecto != null ? codigoProyecto.hashCode() : 0);
+        hash += (codigoSolicitud != null ? codigoSolicitud.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof PcsRubroPK))
+        {
+            return false;
+        }
+        PcsRubroPK other = (PcsRubroPK) object;
+        if ((this.codigoRubro == null && other.codigoRubro != null) || (this.codigoRubro != null && !this.codigoRubro.equals(other.codigoRubro)))
+        {
+            return false;
+        }
+        if ((this.codigoConvocatoria == null && other.codigoConvocatoria != null) || (this.codigoConvocatoria != null && !this.codigoConvocatoria.equals(other.codigoConvocatoria)))
+        {
+            return false;
+        }
+        if ((this.codigoProyecto == null && other.codigoProyecto != null) || (this.codigoProyecto != null && !this.codigoProyecto.equals(other.codigoProyecto)))
+        {
+            return false;
+        }
+        if ((this.codigoSolicitud == null && other.codigoSolicitud != null) || (this.codigoSolicitud != null && !this.codigoSolicitud.equals(other.codigoSolicitud)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "com.sigeco.ejb.entities.PcsRubroPK[ codigoRubro=" + codigoRubro + ", codigoConvocatoria=" + codigoConvocatoria + ", codigoProyecto=" + codigoProyecto + ", codigoSolicitud=" + codigoSolicitud + " ]";
+    }
+    
+}

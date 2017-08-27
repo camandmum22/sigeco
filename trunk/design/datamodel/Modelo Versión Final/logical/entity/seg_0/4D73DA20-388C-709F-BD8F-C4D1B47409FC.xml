@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="4D73DA20-388C-709F-BD8F-C4D1B47409FC" name="Rubro">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:21:23 UTC</createdTime>
+<comment>Tabla que representa los rubros existentes dentro de la Universidad, los cuales pueden ser asignados a un Proyecto.</comment>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Codigo_Rubro" id="F2C888E8-D34F-7405-69E9-E9698B4EA108">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:21:23 UTC</createdTime>
+<comment>Código del rubro</comment>
+<commentInRDBMS>Código del rubro</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>9F0AA714-DBD7-7257-96F2-AB250F1E66ED</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Nombre" id="BCF49476-4A73-658F-9A56-DFFB63076703">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:21:23 UTC</createdTime>
+<comment>Nombre del rubro</comment>
+<commentInRDBMS>Nombre del rubro</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<importedID>4540DD28-35F2-EA1E-887C-5ACD95BF051B</importedID>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+</Attribute>
+<Attribute name="Descripcion" id="DDC2E37E-2A45-C179-9883-7E377511E1A0">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 06:04:32 UTC</createdTime>
+<comment>Descripción del rubro</comment>
+<commentInRDBMS>Descripción del rubro</commentInRDBMS>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 CHAR</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="ECD458ED-DFB3-0371-240B-EF6F03340259" name="{entity} PK">
+<createdBy>Primo</createdBy>
+<createdTime>2015-02-25 04:21:23 UTC</createdTime>
+<generatorID>Generado por el Usuario</generatorID>
+<ownerDesignName>Modelo Versión Final</ownerDesignName>
+<engineerTo>
+<item key="56D1BC4C-9453-BDCC-6854-D25F90573E50" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F2C888E8-D34F-7405-69E9-E9698B4EA108</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
